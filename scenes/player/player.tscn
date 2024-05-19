@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=22 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
 [ext_resource type="Texture2D" uid="uid://co3gs7i3prm06" path="res://assets/sprites/spaceman_head.png" id="3_h01y5"]
 [ext_resource type="Texture2D" uid="uid://r276nctjhhqg" path="res://assets/sprites/back_arm.png" id="4_gdxe3"]
 [ext_resource type="Texture2D" uid="uid://bj03rtcnaylg8" path="res://assets/sprites/front_arm.png" id="5_1pwc8"]
-[ext_resource type="PackedScene" uid="uid://cng0oxvq4lgro" path="res://pistol.tscn" id="6_3ubtt"]
+[ext_resource type="PackedScene" uid="uid://cng0oxvq4lgro" path="res://scenes/weapons/pistol.tscn" id="6_f8ujg"]
 [ext_resource type="Texture2D" uid="uid://ckj23t8cxbi3n" path="res://assets/sprites/spaceman_legs_idle.png" id="7_nifhg"]
 [ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
+[ext_resource type="PackedScene" uid="uid://bbqge7vjq2j3y" path="res://scenes/bullets/trails/smoketrail.tscn" id="9_353o3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
 radius = 6.0
@@ -98,6 +99,35 @@ animations = [{
 "loop": true,
 "name": &"running",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frhlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kh60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mex7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8yed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ome")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alkq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl6kx")
+}],
+"loop": true,
+"name": &"running_backwards",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -119,41 +149,42 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Body" type="Node2D" parent="."]
 position = Vector2(0, -7)
 
-[node name="Torso" type="Sprite2D" parent="Node2D"]
+[node name="Torso" type="Sprite2D" parent="Body"]
 position = Vector2(0, -11)
 texture = ExtResource("2_cyyxl")
 
-[node name="Head" type="Sprite2D" parent="Node2D/Torso"]
+[node name="Head" type="Sprite2D" parent="Body/Torso"]
 position = Vector2(0, -7)
 texture = ExtResource("3_h01y5")
 
-[node name="Arm_B" type="Sprite2D" parent="Node2D/Torso"]
+[node name="Arm_B" type="Sprite2D" parent="Body/Torso"]
 z_index = -1
 position = Vector2(3, -3)
 texture = ExtResource("4_gdxe3")
 offset = Vector2(2.08165e-12, 2)
 
-[node name="Arm_F" type="Sprite2D" parent="Node2D/Torso"]
+[node name="Arm_F" type="Sprite2D" parent="Body/Torso"]
 z_index = 1
 position = Vector2(-3, -2)
-scale = Vector2(1, 1)
 texture = ExtResource("5_1pwc8")
 offset = Vector2(-1, 3)
 
-[node name="WeaponHolder" type="Marker2D" parent="Node2D/Torso/Arm_F"]
+[node name="WeaponHolder" type="Marker2D" parent="Body/Torso/Arm_F"]
 position = Vector2(0.110936, 8.54328)
 rotation = 1.5708
 
-[node name="Pistol" parent="Node2D/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_3ubtt")]
+[node name="Pistol" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_f8ujg")]
 
-[node name="Legs" type="AnimatedSprite2D" parent="Node2D"]
+[node name="Legs" type="AnimatedSprite2D" parent="Body"]
 z_index = -1
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_rf0e2")
-animation = &"running"
+animation = &"running_backwards"
 autoplay = "running"
-frame_progress = 0.100838
-speed_scale = 2.0
+frame_progress = 0.227754
+speed_scale = 3.0
+
+[node name="Smoketrail" parent="." instance=ExtResource("9_353o3")]

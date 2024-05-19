@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://cql7da7u83iwk"]
+
+[ext_resource type="Script" path="res://scenes/bullets/explosions/stars/stars_explosion.gd" id="1_55aop"]
+[ext_resource type="Texture2D" uid="uid://cj6jgbeito6jj" path="res://assets/sprites/star.png" id="1_o1s5k"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="2_nf7oj"]
+
+[sub_resource type="Gradient" id="Gradient_2yng4"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.486275, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kcl3o"]
+gradient = SubResource("Gradient_2yng4")
+
+[sub_resource type="Curve" id="Curve_hcuin"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nvomc"]
+curve_y = SubResource("Curve_hcuin")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6b27c"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 230.16
+initial_velocity_max = 349.21
+directional_velocity_min = 0.0
+directional_velocity_max = 720.0
+directional_velocity_curve = SubResource("CurveXYZTexture_nvomc")
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_kcl3o")
+
+[node name="StarsExplosion" type="Node2D"]
+script = ExtResource("1_55aop")
+lifetime = 0.2
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_6b27c")
+texture = ExtResource("1_o1s5k")
+lifetime = 0.3
+local_coords = true
+
+[node name="Particles2" type="GPUParticles2D" parent="."]
+self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
+process_material = SubResource("ParticleProcessMaterial_6b27c")
+texture = ExtResource("2_nf7oj")
+lifetime = 0.3
+local_coords = true
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+
+[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]
+[connection signal="finished" from="Particles2" to="." method="_on_particles_finished"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

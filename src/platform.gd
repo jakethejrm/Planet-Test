@@ -4,7 +4,7 @@ extends GravObject
 @export var width : float = 200 : set = _set_width
 @export var height : float = 200: set = _set_height
 
-func gravity_force(player : Node2D) -> Vector2:
+func gravity_force(_player : Node2D) -> Vector2:
 	return gravity_amount * Vector2.DOWN.rotated(rotation)
 	
 func _on_gravity_body_entered(body):

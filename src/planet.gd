@@ -23,14 +23,12 @@ func _set_planet_size(new_size : float):
 	#creating new planet polygon
 	#TODO: Polygon UVs
 	var new_polygon = []
-	var polygon_uvs = []
 	for i in range(new_size):
 		var x : float = cos(2*PI * (i/new_size))
 		var y : float = sin(2*PI * (i/new_size))
 		new_polygon.append(Vector2(x * new_size, y  * new_size))
-		polygon_uvs.append(Vector2(x * 128 + 128, y * 128 + 128))
 	$PlanetSurface/PlanetGeometry.polygon = new_polygon
-	$PlanetSurface/PlanetGeometry.uv = polygon_uvs
+	$PlanetSurface/ShadowBox.occluder.polygon = new_polygon
 	
 	#remove all previous grass
 	for child in $PlanetDetails.get_children():

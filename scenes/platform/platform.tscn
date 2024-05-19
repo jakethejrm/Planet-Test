@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://rupxjgyfwvsq" path="res://scenes/decor/rock.tscn" id="7_mk0kg"]
 [ext_resource type="PackedScene" uid="uid://ckvdfwmu5624t" path="res://scenes/decor/flower.tscn" id="9_ekxmd"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oqyhy"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8uycx"]
 frequency = 0.0119
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tonk2"]
 seamless = true
-noise = SubResource("FastNoiseLite_oqyhy")
+noise = SubResource("FastNoiseLite_8uycx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xxjh5"]
 resource_local_to_scene = true

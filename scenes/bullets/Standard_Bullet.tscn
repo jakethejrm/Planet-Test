@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfhdd588sko2w"]
+
+[ext_resource type="Script" path="res://scenes/bullets/Standard_Bullet.gd" id="1_fpl57"]
+[ext_resource type="Texture2D" uid="uid://domau676dwvyx" path="res://assets/sprites/Bullet.png" id="2_ejtb3"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="3_muow0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6837"]
+size = Vector2(16, 4)
+
+[sub_resource type="Gradient" id="Gradient_ax6l3"]
+offsets = PackedFloat32Array(0, 0.590708)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wvmh7"]
+gradient = SubResource("Gradient_ax6l3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bi80h"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 13.19
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_max = 142.85
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+
+[node name="StandardBullet" type="Area2D"]
+script = ExtResource("1_fpl57")
+color = Color(1, 0.403922, 0.407843, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j6837")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ejtb3")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Glow" type="PointLight2D" parent="."]
+position = Vector2(-10, 0)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_wvmh7")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(-5, 0)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_bi80h")
+texture = ExtResource("3_muow0")
+
+[node name="NormalGetter" type="RayCast2D" parent="."]
+position = Vector2(-16, 0)
+target_position = Vector2(24, 0)
+hit_from_inside = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifespanTimer" to="." method="_on_lifespan_timer_timeout"]

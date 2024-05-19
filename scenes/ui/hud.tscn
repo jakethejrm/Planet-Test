@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://crk4e5jvhad26"]
+
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_sw5hs"]
+
+[sub_resource type="Gradient" id="Gradient_w0au8"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q1d24"]
+gradient = SubResource("Gradient_w0au8")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ljb53"]
+colors = PackedColorArray(0.908495, 0.865918, 7.70092e-07, 1, 1, 0.501572, 0.392006, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_13mbv"]
+gradient = SubResource("Gradient_ljb53")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_yl7ek"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t8err"]
+gradient = SubResource("Gradient_yl7ek")
+fill_to = Vector2(0, 1)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_sw5hs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins"]
+layout_mode = 2
+
+[node name="Health2" type="ColorRect" parent="Margins/VBoxContainer"]
+custom_minimum_size = Vector2(202, 12)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="TextureRect" parent="Margins/VBoxContainer/Health2"]
+custom_minimum_size = Vector2(198, 8)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 201.0
+offset_bottom = 11.0
+texture = SubResource("GradientTexture2D_q1d24")
+expand_mode = 1
+
+[node name="Health3" type="ColorRect" parent="Margins/VBoxContainer"]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="TextureRect" parent="Margins/VBoxContainer/Health3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 11.0
+texture = SubResource("GradientTexture2D_13mbv")
+expand_mode = 1
+
+[node name="ColorRect2" type="TextureRect" parent="Margins/VBoxContainer/Health3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 11.0
+texture = SubResource("GradientTexture2D_t8err")
+expand_mode = 1

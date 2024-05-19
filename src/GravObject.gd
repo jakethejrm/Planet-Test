@@ -6,5 +6,5 @@ enum GravityType {PLANETOID, PLATFORM}
 @export var gravity_amount : float = 980
 @export var gravity_type : GravityType = GravityType.PLANETOID
 
-func gravity_force(player : Node2D) -> Vector2:
+func gravity_force(_player : Node2D) -> Vector2:
 	return Vector2.ZERO
