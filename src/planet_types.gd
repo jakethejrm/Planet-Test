@@ -1,0 +1,4 @@
+extends Node
+
+enum planets {MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE}
+

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckvdfwmu5624t"]
+
+[ext_resource type="Shader" path="res://shaders/grass.gdshader" id="1_7ljby"]
+[ext_resource type="Texture2D" uid="uid://dcdcs7qlbcb3a" path="res://materials/flower.png" id="2_fmwq5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bey3j"]
+shader = ExtResource("1_7ljby")
+shader_parameter/wind_speed = 2.0
+shader_parameter/distance_threshold = 10.0
+
+[node name="Node2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_bey3j")
+texture = ExtResource("2_fmwq5")
+offset = Vector2(2.08165e-12, -4)

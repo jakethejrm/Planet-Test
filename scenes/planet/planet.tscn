@@ -1,0 +1,506 @@
+[gd_scene load_steps=21 format=3 uid="uid://cdarntr1b7obm"]
+
+[ext_resource type="Script" path="res://src/planet.gd" id="1_7uwqi"]
+[ext_resource type="Shader" path="res://shaders/planet.gdshader" id="2_a5e5j"]
+[ext_resource type="Texture2D" uid="uid://dphktsgp6hmqx" path="res://materials/planet.png" id="2_igcb7"]
+[ext_resource type="PackedScene" uid="uid://bgqs72ifxetbu" path="res://scenes/decor/grass.tscn" id="2_qoit8"]
+[ext_resource type="Shader" path="res://shaders/atmosphere.gdshader" id="3_25deq"]
+[ext_resource type="PackedScene" uid="uid://rupxjgyfwvsq" path="res://scenes/decor/rock.tscn" id="5_e5w1m"]
+[ext_resource type="PackedScene" uid="uid://ckvdfwmu5624t" path="res://scenes/decor/flower.tscn" id="6_yhxeb"]
+[ext_resource type="PackedScene" uid="uid://ogne6u7jghs4" path="res://scenes/decor/tree.tscn" id="10_0qc47"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gntw"]
+resource_local_to_scene = true
+radius = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxk3s"]
+resource_local_to_scene = true
+radius = 100.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uhwli"]
+noise_type = 2
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yt81m"]
+seamless = true
+noise = SubResource("FastNoiseLite_uhwli")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsqx8"]
+resource_local_to_scene = true
+shader = ExtResource("2_a5e5j")
+shader_parameter/grass_color = Color(0, 0.321569, 0.168627, 1)
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/border = 5.0
+shader_parameter/planet_size = 100.0
+shader_parameter/grass_cutoff = 15.0
+shader_parameter/noise_scale = 10.0
+shader_parameter/noise = SubResource("NoiseTexture2D_yt81m")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ydvnx"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p4ioe"]
+seamless = true
+noise = SubResource("FastNoiseLite_ydvnx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dsdql"]
+noise_type = 0
+frequency = 0.0006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is4o8"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_dsdql")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8ssn"]
+shader = ExtResource("3_25deq")
+shader_parameter/atmosphere_noise = SubResource("NoiseTexture2D_p4ioe")
+shader_parameter/atmosphere_noise2 = SubResource("NoiseTexture2D_is4o8")
+
+[sub_resource type="Gradient" id="Gradient_idwip"]
+offsets = PackedFloat32Array(0.290258, 0.459245, 0.681909)
+colors = PackedColorArray(0.376471, 0.403922, 1, 1, 0.376471, 0.403922, 1, 0.67451, 0.301961, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sgqg0"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_idwip")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_7uwqi")
+
+[node name="GravitySource" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+gravity_space_override = 3
+gravity_point_center = Vector2(2.08165e-12, 2.08165e-12)
+gravity_direction = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="GravityField" type="CollisionShape2D" parent="GravitySource"]
+shape = SubResource("CircleShape2D_7gntw")
+debug_color = Color(0.117647, 0.627451, 0.458824, 0.419608)
+
+[node name="PlanetSurface" type="AnimatableBody2D" parent="."]
+
+[node name="PlanetCollision" type="CollisionShape2D" parent="PlanetSurface"]
+visible = false
+shape = SubResource("CircleShape2D_xxk3s")
+debug_color = Color(0.984314, 0, 0.34902, 0.419608)
+
+[node name="PlanetGeometry" type="Polygon2D" parent="PlanetSurface"]
+z_index = 1
+material = SubResource("ShaderMaterial_gsqx8")
+texture = ExtResource("2_igcb7")
+polygon = PackedVector2Array(100, 0, 99.8027, 6.27905, 99.2115, 12.5333, 98.2287, 18.7381, 96.8583, 24.869, 95.1057, 30.9017, 92.9776, 36.8125, 90.4827, 42.5779, 87.6307, 48.1754, 84.4328, 53.5827, 80.9017, 58.7785, 77.0513, 63.7424, 72.8969, 68.4547, 68.4547, 72.8969, 63.7424, 77.0513, 58.7785, 80.9017, 53.5827, 84.4328, 48.1754, 87.6307, 42.5779, 90.4827, 36.8125, 92.9776, 30.9017, 95.1057, 24.869, 96.8583, 18.7381, 98.2287, 12.5333, 99.2115, 6.27905, 99.8027, 6.12323e-15, 100, -6.27905, 99.8027, -12.5333, 99.2115, -18.7381, 98.2287, -24.869, 96.8583, -30.9017, 95.1057, -36.8125, 92.9776, -42.5779, 90.4827, -48.1754, 87.6307, -53.5827, 84.4328, -58.7785, 80.9017, -63.7424, 77.0513, -68.4547, 72.8969, -72.8969, 68.4547, -77.0513, 63.7424, -80.9017, 58.7785, -84.4328, 53.5827, -87.6307, 48.1754, -90.4827, 42.5779, -92.9776, 36.8125, -95.1057, 30.9017, -96.8583, 24.869, -98.2287, 18.7381, -99.2115, 12.5333, -99.8027, 6.27905, -100, 1.22465e-14, -99.8027, -6.27905, -99.2115, -12.5333, -98.2287, -18.7381, -96.8583, -24.869, -95.1057, -30.9017, -92.9776, -36.8125, -90.4827, -42.5779, -87.6307, -48.1754, -84.4328, -53.5827, -80.9017, -58.7785, -77.0513, -63.7424, -72.8969, -68.4547, -68.4547, -72.8969, -63.7424, -77.0513, -58.7785, -80.9017, -53.5827, -84.4328, -48.1754, -87.6307, -42.5779, -90.4827, -36.8125, -92.9776, -30.9017, -95.1057, -24.869, -96.8583, -18.7381, -98.2287, -12.5333, -99.2115, -6.27905, -99.8027, -1.83697e-14, -100, 6.27905, -99.8027, 12.5333, -99.2115, 18.7381, -98.2287, 24.869, -96.8583, 30.9017, -95.1057, 36.8125, -92.9776, 42.5779, -90.4827, 48.1754, -87.6307, 53.5827, -84.4328, 58.7785, -80.9017, 63.7424, -77.0513, 68.4547, -72.8969, 72.8969, -68.4547, 77.0513, -63.7424, 80.9017, -58.7785, 84.4328, -53.5827, 87.6307, -48.1754, 90.4827, -42.5779, 92.9776, -36.8125, 95.1057, -30.9017, 96.8583, -24.869, 98.2287, -18.7381, 99.2115, -12.5333, 99.8027, -6.27905)
+uv = PackedVector2Array(256, 128, 255.747, 136.037, 254.991, 144.043, 253.733, 151.985, 251.979, 159.832, 249.735, 167.554, 247.011, 175.12, 243.818, 182.5, 240.167, 189.664, 236.074, 196.586, 231.554, 203.237, 226.626, 209.59, 221.308, 215.622, 215.622, 221.308, 209.59, 226.626, 203.237, 231.554, 196.586, 236.074, 189.664, 240.167, 182.5, 243.818, 175.12, 247.011, 167.554, 249.735, 159.832, 251.979, 151.985, 253.733, 144.043, 254.991, 136.037, 255.747, 128, 256, 119.963, 255.747, 111.957, 254.991, 104.015, 253.733, 96.1677, 251.979, 88.4458, 249.735, 80.8801, 247.011, 73.5003, 243.818, 66.3355, 240.167, 59.4142, 236.074, 52.7635, 231.554, 46.4097, 226.626, 40.378, 221.308, 34.692, 215.622, 29.3743, 209.59, 24.4458, 203.237, 19.926, 196.586, 15.8327, 189.664, 12.1821, 182.5, 8.98861, 175.12, 6.26477, 167.554, 4.02136, 159.832, 2.26723, 151.985, 1.00932, 144.043, 0.252579, 136.037, 0, 128, 0.252579, 119.963, 1.00932, 111.957, 2.26723, 104.015, 4.02136, 96.1677, 6.26477, 88.4458, 8.98861, 80.8801, 12.1821, 73.5003, 15.8327, 66.3355, 19.926, 59.4142, 24.4458, 52.7635, 29.3743, 46.4097, 34.692, 40.378, 40.378, 34.692, 46.4097, 29.3743, 52.7635, 24.4458, 59.4142, 19.926, 66.3355, 15.8327, 73.5003, 12.1821, 80.8801, 8.98861, 88.4458, 6.26477, 96.1677, 4.02136, 104.015, 2.26723, 111.957, 1.00932, 119.963, 0.252579, 128, 0, 136.037, 0.252579, 144.043, 1.00932, 151.985, 2.26723, 159.832, 4.02136, 167.554, 6.26477, 175.12, 8.98861, 182.5, 12.1821, 189.664, 15.8327, 196.586, 19.926, 203.237, 24.4458, 209.59, 29.3743, 215.622, 34.692, 221.308, 40.378, 226.626, 46.4097, 231.554, 52.7635, 236.074, 59.4142, 240.167, 66.3355, 243.818, 73.5003, 247.011, 80.8801, 249.735, 88.4458, 251.979, 96.1677, 253.733, 104.015, 254.991, 111.957, 255.747, 119.963)
+
+[node name="Atmosphere" type="Sprite2D" parent="PlanetSurface"]
+z_index = -11
+material = SubResource("ShaderMaterial_t8ssn")
+texture = SubResource("GradientTexture2D_sgqg0")
+
+[node name="PlanetDetails" type="Node2D" parent="."]
+
+[node name="@Sprite2D@138883" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(100, 0)
+rotation = 1.5708
+
+[node name="@Sprite2D@138884" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(99.8027, 6.27905)
+rotation = 1.63363
+
+[node name="@Sprite2D@138885" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(99.2115, 12.5333)
+rotation = 1.69646
+
+[node name="@Sprite2D@138886" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(98.2287, 18.7381)
+rotation = 1.75929
+
+[node name="@Sprite2D@138887" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(96.8583, 24.869)
+rotation = 1.82212
+
+[node name="@Sprite2D@138888" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(95.1057, 30.9017)
+rotation = 1.88496
+
+[node name="@Sprite2D@138889" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(92.9776, 36.8125)
+rotation = 1.94779
+
+[node name="@Sprite2D@138890" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(90.4827, 42.5779)
+rotation = 2.01062
+
+[node name="@Sprite2D@138891" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(87.6307, 48.1754)
+rotation = 2.07345
+
+[node name="@Sprite2D@138892" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(84.4328, 53.5827)
+rotation = 2.13628
+
+[node name="@Sprite2D@138893" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(80.9017, 58.7785)
+rotation = 2.19911
+
+[node name="@Sprite2D@138894" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(77.0513, 63.7424)
+rotation = 2.26195
+
+[node name="@Sprite2D@138895" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(72.8969, 68.4547)
+rotation = 2.32478
+
+[node name="@Sprite2D@138896" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(68.4547, 72.8969)
+rotation = 2.38761
+
+[node name="@Sprite2D@138897" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(63.7424, 77.0513)
+rotation = 2.45044
+
+[node name="@Sprite2D@138898" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(58.7785, 80.9017)
+rotation = 2.51327
+
+[node name="@Sprite2D@138899" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(53.5827, 84.4328)
+rotation = 2.57611
+
+[node name="@Sprite2D@138900" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(48.1754, 87.6307)
+rotation = 2.63894
+
+[node name="@Sprite2D@138901" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(42.5779, 90.4827)
+rotation = 2.70177
+
+[node name="@Sprite2D@138902" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(36.8125, 92.9776)
+rotation = 2.7646
+
+[node name="@Sprite2D@138903" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(30.9017, 95.1057)
+rotation = 2.82743
+
+[node name="@Sprite2D@138904" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(24.869, 96.8583)
+rotation = 2.89027
+
+[node name="@Sprite2D@138905" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(18.7381, 98.2287)
+rotation = 2.9531
+
+[node name="@Sprite2D@138906" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(12.5333, 99.2115)
+rotation = 3.01593
+
+[node name="@Sprite2D@138907" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(6.27905, 99.8027)
+rotation = 3.07876
+
+[node name="@Sprite2D@138908" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(6.12323e-15, 100)
+rotation = 3.14159
+
+[node name="@Sprite2D@138909" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-6.27905, 99.8027)
+rotation = 3.20442
+
+[node name="@Sprite2D@138910" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-12.5333, 99.2115)
+rotation = 3.26726
+
+[node name="@Sprite2D@138911" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-18.7381, 98.2287)
+rotation = 3.33009
+
+[node name="@Sprite2D@138912" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-24.869, 96.8583)
+rotation = 3.39292
+
+[node name="@Sprite2D@138913" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-30.9017, 95.1057)
+rotation = 3.45575
+
+[node name="@Sprite2D@138914" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-36.8125, 92.9776)
+rotation = 3.51858
+
+[node name="@Sprite2D@138915" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-42.5779, 90.4827)
+rotation = 3.58142
+
+[node name="@Sprite2D@138916" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-48.1754, 87.6307)
+rotation = 3.64425
+
+[node name="@Sprite2D@138917" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-53.5827, 84.4328)
+rotation = 3.70708
+
+[node name="@Sprite2D@138918" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-58.7785, 80.9017)
+rotation = 3.76991
+
+[node name="@Sprite2D@138919" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-63.7424, 77.0513)
+rotation = 3.83274
+
+[node name="@Sprite2D@138920" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-68.4547, 72.8969)
+rotation = 3.89557
+
+[node name="@Sprite2D@138921" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-72.8969, 68.4547)
+rotation = 3.95841
+
+[node name="@Sprite2D@138922" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-77.0513, 63.7424)
+rotation = 4.02124
+
+[node name="@Sprite2D@138923" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-80.9017, 58.7785)
+rotation = 4.08407
+
+[node name="@Sprite2D@138924" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-84.4328, 53.5827)
+rotation = 4.1469
+
+[node name="@Sprite2D@138925" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-87.6307, 48.1754)
+rotation = 4.20973
+
+[node name="@Sprite2D@138926" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-90.4827, 42.5779)
+rotation = 4.27257
+
+[node name="@Sprite2D@138927" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-92.9776, 36.8125)
+rotation = 4.3354
+
+[node name="@Sprite2D@138928" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-95.1057, 30.9017)
+rotation = 4.39823
+
+[node name="@Sprite2D@138929" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-96.8583, 24.869)
+rotation = 4.46106
+
+[node name="@Sprite2D@138930" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-98.2287, 18.7381)
+rotation = 4.52389
+
+[node name="@Sprite2D@138931" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-99.2115, 12.5333)
+rotation = 4.58673
+
+[node name="@Sprite2D@138932" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-99.8027, 6.27905)
+rotation = 4.64956
+
+[node name="@Sprite2D@138933" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-100, 1.22465e-14)
+rotation = 4.71239
+
+[node name="@Sprite2D@138934" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-99.8027, -6.27905)
+rotation = 4.77522
+
+[node name="@Sprite2D@138935" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-99.2115, -12.5333)
+rotation = 4.83805
+
+[node name="@Sprite2D@138936" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-98.2287, -18.7381)
+rotation = 4.90088
+
+[node name="@Node2D@138937" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
+position = Vector2(-96.8583, -24.869)
+rotation = 4.96372
+
+[node name="@Sprite2D@138938" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-95.1057, -30.9017)
+rotation = 5.02655
+
+[node name="@Sprite2D@138939" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-92.9776, -36.8125)
+rotation = 5.08938
+
+[node name="@Sprite2D@138940" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-90.4827, -42.5779)
+rotation = 5.15221
+
+[node name="@Sprite2D@138941" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-87.6307, -48.1754)
+rotation = 5.21504
+
+[node name="@Sprite2D@138942" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-84.4328, -53.5827)
+rotation = 5.27788
+
+[node name="@Sprite2D@138943" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-80.9017, -58.7785)
+rotation = 5.34071
+
+[node name="@Sprite2D@138944" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-77.0513, -63.7424)
+rotation = 5.40354
+
+[node name="@Sprite2D@138945" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-72.8969, -68.4547)
+rotation = 5.46637
+
+[node name="@Sprite2D@138946" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-68.4547, -72.8969)
+rotation = 5.5292
+
+[node name="@Sprite2D@138947" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-63.7424, -77.0513)
+rotation = 5.59203
+
+[node name="@Sprite2D@138948" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-58.7785, -80.9017)
+rotation = 5.65487
+
+[node name="@Sprite2D@138949" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-53.5827, -84.4328)
+rotation = 5.7177
+
+[node name="@Sprite2D@138950" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-48.1754, -87.6307)
+rotation = 5.78053
+
+[node name="@Sprite2D@138951" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(-42.5779, -90.4827)
+rotation = 5.84336
+
+[node name="@Sprite2D@138952" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-36.8125, -92.9776)
+rotation = 5.90619
+
+[node name="@Sprite2D@138953" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-30.9017, -95.1057)
+rotation = 5.96903
+
+[node name="@Sprite2D@138954" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-24.869, -96.8583)
+rotation = 6.03186
+
+[node name="@Sprite2D@138955" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-18.7381, -98.2287)
+rotation = 6.09469
+
+[node name="@Sprite2D@138956" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-12.5333, -99.2115)
+rotation = 6.15752
+
+[node name="@Sprite2D@138957" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(-6.27905, -99.8027)
+rotation = 6.22035
+
+[node name="@Sprite2D@138958" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(-1.83697e-14, -100)
+rotation = 6.28319
+
+[node name="@Sprite2D@138959" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(6.27905, -99.8027)
+rotation = 6.34602
+
+[node name="@Sprite2D@138960" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(12.5333, -99.2115)
+rotation = 6.40885
+
+[node name="@Sprite2D@138961" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(18.7381, -98.2287)
+rotation = 6.47168
+
+[node name="@Sprite2D@138962" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(24.869, -96.8583)
+rotation = 6.53451
+
+[node name="@Sprite2D@138963" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(30.9017, -95.1057)
+rotation = 6.59734
+
+[node name="@Sprite2D@138964" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(36.8125, -92.9776)
+rotation = 6.66018
+
+[node name="@Sprite2D@138965" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(42.5779, -90.4827)
+rotation = 6.72301
+
+[node name="@Sprite2D@138966" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(48.1754, -87.6307)
+rotation = 6.78584
+
+[node name="@Sprite2D@138967" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(53.5827, -84.4328)
+rotation = 6.84867
+
+[node name="@Sprite2D@138968" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(58.7785, -80.9017)
+rotation = 6.9115
+
+[node name="@Sprite2D@138969" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(63.7424, -77.0513)
+rotation = 6.97434
+
+[node name="@Sprite2D@138970" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(68.4547, -72.8969)
+rotation = 7.03717
+
+[node name="@Sprite2D@138971" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(72.8969, -68.4547)
+rotation = 7.1
+
+[node name="@Sprite2D@138972" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(77.0513, -63.7424)
+rotation = 7.16283
+
+[node name="@Node2D@138973" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
+position = Vector2(80.9017, -58.7785)
+rotation = 7.22566
+
+[node name="@Sprite2D@138974" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+position = Vector2(84.4328, -53.5827)
+rotation = 7.2885
+
+[node name="@Sprite2D@138975" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(87.6307, -48.1754)
+rotation = 7.35133
+
+[node name="@Sprite2D@138976" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+position = Vector2(90.4827, -42.5779)
+rotation = 7.41416
+
+[node name="@Sprite2D@138977" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(92.9776, -36.8125)
+rotation = 7.47699
+
+[node name="@Sprite2D@138978" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(95.1057, -30.9017)
+rotation = 7.53982
+
+[node name="@Sprite2D@138979" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(96.8583, -24.869)
+rotation = 7.60265
+
+[node name="@Sprite2D@138980" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(98.2287, -18.7381)
+rotation = 7.66549
+
+[node name="@Sprite2D@138981" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(99.2115, -12.5333)
+rotation = 7.72832
+
+[node name="@Sprite2D@138982" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+position = Vector2(99.8027, -6.27905)
+rotation = 7.79115
+
+[connection signal="body_entered" from="GravitySource" to="." method="_on_gravity_source_body_entered"]

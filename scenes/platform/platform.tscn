@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=3 uid="uid://rjjc6dnsu2j6"]
+
+[ext_resource type="Script" path="res://src/platform.gd" id="1_nt1nv"]
+[ext_resource type="Shader" path="res://shaders/platform.gdshader" id="1_wp3n3"]
+[ext_resource type="Texture2D" uid="uid://dphktsgp6hmqx" path="res://materials/planet.png" id="3_bqdyc"]
+[ext_resource type="PackedScene" uid="uid://bgqs72ifxetbu" path="res://scenes/decor/grass.tscn" id="4_vl5h8"]
+[ext_resource type="PackedScene" uid="uid://rupxjgyfwvsq" path="res://scenes/decor/rock.tscn" id="7_mk0kg"]
+[ext_resource type="PackedScene" uid="uid://ckvdfwmu5624t" path="res://scenes/decor/flower.tscn" id="9_ekxmd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oqyhy"]
+frequency = 0.0119
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tonk2"]
+seamless = true
+noise = SubResource("FastNoiseLite_oqyhy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxjh5"]
+resource_local_to_scene = true
+shader = ExtResource("1_wp3n3")
+shader_parameter/dimensions = Vector2(200, 200)
+shader_parameter/grass_size = 8.0
+shader_parameter/border_size = 8.0
+shader_parameter/grass_color = Color(0.164706, 0.329412, 0.164706, 1)
+shader_parameter/fade_color = Color(0.07, 0.14, 0.07, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_tonk2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxk7k"]
+resource_local_to_scene = true
+size = Vector2(200, 50)
+
+[node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_nt1nv")
+gravity_type = 1
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 100)
+polygon = PackedVector2Array(-92, -100, 92, -100, 92, 100, -92, 100)
+
+[node name="Sprite" type="Polygon2D" parent="."]
+z_index = 5
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xxjh5")
+position = Vector2(0, 100)
+texture = ExtResource("3_bqdyc")
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[node name="Gravity" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gravity"]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_vxk7k")
+
+[node name="Details" type="Node2D" parent="."]
+
+[node name="rock" parent="Details" instance=ExtResource("7_mk0kg")]
+position = Vector2(-92, 0)
+
+[node name="@Sprite2D@197070" parent="Details" instance=ExtResource("7_mk0kg")]
+position = Vector2(-84, 0)
+
+[node name="Grass" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-76, 0)
+
+[node name="@Sprite2D@197071" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-68, 0)
+
+[node name="@Sprite2D@197072" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-60, 0)
+
+[node name="@Sprite2D@197073" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-52, 0)
+
+[node name="@Sprite2D@197074" parent="Details" instance=ExtResource("7_mk0kg")]
+position = Vector2(-44, 0)
+
+[node name="Node2D" parent="Details" instance=ExtResource("9_ekxmd")]
+position = Vector2(-36, 0)
+
+[node name="@Sprite2D@197075" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-28, 0)
+
+[node name="@Sprite2D@197076" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-20, 0)
+
+[node name="@Sprite2D@197077" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-12, 0)
+
+[node name="@Sprite2D@197078" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(-4, 0)
+
+[node name="@Sprite2D@197079" parent="Details" instance=ExtResource("9_ekxmd")]
+position = Vector2(4, 0)
+
+[node name="@Sprite2D@197080" parent="Details" instance=ExtResource("7_mk0kg")]
+position = Vector2(12, 0)
+
+[node name="@Sprite2D@197081" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(20, 0)
+
+[node name="@Sprite2D@197082" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(28, 0)
+
+[node name="@Sprite2D@197083" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(36, 0)
+
+[node name="@Sprite2D@197084" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(44, 0)
+
+[node name="@Sprite2D@197085" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(52, 0)
+
+[node name="@Sprite2D@197086" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(60, 0)
+
+[node name="@Sprite2D@197087" parent="Details" instance=ExtResource("7_mk0kg")]
+position = Vector2(68, 0)
+
+[node name="@Sprite2D@197088" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(76, 0)
+
+[node name="@Sprite2D@197089" parent="Details" instance=ExtResource("4_vl5h8")]
+position = Vector2(84, 0)
+
+[connection signal="body_entered" from="Gravity" to="." method="_on_gravity_body_entered"]

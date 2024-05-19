@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgqs72ifxetbu"]
+
+[ext_resource type="Shader" path="res://shaders/grass.gdshader" id="1_t1yrt"]
+[ext_resource type="Texture2D" uid="uid://dpixtfcc6eo0h" path="res://materials/Grass.png" id="2_awuvs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lumh1"]
+shader = ExtResource("1_t1yrt")
+shader_parameter/wind_speed = 4.0
+shader_parameter/distance_threshold = 15.0
+
+[node name="Grass" type="Sprite2D"]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
+texture = ExtResource("2_awuvs")
+offset = Vector2(2.08165e-12, -4)

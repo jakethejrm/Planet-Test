@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b80pr8qtaebrm"]
+
+[ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="1_o362c"]
+[ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="2_fbljq"]
+[ext_resource type="Script" path="res://src/Camera.gd" id="3_mq6x3"]
+[ext_resource type="PackedScene" uid="uid://cdarntr1b7obm" path="res://scenes/planet/planet.tscn" id="4_l6m6o"]
+[ext_resource type="PackedScene" uid="uid://rjjc6dnsu2j6" path="res://scenes/platform/platform.tscn" id="5_xr7dc"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(2, -156)
+ignore_rotation = false
+rotation_smoothing_enabled = true
+script = ExtResource("3_mq6x3")
+player = NodePath("../Player")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(640, 426)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+texture = ExtResource("2_fbljq")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_o362c")]
+position = Vector2(410, -641)
+
+[node name="Platform" parent="." instance=ExtResource("5_xr7dc")]
+position = Vector2(438, -551)
+width = 500.0
+height = 50.0
+
+[node name="Planet" parent="." instance=ExtResource("4_l6m6o")]
+position = Vector2(52, -617)
