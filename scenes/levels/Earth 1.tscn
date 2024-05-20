@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwd8e5x1xj8pw"]
+
+[ext_resource type="PackedScene" uid="uid://cdarntr1b7obm" path="res://scenes/planet/planet.tscn" id="1_hilim"]
+[ext_resource type="PackedScene" uid="uid://rjjc6dnsu2j6" path="res://scenes/platform/platform.tscn" id="2_ky0ph"]
+
+[node name="Earth1" type="Node2D"]
+
+[node name="Platform" parent="." instance=ExtResource("2_ky0ph")]
+width = 5000.0
+
+[node name="Planet" parent="." instance=ExtResource("1_hilim")]
+position = Vector2(300, -176)
+
+[node name="Planet2" parent="." instance=ExtResource("1_hilim")]
+position = Vector2(671, -311)

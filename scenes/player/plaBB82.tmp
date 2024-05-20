@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=22 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cng0oxvq4lgro" path="res://scenes/weapons/pistol.tscn" id="6_f8ujg"]
 [ext_resource type="Texture2D" uid="uid://ckj23t8cxbi3n" path="res://assets/sprites/spaceman_legs_idle.png" id="7_nifhg"]
 [ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
+[ext_resource type="PackedScene" uid="uid://bbqge7vjq2j3y" path="res://scenes/weapons/bullets/trails/smoketrail.tscn" id="9_353o3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
 radius = 6.0
@@ -141,18 +142,9 @@ shape = SubResource("CapsuleShape2D_jlrk2")
 target_position = Vector2(2.08165e-12, 4)
 hit_from_inside = true
 
-[node name="PlanetChecker" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+[node name="GravityChecker" type="RayCast2D" parent="."]
 target_position = Vector2(2.08165e-12, 10)
-collision_mask = 4
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="PlatformChecker" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
-target_position = Vector2(2.08165e-12, 10)
-collision_mask = 8
+collision_mask = 2
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
@@ -194,3 +186,5 @@ animation = &"running_backwards"
 autoplay = "running"
 frame_progress = 0.227754
 speed_scale = 3.0
+
+[node name="Smoketrail" parent="." instance=ExtResource("9_353o3")]

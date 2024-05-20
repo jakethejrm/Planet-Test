@@ -1,15 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://cng0oxvq4lgro"]
+[gd_scene load_steps=12 format=3 uid="uid://cng0oxvq4lgro"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_6qapt"]
 [ext_resource type="Texture2D" uid="uid://dfxh168dklqyi" path="res://assets/sprites/gun.png" id="2_rveyu"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="4_7y7cp"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_m4yy6"]
+
+[sub_resource type="Gradient" id="Gradient_u28aq"]
+offsets = PackedFloat32Array(0, 0.280612, 0.647959)
+colors = PackedColorArray(1, 1, 0.341176, 1, 0.717647, 0.470588, 0.247059, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_osj1o"]
+gradient = SubResource("Gradient_u28aq")
+
+[sub_resource type="Curve" id="Curve_wxofk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8teq"]
+curve = SubResource("Curve_wxofk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m67tb"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 15.87
+initial_velocity_max = 47.62
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_t8teq")
+color_ramp = SubResource("GradientTexture1D_osj1o")
+
+[sub_resource type="Gradient" id="Gradient_03e14"]
+offsets = PackedFloat32Array(0, 0.197368)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ygg12"]
+gradient = SubResource("Gradient_03e14")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Pistol" type="Node2D"]
 script = ExtResource("1_6qapt")
+bullet_sound = ExtResource("4_m4yy6")
 weapon_name = "Pistol"
 weapon_type = 1
 cooldown = 0.25
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GunSprite" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(7, -5)
 texture = ExtResource("2_rveyu")
@@ -17,7 +54,26 @@ texture = ExtResource("2_rveyu")
 [node name="BulletSpawn" type="Marker2D" parent="."]
 position = Vector2(16, -6)
 
+[node name="MuzzleFlash" type="GPUParticles2D" parent="BulletSpawn"]
+rotation = 1.5708
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_m67tb")
+texture = ExtResource("4_7y7cp")
+one_shot = true
+fixed_fps = 60
+local_coords = true
+
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_m4yy6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(12, -6)
+color = Color(1, 0.486275, 0, 1)
+energy = 1.45
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ygg12")
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -9,8 +9,7 @@ func gravity_force(_player : Node2D) -> Vector2:
 	
 func _on_gravity_body_entered(body):
 	if body.name == "Player":
-		body.grav_source = self
-		body.up_direction = Vector2.UP.rotated(rotation)
+		body.enter_grav_source(self)
 
 func _set_width(new_width : float):
 	width = new_width
@@ -61,3 +60,9 @@ func _set_height(new_height : float):
 
 	$Collision.polygon = polygon_array.map(func(vec : Vector2): return Vector2(vec.x - (sign(vec.x) * 8), vec.y))
 	$Collision.position = $Sprite.position
+
+
+func _on_gravity_body_exited(body):
+	if body.name == "Player":
+		body.exit_grav_source(self)
+	pass # Replace with function body.

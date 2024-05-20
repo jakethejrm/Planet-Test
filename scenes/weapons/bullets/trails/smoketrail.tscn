@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbqge7vjq2j3y"]
 
-[ext_resource type="Script" path="res://scenes/bullets/trails/smoketrail.gd" id="1_n742c"]
+[ext_resource type="Script" path="res://scenes/weapons/bullets/trails/smoketrail.gd" id="1_n742c"]
 
 [sub_resource type="Curve" id="Curve_xwy7n"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]

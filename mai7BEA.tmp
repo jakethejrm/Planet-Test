@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b80pr8qtaebrm"]
+
+[ext_resource type="Script" path="res://src/Camera.gd" id="1_ptlin"]
+[ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="2_qcxs5"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
+[ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
+[ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="5_iirmc"]
+[ext_resource type="PackedScene" uid="uid://cwd8e5x1xj8pw" path="res://scenes/levels/Earth 1.tscn" id="6_s0kys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
+shader = ExtResource("3_e1sam")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+shader_parameter/height = 0.7
+shader_parameter/width = 0.5
+shader_parameter/fade = 0.7
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(2, -156)
+ignore_rotation = false
+rotation_smoothing_enabled = true
+script = ExtResource("1_ptlin")
+player = NodePath("../Player")
+
+[node name="Hud" parent="Camera" instance=ExtResource("2_qcxs5")]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="ColorRect" parent="Camera"]
+material = SubResource("ShaderMaterial_3565t")
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(640, 426)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+texture = ExtResource("4_w0ll2")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("5_iirmc")]
+position = Vector2(0, -825)
+
+[node name="Earth1" parent="." instance=ExtResource("6_s0kys")]

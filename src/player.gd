@@ -14,7 +14,8 @@ var on_ground : bool = false
 var jumping : bool = false
 
 @onready var ground_check : RayCast2D = $GroundChecker
-@onready var grav_check : RayCast2D = $GravityChecker
+@onready var planet_check : RayCast2D = $PlanetChecker
+@onready var platform_check : RayCast2D = $PlatformChecker
 
 @onready var body : Node2D = $Body
 @onready var arm_f : Sprite2D = $Body/Torso/Arm_F
@@ -68,7 +69,8 @@ func _direction():
 	if walk_dir:
 		direction_velocity = Vector2(walk_dir, 0).rotated(up_direction.angle() + PI/2) * SPEED
 	else:
-		direction_velocity = direction_velocity.move_toward(Vector2.ZERO, SPEED)
+		if on_ground:
+			direction_velocity = direction_velocity.move_toward(Vector2.ZERO, SPEED)
 		pass
 
 func _jump():
@@ -117,3 +119,25 @@ func _anim_handler(delta):
 			$Body/Legs.animation = "running_backwards"
 	else:
 		$Body/Legs.animation = "idle"
+
+
+func enter_grav_source(body : GravObject):
+	# body is the gravity source that we're leaving or entering
+	# case for entering planetoid
+	if body.gravity_type == GravObject.GravityType.PLANETOID:
+		if !grav_source:
+			grav_source = body
+			return
+		if grav_source.gravity_type == GravObject.GravityType.PLANETOID:
+			grav_source = body
+		else:
+			platform_check.force_raycast_update()
+			if not platform_check.is_colliding():
+				grav_source = body
+	
+	else:
+		grav_source = body
+		up_direction = Vector2.UP.rotated(body.rotation)
+		
+func exit_grav_source(body : GravObject):
+	pass

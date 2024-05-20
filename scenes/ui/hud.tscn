@@ -26,6 +26,8 @@ gradient = SubResource("Gradient_yl7ek")
 fill_to = Vector2(0, 1)
 
 [node name="Hud" type="Control"]
+z_index = 20
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

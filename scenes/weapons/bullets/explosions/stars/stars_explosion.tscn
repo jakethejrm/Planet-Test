@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cql7da7u83iwk"]
 
-[ext_resource type="Script" path="res://scenes/bullets/explosions/stars/stars_explosion.gd" id="1_55aop"]
+[ext_resource type="Script" path="res://scenes/weapons/bullets/explosions/stars/stars_explosion.gd" id="1_55aop"]
 [ext_resource type="Texture2D" uid="uid://cj6jgbeito6jj" path="res://assets/sprites/star.png" id="1_o1s5k"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="2_nf7oj"]
 

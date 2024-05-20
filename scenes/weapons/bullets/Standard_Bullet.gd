@@ -5,6 +5,7 @@ extends Bullet
 @onready var normal_getter : RayCast2D = $NormalGetter
 
 @export var color : Color
+@export var collision_sound : AudioStreamWAV
 
 var new_trail : Line2D
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,12 @@ func _on_body_entered(body):
 	normal_getter.force_raycast_update()
 	new_explosion.rotation = normal_getter.get_collision_normal().angle() + PI/2
 	add_sibling(new_explosion)
+	var sound = AudioStreamPlayer2D.new()
+	sound.position = position
+	sound.stream = collision_sound
+	sound.finished.connect(sound.queue_free)
+	add_sibling(sound)
+	sound.play()
 	new_trail.queue_free()
 	queue_free()
 	pass # Replace with function body.

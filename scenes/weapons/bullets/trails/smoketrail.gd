@@ -25,7 +25,6 @@ func _process(delta):
 	pass
 
 func add_new_point(point_pos: Vector2):
-	print("added point", point_pos)
 	add_point(point_pos)
 	if get_point_count() > max_len:
 		remove_point(0)
