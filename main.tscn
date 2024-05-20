@@ -56,3 +56,6 @@ metadata/_edit_lock_ = true
 position = Vector2(359, -785)
 
 [node name="Earth1" parent="." instance=ExtResource("6_s0kys")]
+
+[connection signal="update_fuel" from="Player" to="Camera/Hud" method="_on_player_update_fuel"]
+[connection signal="update_hp" from="Player" to="Camera/Hud" method="_on_player_update_hp"]

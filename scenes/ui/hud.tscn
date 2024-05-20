@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://crk4e5jvhad26"]
+[gd_scene load_steps=9 format=3 uid="uid://crk4e5jvhad26"]
 
+[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_a4sqn"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_sw5hs"]
 
 [sub_resource type="Gradient" id="Gradient_w0au8"]
@@ -34,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_a4sqn")
 
 [node name="Margins" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -44,15 +46,14 @@ theme = ExtResource("1_sw5hs")
 [node name="VBoxContainer" type="VBoxContainer" parent="Margins"]
 layout_mode = 2
 
-[node name="Health2" type="ColorRect" parent="Margins/VBoxContainer"]
+[node name="BG" type="ColorRect" parent="Margins/VBoxContainer"]
 custom_minimum_size = Vector2(202, 12)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="TextureRect" parent="Margins/VBoxContainer/Health2"]
-custom_minimum_size = Vector2(198, 8)
+[node name="health" type="TextureRect" parent="Margins/VBoxContainer/BG"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -61,27 +62,27 @@ offset_bottom = 11.0
 texture = SubResource("GradientTexture2D_q1d24")
 expand_mode = 1
 
-[node name="Health3" type="ColorRect" parent="Margins/VBoxContainer"]
-custom_minimum_size = Vector2(100, 12)
+[node name="Fuel" type="ColorRect" parent="Margins/VBoxContainer"]
+custom_minimum_size = Vector2(102, 12)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="TextureRect" parent="Margins/VBoxContainer/Health3"]
+[node name="fuel" type="TextureRect" parent="Margins/VBoxContainer/Fuel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 99.0
+offset_right = 101.0
 offset_bottom = 11.0
 texture = SubResource("GradientTexture2D_13mbv")
 expand_mode = 1
 
-[node name="ColorRect2" type="TextureRect" parent="Margins/VBoxContainer/Health3"]
+[node name="BG" type="TextureRect" parent="Margins/VBoxContainer/Fuel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 99.0
+offset_right = 101.0
 offset_bottom = 11.0
 texture = SubResource("GradientTexture2D_t8err")
 expand_mode = 1

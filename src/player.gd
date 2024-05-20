@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
-@export var grav_source : GravObject
+@export var grav_source : GravObject : set = _set_grav_source
 @export var weapon : Weapon
+
+@export var max_flight : float = 100
+@export var max_hp : float = 100
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = 400
@@ -13,9 +17,26 @@ var jump_velocity: Vector2 = Vector2.ZERO
 var on_ground : bool = false
 var jumping : bool = false
 
+
+var hp : float = 100 : set = _set_hp
+var curr_flight : float = 100 : set = _set_flight
+
+func _set_hp(new_hp : float):
+	hp = new_hp
+	update_hp.emit(hp, max_hp)
+	
+func _set_flight(new_flight : float):
+	curr_flight = new_flight
+	update_fuel.emit(curr_flight, max_flight)
+
+
+signal update_hp(new_hp : float, max_hp : float)
+signal update_fuel(new_fuel : float, max_fuel : float)
+
 @onready var ground_check : RayCast2D = $GroundChecker
 @onready var planet_check : RayCast2D = $PlanetChecker
 @onready var platform_check : RayCast2D = $PlatformChecker
+@onready var grav_timer : Timer = $GravSwitchTimer
 
 @onready var body : Node2D = $Body
 @onready var arm_f : Sprite2D = $Body/Torso/Arm_F
@@ -24,6 +45,8 @@ var jumping : bool = false
 
 var walk_dir = 1
 var dir = 1
+
+var can_switch_grav : bool = true
 
 func _ready():
 	#RenderingServer.global_shader_parameter_set("player_location", position)
@@ -34,7 +57,7 @@ func _physics_process(delta):
 	# Get the gravity from the grav_source
 	_gravity(delta)
 	_direction()
-	_jump()
+	_jump(delta)
 	
 	if Input.is_action_pressed("shoot"):
 		weapon_spot.get_child(0).shoot(get_global_mouse_position())
@@ -73,13 +96,29 @@ func _direction():
 			direction_velocity = direction_velocity.move_toward(Vector2.ZERO, SPEED)
 		pass
 
-func _jump():
-	
-	if Input.is_action_just_pressed("jump") and on_ground :
-		jumping = true
-		gravity_velocity = up_direction * JUMP_VELOCITY
-	elif on_ground:
-		jumping = false
+func _jump(delta):
+	if Input.is_action_just_pressed("jump"):
+		if on_ground:
+			jumping = true
+			gravity_velocity = up_direction * JUMP_VELOCITY
+		
+	elif Input.is_action_pressed("jump") and curr_flight > 0:
+			_fly(delta)
+			
+	else:
+		$Boots.stop()
+		if on_ground:
+			jumping = false
+			if curr_flight < max_flight:
+				curr_flight += delta * 200
+
+func _fly(delta):
+	gravity_velocity = up_direction * JUMP_VELOCITY
+	for emitter : GPUParticles2D in $Body/Legs.get_children():
+		emitter.emitting = true
+	curr_flight -= delta * 200
+	if not $Boots.playing:
+		$Boots.play()
 
 func _anim_handler(delta):
 	
@@ -122,6 +161,8 @@ func _anim_handler(delta):
 
 
 func enter_grav_source(body : GravObject):
+	if !can_switch_grav:
+		return
 	# body is the gravity source that we're leaving or entering
 	# case for entering planetoid
 	if body.gravity_type == GravObject.GravityType.PLANETOID:
@@ -140,4 +181,24 @@ func enter_grav_source(body : GravObject):
 		up_direction = Vector2.UP.rotated(body.rotation)
 		
 func exit_grav_source(body : GravObject):
+	if !can_switch_grav:
+		return
+	planet_check.force_raycast_update()
+	platform_check.force_raycast_update()
+	
+	if platform_check.is_colliding():
+		grav_source = platform_check.get_collider().get_parent()
+		up_direction = Vector2.UP.rotated(grav_source.rotation)
+	elif planet_check.is_colliding():
+		grav_source = planet_check.get_collider().get_parent()
 	pass
+	
+func _set_grav_source(new_grav : GravObject):
+	grav_source = new_grav
+	can_switch_grav = false
+	grav_timer.start()
+
+
+func _on_grav_switch_timer_timeout():
+	can_switch_grav = true
+	pass # Replace with function body.

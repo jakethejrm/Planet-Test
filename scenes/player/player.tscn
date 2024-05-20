@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=37 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cng0oxvq4lgro" path="res://scenes/weapons/pistol.tscn" id="6_f8ujg"]
 [ext_resource type="Texture2D" uid="uid://ckj23t8cxbi3n" path="res://assets/sprites/spaceman_legs_idle.png" id="7_nifhg"]
 [ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="9_dmgou"]
+[ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
 radius = 6.0
@@ -129,6 +131,70 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_vm3nu"]
+offsets = PackedFloat32Array(0, 0.0867347, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.768627, 0.396078, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fvdda"]
+gradient = SubResource("Gradient_vm3nu")
+
+[sub_resource type="Curve" id="Curve_oh75r"]
+_data = [Vector2(0.625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sbt42"]
+curve = SubResource("Curve_oh75r")
+
+[sub_resource type="Curve" id="Curve_hxecn"]
+_data = [Vector2(0, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2p1c4"]
+curve = SubResource("Curve_hxecn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ue6gg"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 82.143
+initial_velocity_min = 15.87
+initial_velocity_max = 15.87
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2p1c4")
+color_ramp = SubResource("GradientTexture1D_fvdda")
+emission_curve = SubResource("CurveTexture_sbt42")
+
+[sub_resource type="Gradient" id="Gradient_7o3ar"]
+offsets = PackedFloat32Array(0, 0.27551, 1)
+colors = PackedColorArray(0.768627, 0.396078, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eycgm"]
+gradient = SubResource("Gradient_7o3ar")
+
+[sub_resource type="Curve" id="Curve_2118k"]
+_data = [Vector2(0.625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jxx2"]
+curve = SubResource("Curve_2118k")
+
+[sub_resource type="Curve" id="Curve_uld0r"]
+_data = [Vector2(0, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pu1it"]
+curve = SubResource("Curve_uld0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_in6c3"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 82.143
+initial_velocity_min = 15.87
+initial_velocity_max = 15.87
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pu1it")
+color_ramp = SubResource("GradientTexture1D_eycgm")
+emission_curve = SubResource("CurveTexture_6jxx2")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_qibaw")
@@ -185,12 +251,57 @@ position = Vector2(0.110936, 8.54328)
 rotation = 1.5708
 
 [node name="Pistol" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_f8ujg")]
+visible = false
 
 [node name="Legs" type="AnimatedSprite2D" parent="Body"]
 z_index = -1
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_rf0e2")
-animation = &"running_backwards"
+animation = &"jump"
 autoplay = "running"
-frame_progress = 0.227754
 speed_scale = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(-12, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ue6gg")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(-12, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_in6c3")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(3, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_in6c3")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(3, 5)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_ue6gg")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GravSwitchTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Boots" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ig4b")
+
+[connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]
