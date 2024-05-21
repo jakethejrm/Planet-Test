@@ -33,6 +33,10 @@ mouse_cursor/custom_image_hotspot=Vector2(8, 8)
 
 project/assembly_name="Planet Test"
 
+[gui]
+
+theme/custom_font="res://assets/ui/fonts/m5x7.ttf"
+
 [input]
 
 walk_left={

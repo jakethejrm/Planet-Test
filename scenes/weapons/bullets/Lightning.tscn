@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfhdd588sko2w"]
+[gd_scene load_steps=15 format=3 uid="uid://b2pdr66riix3h"]
 
-[ext_resource type="Script" path="res://scenes/weapons/bullets/Standard_Bullet.gd" id="1_qatq7"]
-[ext_resource type="AudioStream" uid="uid://bct4sn7lqvkbk" path="res://assets/audio/pistol_shoot.wav" id="2_483ya"]
-[ext_resource type="Texture2D" uid="uid://domau676dwvyx" path="res://assets/sprites/Bullet.png" id="2_cs5lu"]
-[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="3_afw0q"]
+[ext_resource type="Script" path="res://scenes/weapons/bullets/Standard_Bullet.gd" id="1_1kw01"]
+[ext_resource type="AudioStream" uid="uid://bct4sn7lqvkbk" path="res://assets/audio/pistol_shoot.wav" id="2_qjne0"]
+[ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="3_ume2g"]
+[ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="4_pb3d3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6837"]
 size = Vector2(16, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnd0a"]
+shader = ExtResource("3_ume2g")
+shader_parameter/speed = 1.0
 
 [sub_resource type="Gradient" id="Gradient_ax6l3"]
 offsets = PackedFloat32Array(0, 0.590708)
@@ -17,12 +21,23 @@ gradient = SubResource("Gradient_ax6l3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81508"]
+shader = ExtResource("3_ume2g")
+shader_parameter/speed = 1.0
+
 [sub_resource type="Curve" id="Curve_7xol7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_f7ktx"]
 curve = SubResource("Curve_7xol7")
+
+[sub_resource type="Curve" id="Curve_ikl62"]
+_data = [Vector2(0.186047, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ihpd"]
+curve = SubResource("Curve_ikl62")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bi80h"]
 particle_flag_disable_z = true
@@ -31,21 +46,26 @@ emission_sphere_radius = 13.19
 spread = 0.0
 initial_velocity_max = 55.56
 gravity = Vector3(0, 0, 0)
-scale_min = 0.2
-scale_max = 0.5
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_7ihpd")
 alpha_curve = SubResource("CurveTexture_f7ktx")
 
-[node name="StandardBullet" type="Area2D"]
-script = ExtResource("1_qatq7")
-color = Color(0.784314, 0.470588, 1, 1)
-collision_sound = ExtResource("2_483ya")
+[node name="Lightning" type="Area2D"]
+script = ExtResource("1_1kw01")
+color = Color(0, 0.698039, 0.909804, 1)
+collision_sound = ExtResource("2_qjne0")
 direction = Vector2(-0.1, 2.08165e-12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j6837")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cs5lu")
+texture_repeat = 2
+material = SubResource("ShaderMaterial_gnd0a")
+position = Vector2(0, 1.78814e-07)
+scale = Vector2(1, 0.75)
+texture = ExtResource("4_pb3d3")
 
 [node name="LifespanTimer" type="Timer" parent="."]
 one_shot = true
@@ -56,10 +76,12 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_wvmh7")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_81508")
 position = Vector2(-5, 0)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_bi80h")
-texture = ExtResource("3_afw0q")
+texture = ExtResource("4_pb3d3")
 
 [node name="NormalGetter" type="RayCast2D" parent="."]
 position = Vector2(-16, 0)

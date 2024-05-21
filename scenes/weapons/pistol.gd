@@ -2,6 +2,7 @@ extends Weapon
 
 @onready var cooldown_timer : Timer = $CooldownTimer
 @onready var muzzle_flash : GPUParticles2D = $BulletSpawn/MuzzleFlash
+@onready var lightning : Sprite2D = $GunSprite/Coil
 
 @export var bullet_sound : AudioStreamWAV
 
@@ -19,6 +20,7 @@ func shoot(mouse_pos : Vector2):
 	owner.owner.add_child(new_bullet)
 	var sound = AudioStreamPlayer2D.new()
 	muzzle_flash.emitting = true
+	lightning.show()
 	sound.stream = bullet_sound
 	sound.finished.connect(sound.queue_free)
 	add_child(sound)

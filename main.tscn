@@ -24,6 +24,7 @@ ignore_rotation = false
 rotation_smoothing_enabled = true
 script = ExtResource("1_ptlin")
 player = NodePath("../Player")
+mouse_adjust = 1.0
 
 [node name="Hud" parent="Camera" instance=ExtResource("2_qcxs5")]
 offset_left = -320.0

@@ -12,7 +12,7 @@ curve = SubResource("Curve_rtx2j")
 
 [sub_resource type="Gradient" id="Gradient_5ngek"]
 offsets = PackedFloat32Array(0, 0.0306122, 0.0969388)
-colors = PackedColorArray(1, 1, 0, 1, 1, 0.45098, 0, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.595635, 0.574921, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fhm33"]
 gradient = SubResource("Gradient_5ngek")

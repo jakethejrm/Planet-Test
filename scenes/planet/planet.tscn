@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cdarntr1b7obm"]
+[gd_scene load_steps=28 format=3 uid="uid://cdarntr1b7obm"]
 
 [ext_resource type="Script" path="res://src/planet.gd" id="1_7uwqi"]
 [ext_resource type="Shader" path="res://shaders/planet.gdshader" id="2_a5e5j"]
@@ -7,8 +7,11 @@
 [ext_resource type="Shader" path="res://shaders/atmosphere.gdshader" id="3_25deq"]
 [ext_resource type="PackedScene" uid="uid://rupxjgyfwvsq" path="res://scenes/decor/rock.tscn" id="5_e5w1m"]
 [ext_resource type="Shader" path="res://shaders/grass.gdshader" id="6_gnt6m"]
+[ext_resource type="Texture2D" uid="uid://c0vdbaprpltbl" path="res://materials/rock.png" id="6_ujdm4"]
 [ext_resource type="PackedScene" uid="uid://ckvdfwmu5624t" path="res://scenes/decor/flower.tscn" id="6_yhxeb"]
+[ext_resource type="Texture2D" uid="uid://bi7yyl3ng84ln" path="res://materials/flower_stem.png" id="9_w3ugj"]
 [ext_resource type="PackedScene" uid="uid://ogne6u7jghs4" path="res://scenes/decor/tree.tscn" id="10_0qc47"]
+[ext_resource type="Texture2D" uid="uid://dpixtfcc6eo0h" path="res://materials/Grass.png" id="11_awdcv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7gntw"]
 resource_local_to_scene = true
@@ -71,7 +74,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lng8w"]
 resource_local_to_scene = true
-polygon = PackedVector2Array(100, 0, 99.8027, 6.27905, 99.2115, 12.5333, 98.2287, 18.7381, 96.8583, 24.869, 95.1057, 30.9017, 92.9776, 36.8125, 90.4827, 42.5779, 87.6307, 48.1754, 84.4328, 53.5827, 80.9017, 58.7785, 77.0513, 63.7424, 72.8969, 68.4547, 68.4547, 72.8969, 63.7424, 77.0513, 58.7785, 80.9017, 53.5827, 84.4328, 48.1754, 87.6307, 42.5779, 90.4827, 36.8125, 92.9776, 30.9017, 95.1057, 24.869, 96.8583, 18.7381, 98.2287, 12.5333, 99.2115, 6.27905, 99.8027, 6.12303e-15, 100, -6.27905, 99.8027, -12.5333, 99.2115, -18.7381, 98.2287, -24.869, 96.8583, -30.9017, 95.1057, -36.8125, 92.9776, -42.5779, 90.4827, -48.1754, 87.6307, -53.5827, 84.4328, -58.7785, 80.9017, -63.7424, 77.0513, -68.4547, 72.8969, -72.8969, 68.4547, -77.0513, 63.7424, -80.9017, 58.7785, -84.4328, 53.5827, -87.6307, 48.1754, -90.4827, 42.5779, -92.9776, 36.8125, -95.1057, 30.9017, -96.8583, 24.869, -98.2287, 18.7381, -99.2115, 12.5333, -99.8027, 6.27905, -100, 1.22461e-14, -99.8027, -6.27905, -99.2115, -12.5333, -98.2287, -18.7381, -96.8583, -24.869, -95.1057, -30.9017, -92.9776, -36.8125, -90.4827, -42.5779, -87.6307, -48.1754, -84.4328, -53.5827, -80.9017, -58.7785, -77.0513, -63.7424, -72.8969, -68.4547, -68.4547, -72.8969, -63.7424, -77.0513, -58.7785, -80.9017, -53.5827, -84.4328, -48.1754, -87.6307, -42.5779, -90.4827, -36.8125, -92.9776, -30.9017, -95.1057, -24.869, -96.8583, -18.7381, -98.2287, -12.5333, -99.2115, -6.27905, -99.8027, -1.83691e-14, -100, 6.27905, -99.8027, 12.5333, -99.2115, 18.7381, -98.2287, 24.869, -96.8583, 30.9017, -95.1057, 36.8125, -92.9776, 42.5779, -90.4827, 48.1754, -87.6307, 53.5827, -84.4328, 58.7785, -80.9017, 63.7424, -77.0513, 68.4547, -72.8969, 72.8969, -68.4547, 77.0513, -63.7424, 80.9017, -58.7785, 84.4328, -53.5827, 87.6307, -48.1754, 90.4827, -42.5779, 92.9776, -36.8125, 95.1057, -30.9017, 96.8583, -24.869, 98.2287, -18.7381, 99.2115, -12.5333, 99.8027, -6.27905)
+polygon = PackedVector2Array(100, 0, 99.8027, 6.27905, 99.2115, 12.5333, 98.2287, 18.7381, 96.8583, 24.869, 95.1057, 30.9017, 92.9776, 36.8125, 90.4827, 42.5779, 87.6307, 48.1754, 84.4328, 53.5827, 80.9017, 58.7785, 77.0513, 63.7424, 72.8969, 68.4547, 68.4547, 72.8969, 63.7424, 77.0513, 58.7785, 80.9017, 53.5827, 84.4328, 48.1754, 87.6307, 42.5779, 90.4827, 36.8125, 92.9776, 30.9017, 95.1057, 24.869, 96.8583, 18.7381, 98.2287, 12.5333, 99.2115, 6.27905, 99.8027, 6.12323e-15, 100, -6.27905, 99.8027, -12.5333, 99.2115, -18.7381, 98.2287, -24.869, 96.8583, -30.9017, 95.1057, -36.8125, 92.9776, -42.5779, 90.4827, -48.1754, 87.6307, -53.5827, 84.4328, -58.7785, 80.9017, -63.7424, 77.0513, -68.4547, 72.8969, -72.8969, 68.4547, -77.0513, 63.7424, -80.9017, 58.7785, -84.4328, 53.5827, -87.6307, 48.1754, -90.4827, 42.5779, -92.9776, 36.8125, -95.1057, 30.9017, -96.8583, 24.869, -98.2287, 18.7381, -99.2115, 12.5333, -99.8027, 6.27905, -100, 1.22465e-14, -99.8027, -6.27905, -99.2115, -12.5333, -98.2287, -18.7381, -96.8583, -24.869, -95.1057, -30.9017, -92.9776, -36.8125, -90.4827, -42.5779, -87.6307, -48.1754, -84.4328, -53.5827, -80.9017, -58.7785, -77.0513, -63.7424, -72.8969, -68.4547, -68.4547, -72.8969, -63.7424, -77.0513, -58.7785, -80.9017, -53.5827, -84.4328, -48.1754, -87.6307, -42.5779, -90.4827, -36.8125, -92.9776, -30.9017, -95.1057, -24.869, -96.8583, -18.7381, -98.2287, -12.5333, -99.2115, -6.27905, -99.8027, -1.83697e-14, -100, 6.27905, -99.8027, 12.5333, -99.2115, 18.7381, -98.2287, 24.869, -96.8583, 30.9017, -95.1057, 36.8125, -92.9776, 42.5779, -90.4827, 48.1754, -87.6307, 53.5827, -84.4328, 58.7785, -80.9017, 63.7424, -77.0513, 68.4547, -72.8969, 72.8969, -68.4547, 77.0513, -63.7424, 80.9017, -58.7785, 84.4328, -53.5827, 87.6307, -48.1754, 90.4827, -42.5779, 92.9776, -36.8125, 95.1057, -30.9017, 96.8583, -24.869, 98.2287, -18.7381, 99.2115, -12.5333, 99.8027, -6.27905)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lumh1"]
 shader = ExtResource("6_gnt6m")
@@ -108,7 +111,7 @@ z_index = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_gsqx8")
 texture = ExtResource("2_igcb7")
-polygon = PackedVector2Array(100, 0, 99.8027, 6.27905, 99.2115, 12.5333, 98.2287, 18.7381, 96.8583, 24.869, 95.1057, 30.9017, 92.9776, 36.8125, 90.4827, 42.5779, 87.6307, 48.1754, 84.4328, 53.5827, 80.9017, 58.7785, 77.0513, 63.7424, 72.8969, 68.4547, 68.4547, 72.8969, 63.7424, 77.0513, 58.7785, 80.9017, 53.5827, 84.4328, 48.1754, 87.6307, 42.5779, 90.4827, 36.8125, 92.9776, 30.9017, 95.1057, 24.869, 96.8583, 18.7381, 98.2287, 12.5333, 99.2115, 6.27905, 99.8027, 6.12303e-15, 100, -6.27905, 99.8027, -12.5333, 99.2115, -18.7381, 98.2287, -24.869, 96.8583, -30.9017, 95.1057, -36.8125, 92.9776, -42.5779, 90.4827, -48.1754, 87.6307, -53.5827, 84.4328, -58.7785, 80.9017, -63.7424, 77.0513, -68.4547, 72.8969, -72.8969, 68.4547, -77.0513, 63.7424, -80.9017, 58.7785, -84.4328, 53.5827, -87.6307, 48.1754, -90.4827, 42.5779, -92.9776, 36.8125, -95.1057, 30.9017, -96.8583, 24.869, -98.2287, 18.7381, -99.2115, 12.5333, -99.8027, 6.27905, -100, 1.22461e-14, -99.8027, -6.27905, -99.2115, -12.5333, -98.2287, -18.7381, -96.8583, -24.869, -95.1057, -30.9017, -92.9776, -36.8125, -90.4827, -42.5779, -87.6307, -48.1754, -84.4328, -53.5827, -80.9017, -58.7785, -77.0513, -63.7424, -72.8969, -68.4547, -68.4547, -72.8969, -63.7424, -77.0513, -58.7785, -80.9017, -53.5827, -84.4328, -48.1754, -87.6307, -42.5779, -90.4827, -36.8125, -92.9776, -30.9017, -95.1057, -24.869, -96.8583, -18.7381, -98.2287, -12.5333, -99.2115, -6.27905, -99.8027, -1.83691e-14, -100, 6.27905, -99.8027, 12.5333, -99.2115, 18.7381, -98.2287, 24.869, -96.8583, 30.9017, -95.1057, 36.8125, -92.9776, 42.5779, -90.4827, 48.1754, -87.6307, 53.5827, -84.4328, 58.7785, -80.9017, 63.7424, -77.0513, 68.4547, -72.8969, 72.8969, -68.4547, 77.0513, -63.7424, 80.9017, -58.7785, 84.4328, -53.5827, 87.6307, -48.1754, 90.4827, -42.5779, 92.9776, -36.8125, 95.1057, -30.9017, 96.8583, -24.869, 98.2287, -18.7381, 99.2115, -12.5333, 99.8027, -6.27905)
+polygon = PackedVector2Array(100, 0, 99.8027, 6.27905, 99.2115, 12.5333, 98.2287, 18.7381, 96.8583, 24.869, 95.1057, 30.9017, 92.9776, 36.8125, 90.4827, 42.5779, 87.6307, 48.1754, 84.4328, 53.5827, 80.9017, 58.7785, 77.0513, 63.7424, 72.8969, 68.4547, 68.4547, 72.8969, 63.7424, 77.0513, 58.7785, 80.9017, 53.5827, 84.4328, 48.1754, 87.6307, 42.5779, 90.4827, 36.8125, 92.9776, 30.9017, 95.1057, 24.869, 96.8583, 18.7381, 98.2287, 12.5333, 99.2115, 6.27905, 99.8027, 6.12323e-15, 100, -6.27905, 99.8027, -12.5333, 99.2115, -18.7381, 98.2287, -24.869, 96.8583, -30.9017, 95.1057, -36.8125, 92.9776, -42.5779, 90.4827, -48.1754, 87.6307, -53.5827, 84.4328, -58.7785, 80.9017, -63.7424, 77.0513, -68.4547, 72.8969, -72.8969, 68.4547, -77.0513, 63.7424, -80.9017, 58.7785, -84.4328, 53.5827, -87.6307, 48.1754, -90.4827, 42.5779, -92.9776, 36.8125, -95.1057, 30.9017, -96.8583, 24.869, -98.2287, 18.7381, -99.2115, 12.5333, -99.8027, 6.27905, -100, 1.22465e-14, -99.8027, -6.27905, -99.2115, -12.5333, -98.2287, -18.7381, -96.8583, -24.869, -95.1057, -30.9017, -92.9776, -36.8125, -90.4827, -42.5779, -87.6307, -48.1754, -84.4328, -53.5827, -80.9017, -58.7785, -77.0513, -63.7424, -72.8969, -68.4547, -68.4547, -72.8969, -63.7424, -77.0513, -58.7785, -80.9017, -53.5827, -84.4328, -48.1754, -87.6307, -42.5779, -90.4827, -36.8125, -92.9776, -30.9017, -95.1057, -24.869, -96.8583, -18.7381, -98.2287, -12.5333, -99.2115, -6.27905, -99.8027, -1.83697e-14, -100, 6.27905, -99.8027, 12.5333, -99.2115, 18.7381, -98.2287, 24.869, -96.8583, 30.9017, -95.1057, 36.8125, -92.9776, 42.5779, -90.4827, 48.1754, -87.6307, 53.5827, -84.4328, 58.7785, -80.9017, 63.7424, -77.0513, 68.4547, -72.8969, 72.8969, -68.4547, 77.0513, -63.7424, 80.9017, -58.7785, 84.4328, -53.5827, 87.6307, -48.1754, 90.4827, -42.5779, 92.9776, -36.8125, 95.1057, -30.9017, 96.8583, -24.869, 98.2287, -18.7381, 99.2115, -12.5333, 99.8027, -6.27905)
 
 [node name="Atmosphere" type="Sprite2D" parent="PlanetSurface"]
 z_index = -11
@@ -121,495 +124,922 @@ occluder = SubResource("OccluderPolygon2D_lng8w")
 
 [node name="PlanetDetails" type="Node2D" parent="."]
 
-[node name="@Sprite2D@64537" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74650" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(100, 0)
 rotation = 1.5708
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64538" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74651" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(99.8027, 6.27905)
 rotation = 1.63363
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64539" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74652" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(99.2115, 12.5333)
 rotation = 1.69646
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64540" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74653" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(98.2287, 18.7381)
 rotation = 1.75929
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64541" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74654" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(96.8583, 24.869)
 rotation = 1.82212
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64542" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74655" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(95.1057, 30.9017)
 rotation = 1.88496
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64543" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74656" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(92.9776, 36.8125)
 rotation = 1.94779
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64544" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="tree" type="Node2D" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
 position = Vector2(90.4827, 42.5779)
 rotation = 2.01062
 
-[node name="@Sprite2D@64545" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74657" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(87.6307, 48.1754)
 rotation = 2.07345
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64546" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74658" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(84.4328, 53.5827)
 rotation = 2.13628
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64547" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74659" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(80.9017, 58.7785)
 rotation = 2.19911
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64548" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74660" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(77.0513, 63.7424)
 rotation = 2.26195
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64549" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74661" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(72.8969, 68.4547)
 rotation = 2.32478
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64550" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Node2D@74662" type="Node2D" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
 position = Vector2(68.4547, 72.8969)
 rotation = 2.38761
 
-[node name="@Sprite2D@64551" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74663" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(63.7424, 77.0513)
 rotation = 2.45044
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64552" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74664" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(58.7785, 80.9017)
 rotation = 2.51327
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64553" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74665" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(53.5827, 84.4328)
 rotation = 2.57611
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Node2D@64554" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
+[node name="@Sprite2D@74666" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(48.1754, 87.6307)
 rotation = 2.63894
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64555" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74667" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(42.5779, 90.4827)
 rotation = 2.70177
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64556" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74668" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(36.8125, 92.9776)
 rotation = 2.7646
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64557" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74669" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(30.9017, 95.1057)
 rotation = 2.82743
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64558" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+[node name="@Sprite2D@74670" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
 material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(24.869, 96.8583)
 rotation = 2.89027
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64559" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74671" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(18.7381, 98.2287)
 rotation = 2.9531
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64560" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74672" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(12.5333, 99.2115)
 rotation = 3.01593
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64561" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74673" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(6.27905, 99.8027)
 rotation = 3.07876
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64562" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74674" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
-position = Vector2(6.12303e-15, 100)
+position = Vector2(6.12323e-15, 100)
 rotation = 3.14159
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64563" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74675" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-6.27905, 99.8027)
 rotation = 3.20442
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64564" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74676" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-12.5333, 99.2115)
 rotation = 3.26726
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Node2D@64565" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
+[node name="@Sprite2D@74677" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-18.7381, 98.2287)
 rotation = 3.33009
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64566" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74678" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-24.869, 96.8583)
 rotation = 3.39292
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64567" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74679" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-30.9017, 95.1057)
 rotation = 3.45575
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64568" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74680" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-36.8125, 92.9776)
 rotation = 3.51858
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64569" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74681" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-42.5779, 90.4827)
 rotation = 3.58142
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64570" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74682" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-48.1754, 87.6307)
 rotation = 3.64425
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64571" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74683" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-53.5827, 84.4328)
 rotation = 3.70708
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64572" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+[node name="@Sprite2D@74684" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
 material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(-58.7785, 80.9017)
 rotation = 3.76991
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64573" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74685" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-63.7424, 77.0513)
 rotation = 3.83274
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64574" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74686" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-68.4547, 72.8969)
 rotation = 3.89557
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64575" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74687" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-72.8969, 68.4547)
 rotation = 3.95841
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64576" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74688" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-77.0513, 63.7424)
 rotation = 4.02124
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64577" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74689" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-80.9017, 58.7785)
 rotation = 4.08407
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64578" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74690" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-84.4328, 53.5827)
 rotation = 4.1469
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64579" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Node2D@74691" type="Node2D" parent="PlanetDetails" instance=ExtResource("10_0qc47")]
 position = Vector2(-87.6307, 48.1754)
 rotation = 4.20973
 
-[node name="@Sprite2D@64580" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74692" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-90.4827, 42.5779)
 rotation = 4.27257
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64581" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74693" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-92.9776, 36.8125)
 rotation = 4.3354
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64582" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74694" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-95.1057, 30.9017)
 rotation = 4.39823
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64583" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74695" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-96.8583, 24.869)
 rotation = 4.46106
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64584" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74696" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-98.2287, 18.7381)
 rotation = 4.52389
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64585" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74697" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-99.2115, 12.5333)
 rotation = 4.58673
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64586" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74698" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(-99.8027, 6.27905)
 rotation = 4.64956
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64587" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74699" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
-position = Vector2(-100, 1.22461e-14)
+position = Vector2(-100, 1.22465e-14)
 rotation = 4.71239
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64588" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74700" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-99.8027, -6.27905)
 rotation = 4.77522
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64589" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74701" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-99.2115, -12.5333)
 rotation = 4.83805
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64590" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74702" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(-98.2287, -18.7381)
 rotation = 4.90088
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64591" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74703" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-96.8583, -24.869)
 rotation = 4.96372
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64592" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74704" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-95.1057, -30.9017)
 rotation = 5.02655
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64593" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74705" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-92.9776, -36.8125)
 rotation = 5.08938
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64594" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74706" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-90.4827, -42.5779)
 rotation = 5.15221
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64595" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74707" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(-87.6307, -48.1754)
 rotation = 5.21504
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64596" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74708" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-84.4328, -53.5827)
 rotation = 5.27788
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64597" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74709" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(-80.9017, -58.7785)
 rotation = 5.34071
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64598" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74710" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-77.0513, -63.7424)
 rotation = 5.40354
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64599" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74711" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-72.8969, -68.4547)
 rotation = 5.46637
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64600" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74712" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-68.4547, -72.8969)
 rotation = 5.5292
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64601" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74713" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-63.7424, -77.0513)
 rotation = 5.59203
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64602" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74714" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-58.7785, -80.9017)
 rotation = 5.65487
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64603" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74715" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-53.5827, -84.4328)
 rotation = 5.7177
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64604" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74716" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(-48.1754, -87.6307)
 rotation = 5.78053
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64605" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74717" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-42.5779, -90.4827)
 rotation = 5.84336
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64606" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74718" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-36.8125, -92.9776)
 rotation = 5.90619
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64607" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74719" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-30.9017, -95.1057)
 rotation = 5.96903
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64608" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74720" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-24.869, -96.8583)
 rotation = 6.03186
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64609" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74721" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-18.7381, -98.2287)
 rotation = 6.09469
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64610" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74722" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(-12.5333, -99.2115)
 rotation = 6.15752
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64611" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74723" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(-6.27905, -99.8027)
 rotation = 6.22035
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64612" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
-position = Vector2(-1.83691e-14, -100)
+[node name="@Sprite2D@74724" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
+position = Vector2(-1.83697e-14, -100)
 rotation = 6.28319
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64613" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74725" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(6.27905, -99.8027)
 rotation = 6.34602
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64614" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74726" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(12.5333, -99.2115)
 rotation = 6.40885
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64615" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74727" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(18.7381, -98.2287)
 rotation = 6.47168
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64616" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+[node name="@Sprite2D@74728" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
 material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(24.869, -96.8583)
 rotation = 6.53451
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64617" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74729" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(30.9017, -95.1057)
 rotation = 6.59734
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64618" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74730" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(36.8125, -92.9776)
 rotation = 6.66018
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64619" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74731" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(42.5779, -90.4827)
 rotation = 6.72301
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64620" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74732" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(48.1754, -87.6307)
 rotation = 6.78584
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64621" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74733" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(53.5827, -84.4328)
 rotation = 6.84867
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64622" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74734" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(58.7785, -80.9017)
 rotation = 6.9115
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64623" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74735" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(63.7424, -77.0513)
 rotation = 6.97434
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64624" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74736" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(68.4547, -72.8969)
 rotation = 7.03717
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64625" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74737" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(72.8969, -68.4547)
 rotation = 7.1
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64626" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74738" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(77.0513, -63.7424)
 rotation = 7.16283
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64627" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74739" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(80.9017, -58.7785)
 rotation = 7.22566
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64628" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
+[node name="@Sprite2D@74740" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(84.4328, -53.5827)
 rotation = 7.2885
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64629" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74741" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(87.6307, -48.1754)
 rotation = 7.35133
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64630" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74742" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(90.4827, -42.5779)
 rotation = 7.41416
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64631" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74743" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("5_e5w1m")]
 position = Vector2(92.9776, -36.8125)
 rotation = 7.47699
+texture = ExtResource("6_ujdm4")
+offset = Vector2(2.08165e-12, -3)
 
-[node name="@Sprite2D@64632" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74744" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(95.1057, -30.9017)
 rotation = 7.53982
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64633" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
-material = SubResource("ShaderMaterial_bey3j")
+[node name="@Sprite2D@74745" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(96.8583, -24.869)
 rotation = 7.60265
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64634" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
-material = SubResource("ShaderMaterial_lumh1")
+[node name="@Sprite2D@74746" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("6_yhxeb")]
+material = SubResource("ShaderMaterial_bey3j")
 position = Vector2(98.2287, -18.7381)
 rotation = 7.66549
+texture = ExtResource("9_w3ugj")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64635" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74747" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(99.2115, -12.5333)
 rotation = 7.72832
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
-[node name="@Sprite2D@64636" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+[node name="@Sprite2D@74748" type="Sprite2D" parent="PlanetDetails" instance=ExtResource("2_qoit8")]
+modulate = Color(0.364706, 0.768627, 0.376471, 1)
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_lumh1")
 position = Vector2(99.8027, -6.27905)
 rotation = 7.79115
+texture = ExtResource("11_awdcv")
+offset = Vector2(2.08165e-12, -4)
 
 [connection signal="body_entered" from="GravitySource" to="." method="_on_gravity_source_body_entered"]

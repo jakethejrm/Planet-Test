@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckvdfwmu5624t"]
+[gd_scene load_steps=5 format=3 uid="uid://ckvdfwmu5624t"]
 
 [ext_resource type="Shader" path="res://shaders/grass.gdshader" id="1_7ljby"]
-[ext_resource type="Texture2D" uid="uid://dcdcs7qlbcb3a" path="res://materials/flower.png" id="2_fmwq5"]
+[ext_resource type="Texture2D" uid="uid://bi7yyl3ng84ln" path="res://materials/flower_stem.png" id="2_y03xx"]
+[ext_resource type="Texture2D" uid="uid://beav0abwk4f6e" path="res://materials/flower_petals.png" id="3_cautt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bey3j"]
 shader = ExtResource("1_7ljby")
 shader_parameter/wind_speed = 2.0
 shader_parameter/distance_threshold = 10.0
 
-[node name="Node2D" type="Sprite2D"]
+[node name="Flower" type="Sprite2D"]
 material = SubResource("ShaderMaterial_bey3j")
-texture = ExtResource("2_fmwq5")
+texture = ExtResource("2_y03xx")
+offset = Vector2(2.08165e-12, -4)
+
+[node name="Petals" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_cautt")
 offset = Vector2(2.08165e-12, -4)

@@ -1,14 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://cng0oxvq4lgro"]
+[gd_scene load_steps=16 format=3 uid="uid://w3wonsc2pt3i"]
 
-[ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_6qapt"]
-[ext_resource type="Texture2D" uid="uid://dfxh168dklqyi" path="res://assets/sprites/gun.png" id="2_rveyu"]
-[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="4_7y7cp"]
-[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_m4yy6"]
-[ext_resource type="Texture2D" uid="uid://d3cx71um84fbw" path="res://assets/sprites/gun_highlights.png" id="4_uapq4"]
+[ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_625ss"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_hu1qp"]
+[ext_resource type="Texture2D" uid="uid://be0scwsh61f6q" path="res://assets/sprites/coilgun.png" id="3_80aje"]
+[ext_resource type="PackedScene" uid="uid://b2pdr66riix3h" path="res://scenes/weapons/bullets/Lightning.tscn" id="3_o4umf"]
+[ext_resource type="Texture2D" uid="uid://bw27g4jdvoh4c" path="res://assets/sprites/coilgun_highlights.png" id="4_wrnpq"]
+[ext_resource type="Shader" path="res://scenes/weapons/guns/coilgun.gdshader" id="5_jq6b4"]
+[ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="6_how0e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yiuk4"]
+shader = ExtResource("5_jq6b4")
 
 [sub_resource type="Gradient" id="Gradient_u28aq"]
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
-colors = PackedColorArray(1, 1, 0.341176, 1, 0.717647, 0.470588, 0.247059, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0, 0.423529, 1, 1, 0.717647, 0.470588, 0.247059, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_osj1o"]
 gradient = SubResource("Gradient_u28aq")
@@ -22,7 +27,7 @@ curve = SubResource("Curve_wxofk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m67tb"]
 particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
 initial_velocity_min = 15.87
 initial_velocity_max = 47.62
 gravity = Vector3(0, 0, 0)
@@ -32,7 +37,7 @@ scale_curve = SubResource("CurveTexture_t8teq")
 color_ramp = SubResource("GradientTexture1D_osj1o")
 
 [sub_resource type="Gradient" id="Gradient_03e14"]
-offsets = PackedFloat32Array(0, 0.197368)
+offsets = PackedFloat32Array(0, 0.51145)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ygg12"]
@@ -40,30 +45,38 @@ gradient = SubResource("Gradient_03e14")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Pistol" type="Node2D"]
-script = ExtResource("1_6qapt")
-bullet_sound = ExtResource("4_m4yy6")
+[node name="Coilgun" type="Node2D"]
+z_index = -1
+script = ExtResource("1_625ss")
+bullet_sound = ExtResource("2_hu1qp")
 weapon_name = "Pistol"
 weapon_type = 1
 cooldown = 0.25
+bullet = ExtResource("3_o4umf")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(7, -5)
-texture = ExtResource("2_rveyu")
+position = Vector2(10, -5)
+texture = ExtResource("3_80aje")
 
 [node name="Highlights" type="Sprite2D" parent="GunSprite"]
-modulate = Color(0.333333, 0, 1, 1)
-texture = ExtResource("4_uapq4")
+modulate = Color(0, 0.364706, 0.729412, 1)
+texture = ExtResource("4_wrnpq")
+
+[node name="Coil" type="Sprite2D" parent="GunSprite"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_yiuk4")
+position = Vector2(3, -0.5)
+scale = Vector2(0.75, 0.875)
+texture = ExtResource("6_how0e")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
-position = Vector2(16, -6)
+position = Vector2(22, -6)
 
 [node name="MuzzleFlash" type="GPUParticles2D" parent="BulletSpawn"]
-rotation = 1.5708
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_m67tb")
-texture = ExtResource("4_7y7cp")
+texture = ExtResource("6_how0e")
 one_shot = true
 fixed_fps = 60
 local_coords = true
@@ -72,13 +85,14 @@ local_coords = true
 one_shot = true
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_m4yy6")
+stream = ExtResource("2_hu1qp")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(12, -6)
-color = Color(1, 0.172549, 1, 1)
+position = Vector2(18, -6)
+color = Color(0.290196, 1, 1, 1)
 energy = 1.45
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ygg12")
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

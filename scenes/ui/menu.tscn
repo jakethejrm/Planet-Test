@@ -1,8 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4wmhycbp5tfn"]
+[gd_scene load_steps=23 format=3 uid="uid://c4wmhycbp5tfn"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_q46lw"]
-[ext_resource type="Texture2D" uid="uid://dabnoo5wbc4vm" path="res://assets/ui/menu_back.png" id="2_ffolj"]
-[ext_resource type="Texture2D" uid="uid://bbdure8nfsns8" path="res://assets/ui/menu_front.png" id="3_imvq2"]
+[ext_resource type="Shader" path="res://scenes/ui/title.gdshader" id="2_8vc8n"]
+[ext_resource type="Texture2D" uid="uid://c6f5nwvp5ihya" path="res://assets/ui/studio_logo.png" id="3_27g7j"]
+[ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_sbxiu"]
+[ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="4_t7ge2"]
+[ext_resource type="PackedScene" uid="uid://r20l7yuf6lky" path="res://PlanetButton.tscn" id="6_6d1gl"]
+[ext_resource type="Shader" path="res://scenes/ui/sun.gdshader" id="7_de5oi"]
+[ext_resource type="Texture2D" uid="uid://cari8rte4nqp0" path="res://assets/ui/sun.png" id="8_v75mb"]
+
+[sub_resource type="Gradient" id="Gradient_knig2"]
+colors = PackedColorArray(0, 0, 0.729412, 1, 1, 0.454902, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d82ib"]
+gradient = SubResource("Gradient_knig2")
+fill_from = Vector2(0.389497, 0.262582)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6fce"]
+shader = ExtResource("2_8vc8n")
+shader_parameter/gradient = SubResource("GradientTexture2D_d82ib")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cxoqm"]
+line_spacing = -10.0
+font_size = 48
+outline_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvdui"]
+line_spacing = -10.0
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_3prnv"]
+font_size = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8mc4u"]
+shader = ExtResource("4_t7ge2")
+shader_parameter/speed = 0.01
+
+[sub_resource type="Gradient" id="Gradient_yjbmj"]
+colors = PackedColorArray(1, 0.435294, 0, 1, 1, 1, 0.482353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqx07"]
+gradient = SubResource("Gradient_yjbmj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wlsv0"]
+frequency = 0.0275
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m24r1"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_wlsv0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dh8i"]
+shader = ExtResource("7_de5oi")
+shader_parameter/gradient = SubResource("GradientTexture2D_sqx07")
+shader_parameter/noise = SubResource("NoiseTexture2D_m24r1")
+
+[sub_resource type="Gradient" id="Gradient_jkjlc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mb2os"]
+gradient = SubResource("Gradient_jkjlc")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,45 +76,83 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_q46lw")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_ffolj")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 426.0
-texture = ExtResource("3_imvq2")
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 640.0
-offset_bottom = 426.0
+offset_bottom = 360.0
 theme = ExtResource("1_q46lw")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_o6fce")
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Gravity
+   Gunners"
+label_settings = SubResource("LabelSettings_cxoqm")
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Planetary Drift"
+text = "Gravity
+   Gunners"
+label_settings = SubResource("LabelSettings_kvdui")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Start"
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Melon Games"
+label_settings = SubResource("LabelSettings_3prnv")
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Credits"
+size_flags_vertical = 4
+texture = ExtResource("3_27g7j")
+stretch_mode = 2
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Quit"
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -6
+texture_repeat = 2
+material = SubResource("ShaderMaterial_8mc4u")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_sbxiu")
+
+[node name="PlanetButton" parent="." instance=ExtResource("6_6d1gl")]
+visible = false
+layout_mode = 0
+offset_left = 277.0
+offset_top = 194.0
+offset_right = 341.0
+offset_bottom = 258.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 0.305882, 0, 1)
+material = SubResource("ShaderMaterial_4dh8i")
+layout_mode = 0
+offset_left = 275.0
+offset_top = 190.0
+offset_right = 339.0
+offset_bottom = 254.0
+texture = ExtResource("8_v75mb")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -32.0
+offset_top = -31.0
+offset_right = 96.0
+offset_bottom = 97.0
+texture = SubResource("GradientTexture2D_mb2os")
+metadata/_edit_lock_ = true

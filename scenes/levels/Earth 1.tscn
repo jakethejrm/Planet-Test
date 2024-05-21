@@ -6,10 +6,19 @@
 [node name="Earth1" type="Node2D"]
 
 [node name="Platform" parent="." instance=ExtResource("2_ky0ph")]
-width = 5000.0
+width = 1000.0
 
 [node name="Planet" parent="." instance=ExtResource("1_hilim")]
-position = Vector2(300, -176)
+position = Vector2(0, -448)
+planet_size = 200.0
+
+[node name="Platform2" parent="." instance=ExtResource("2_ky0ph")]
+position = Vector2(-14, -905)
+rotation = 3.14159
+width = 1000.0
 
 [node name="Planet2" parent="." instance=ExtResource("1_hilim")]
-position = Vector2(671, -311)
+position = Vector2(-400, -682)
+
+[node name="Planet3" parent="." instance=ExtResource("1_hilim")]
+position = Vector2(388, -224)

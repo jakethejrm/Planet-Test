@@ -17,6 +17,8 @@ var jump_velocity: Vector2 = Vector2.ZERO
 var on_ground : bool = false
 var jumping : bool = false
 
+var can_fly : bool = false
+
 
 var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
@@ -58,6 +60,7 @@ func _physics_process(delta):
 	_gravity(delta)
 	_direction()
 	_jump(delta)
+	_fly(delta)
 	
 	if Input.is_action_pressed("shoot"):
 		weapon_spot.get_child(0).shoot(get_global_mouse_position())
@@ -97,30 +100,32 @@ func _direction():
 		pass
 
 func _jump(delta):
-	if Input.is_action_just_pressed("jump"):
-		if on_ground:
-			jumping = true
-			gravity_velocity = up_direction * JUMP_VELOCITY
-		
-	elif Input.is_action_pressed("jump") and curr_flight > 0:
-			_fly(delta)
-			
-	else:
-		$Boots.stop()
-		if on_ground:
-			jumping = false
-			if curr_flight < max_flight:
-				curr_flight += delta * 200
+	if Input.is_action_just_pressed("jump") and on_ground:
+		jumping = true
+		gravity_velocity = up_direction * JUMP_VELOCITY
 
 func _fly(delta):
-	gravity_velocity = up_direction * JUMP_VELOCITY
-	for emitter : GPUParticles2D in $Body/Legs.get_children():
-		emitter.emitting = true
-	curr_flight -= delta * 200
-	if not $Boots.playing:
-		$Boots.play()
+	if on_ground:
+		if curr_flight < max_flight:
+			curr_flight += delta * 200
+		can_fly = false
+	elif Input.is_action_just_released("jump"):
+		can_fly = true
+	elif Input.is_action_pressed("jump") and can_fly and curr_flight > 0:
+		gravity_velocity = up_direction * JUMP_VELOCITY
+		for emitter : GPUParticles2D in $Body/Legs.get_children():
+			emitter.emitting = true
+		curr_flight -= delta * 200
+		if not $Boots.playing:
+			$Boots.play()
+	else:
+		if $Boots.playing:
+			$Boots.stop()
 
 func _anim_handler(delta):
+	
+	$Stats.position.y = $Body/Torso/Head.position.y - 40
+	$Stats.global_rotation = Vector2.UP.angle() + PI/2
 	
 	var global_mouse_pos : Vector2 = get_global_mouse_position()
 	var rotation_amt = arm_f.global_position.angle_to_point(global_mouse_pos) - (PI/2)
