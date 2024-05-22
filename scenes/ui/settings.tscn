@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://isyylugsv2hs"]
+
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_c4jhu"]
+[ext_resource type="Script" path="res://scenes/ui/settings.gd" id="2_uflio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2cbt"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpejj"]
+bg_color = Color(0.25098, 0.00392157, 0, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c4jhu")
+script = ExtResource("2_uflio")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_c4jhu")
+current_tab = 1
+
+[node name="Controls" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Audio" type="MarginContainer" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Graphics" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Accessibility" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Social" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 580.0
+offset_top = 20.0
+offset_right = 612.0
+offset_bottom = 41.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_b2cbt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bpejj")
+text = "X"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

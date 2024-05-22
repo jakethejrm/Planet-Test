@@ -7,8 +7,9 @@ extends CharacterBody2D
 @export var max_hp : float = 100
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = 400
+const FLY_VELOCITY = 200
 
 var gravity_velocity : Vector2 = Vector2.ZERO
 var direction_velocity: Vector2 = Vector2.ZERO
@@ -18,8 +19,6 @@ var on_ground : bool = false
 var jumping : bool = false
 
 var can_fly : bool = false
-
-
 var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
 
@@ -112,7 +111,7 @@ func _fly(delta):
 	elif Input.is_action_just_released("jump"):
 		can_fly = true
 	elif Input.is_action_pressed("jump") and can_fly and curr_flight > 0:
-		gravity_velocity = up_direction * JUMP_VELOCITY
+		gravity_velocity = up_direction * FLY_VELOCITY
 		for emitter : GPUParticles2D in $Body/Legs.get_children():
 			emitter.emitting = true
 		curr_flight -= delta * 200

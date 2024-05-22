@@ -1,0 +1,290 @@
+[gd_scene load_steps=35 format=3 uid="uid://c4wmhycbp5tfn"]
+
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_q46lw"]
+[ext_resource type="Texture2D" uid="uid://u4y6fj8vqmjy" path="res://assets/ui/studio_logo_small.png" id="2_3d0gj"]
+[ext_resource type="Shader" path="res://scenes/ui/title.gdshader" id="2_8vc8n"]
+[ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="2_c48me"]
+[ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_sbxiu"]
+[ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="4_t7ge2"]
+[ext_resource type="PackedScene" uid="uid://r20l7yuf6lky" path="res://scenes/ui/PlanetButton.tscn" id="6_w500x"]
+[ext_resource type="Shader" path="res://scenes/ui/sun.gdshader" id="7_de5oi"]
+[ext_resource type="Texture2D" uid="uid://cari8rte4nqp0" path="res://assets/ui/sun.png" id="8_v75mb"]
+[ext_resource type="Texture2D" uid="uid://2agikaijirlj" path="res://assets/ui/play_icon.png" id="9_42by5"]
+[ext_resource type="Texture2D" uid="uid://byy3xl65axxep" path="res://assets/ui/settings_icon.png" id="10_am20o"]
+[ext_resource type="Texture2D" uid="uid://ctvtu65ce4o1o" path="res://assets/ui/quit_icon.png" id="11_7xwbh"]
+[ext_resource type="Texture2D" uid="uid://bmp8ae4vjvh70" path="res://assets/ui/customize_icon.png" id="12_hw2qr"]
+[ext_resource type="Texture2D" uid="uid://31yiqwjsa5r0" path="res://assets/ui/stats_icon.png" id="13_i4i02"]
+
+[sub_resource type="Gradient" id="Gradient_vshwu"]
+offsets = PackedFloat32Array(0, 0.201754, 0.662281)
+colors = PackedColorArray(0.447059, 0, 1, 1, 0.30327, 0.307524, 1, 0.872807, 1, 0.478431, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tbunj"]
+gradient = SubResource("Gradient_vshwu")
+width = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_knig2"]
+colors = PackedColorArray(0, 0, 0.729412, 1, 1, 0.454902, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d82ib"]
+gradient = SubResource("Gradient_knig2")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6fce"]
+shader = ExtResource("2_8vc8n")
+shader_parameter/gradient = SubResource("GradientTexture2D_d82ib")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cxoqm"]
+line_spacing = -10.0
+font_size = 48
+outline_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvdui"]
+line_spacing = -10.0
+font_size = 48
+
+[sub_resource type="Gradient" id="Gradient_yjbmj"]
+colors = PackedColorArray(1, 0.435294, 0, 1, 1, 1, 0.482353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqx07"]
+gradient = SubResource("Gradient_yjbmj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wlsv0"]
+frequency = 0.0275
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m24r1"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_wlsv0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dh8i"]
+shader = ExtResource("7_de5oi")
+shader_parameter/gradient = SubResource("GradientTexture2D_sqx07")
+shader_parameter/noise = SubResource("NoiseTexture2D_m24r1")
+
+[sub_resource type="Gradient" id="Gradient_jkjlc"]
+offsets = PackedFloat32Array(0, 0.684211)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mb2os"]
+gradient = SubResource("Gradient_jkjlc")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5tsu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8mc4u"]
+shader = ExtResource("4_t7ge2")
+shader_parameter/speed = 0.01
+
+[sub_resource type="Animation" id="Animation_4e1p1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Studio:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(539, 327)]
+}
+
+[sub_resource type="Animation" id="Animation_uoayn"]
+resource_name = "menu_animations"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Studio:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(527, 327), Vector2(527, 320), Vector2(527, 327)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m6aw7"]
+_data = {
+"RESET": SubResource("Animation_4e1p1"),
+"menu_animations": SubResource("Animation_uoayn")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_3prnv"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q46lw")
+script = ExtResource("2_c48me")
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_q46lw")
+metadata/_edit_lock_ = true
+
+[node name="TitleContainer" type="CenterContainer" parent="Margins"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Margins/TitleContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_tbunj")
+
+[node name="TitleBorder" type="Label" parent="Margins/TitleContainer"]
+material = SubResource("ShaderMaterial_o6fce")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Gravity
+Gunners"
+label_settings = SubResource("LabelSettings_cxoqm")
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Margins/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Gravity
+Gunners"
+label_settings = SubResource("LabelSettings_kvdui")
+horizontal_alignment = 1
+
+[node name="SelectMenu" type="CenterContainer" parent="Margins"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sun" type="TextureRect" parent="Margins/SelectMenu"]
+material = SubResource("ShaderMaterial_4dh8i")
+layout_mode = 2
+texture = ExtResource("8_v75mb")
+
+[node name="SunGlow" type="TextureRect" parent="Margins/SelectMenu/Sun"]
+modulate = Color(1, 0.592157, 0.305882, 1)
+show_behind_parent = true
+layout_mode = 2
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = SubResource("GradientTexture2D_mb2os")
+metadata/_edit_lock_ = true
+
+[node name="PlanetButton" parent="Margins/SelectMenu" instance=ExtResource("6_w500x")]
+visible = false
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_5tsu1")
+orbit_speed = 0.1
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -30
+texture_repeat = 2
+material = SubResource("ShaderMaterial_8mc4u")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_sbxiu")
+metadata/_edit_lock_ = true
+
+[node name="PlayButton" parent="." instance=ExtResource("6_w500x")]
+z_index = 1
+layout_mode = 1
+offset_left = -51.1738
+offset_top = 38.6685
+offset_right = -51.1738
+offset_bottom = 38.6685
+text = "Play"
+planet_color = Color(1, 0.239216, 0.415686, 1)
+icon = ExtResource("9_42by5")
+
+[node name="SettingsButton" parent="." instance=ExtResource("6_w500x")]
+z_index = 2
+layout_mode = 1
+offset_left = -199.693
+offset_top = 2.21538
+offset_right = -199.693
+offset_bottom = 2.21538
+text = "Settings"
+planet_color = Color(0.568627, 0.568627, 0.568627, 1)
+icon = ExtResource("10_am20o")
+
+[node name="QuitButton" parent="." instance=ExtResource("6_w500x")]
+z_index = -3
+layout_mode = 1
+offset_left = -72.2433
+offset_top = -37.2993
+offset_right = -72.2433
+offset_bottom = -37.2993
+text = "Quit"
+planet_color = Color(0.537255, 0.678431, 0.996078, 1)
+icon = ExtResource("11_7xwbh")
+
+[node name="CosmeticsButton" parent="." instance=ExtResource("6_w500x")]
+z_index = -4
+layout_mode = 1
+offset_left = 155.044
+offset_top = -25.2676
+offset_right = 155.044
+offset_bottom = -25.2676
+text = "Cosmetics"
+planet_color = Color(0, 1, 0, 1)
+icon = ExtResource("12_hw2qr")
+
+[node name="StatsButton" parent="." instance=ExtResource("6_w500x")]
+z_index = 5
+layout_mode = 1
+offset_left = 168.066
+offset_top = 21.683
+offset_right = 168.066
+offset_bottom = 21.683
+text = "My Stats"
+planet_color = Color(1, 0.568627, 1, 1)
+icon = ExtResource("13_i4i02")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m6aw7")
+}
+autoplay = "menu_animations"
+speed_scale = 0.5
+
+[node name="Studio" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 539.0
+offset_top = 327.0
+offset_right = 632.0
+offset_bottom = 340.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="StudioName" type="Label" parent="Studio"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "© Melon Games"
+label_settings = SubResource("LabelSettings_3prnv")
+
+[node name="Logo" type="TextureRect" parent="Studio"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_3d0gj")

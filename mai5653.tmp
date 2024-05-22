@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
 [ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="5_iirmc"]
-[ext_resource type="PackedScene" uid="uid://bmkaugl30muq5" path="res://scenes/levels/Earth 2.tscn" id="6_mukuj"]
+[ext_resource type="PackedScene" uid="uid://cwd8e5x1xj8pw" path="res://scenes/levels/Earth 1.tscn" id="6_s0kys"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
 shader = ExtResource("3_e1sam")
@@ -56,7 +56,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("5_iirmc")]
 position = Vector2(359, -785)
 
-[node name="Earth2" parent="." instance=ExtResource("6_mukuj")]
+[node name="Earth1" parent="." instance=ExtResource("6_s0kys")]
 
 [connection signal="update_fuel" from="Player" to="Camera/Hud" method="_on_player_update_fuel"]
 [connection signal="update_hp" from="Player" to="Camera/Hud" method="_on_player_update_hp"]

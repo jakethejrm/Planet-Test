@@ -303,6 +303,7 @@ one_shot = true
 
 [node name="Boots" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_8ig4b")
+volume_db = -25.337
 
 [node name="Stats" type="Node2D" parent="."]
 position = Vector2(2.08165e-12, -50)

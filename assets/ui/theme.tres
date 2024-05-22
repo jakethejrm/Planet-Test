@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://jg0ki33q0a7v"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://jg0ki33q0a7v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hg55k"]
 
@@ -9,6 +9,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0thoc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4500"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yuhg7"]
 
 [resource]
 Button/font_sizes/font_size = 32
@@ -22,3 +24,4 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_yuhg7")
