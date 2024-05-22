@@ -38,10 +38,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 355.778
-offset_top = 121.587
-offset_right = 355.778
-offset_bottom = 121.587
+offset_left = 332.677
+offset_top = 120.537
+offset_right = 332.677
+offset_bottom = 120.537
 grow_horizontal = 1
 grow_vertical = 1
 text = "Join"
@@ -56,10 +56,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 244.222
-offset_top = 198.413
-offset_right = 244.222
-offset_bottom = 198.413
+offset_left = 267.323
+offset_top = 199.463
+offset_right = 267.323
+offset_bottom = 199.463
 text = "Host"
 planet_color = Color(0.894118, 0.533333, 0.776471, 1)
 icon = ExtResource("7_yqd73")
@@ -90,3 +90,4 @@ layout_mode = 1
 [connection signal="button_pressed" from="Menu/MenuOptions/Join" to="." method="_on_join_button_pressed"]
 [connection signal="button_pressed" from="Menu/MenuOptions/Host" to="." method="_on_host_button_pressed"]
 [connection signal="button_pressed" from="Menu/CenterContainer/Back" to="." method="_on_back_button_pressed"]
+[connection signal="back" from="ChildMenus/Join" to="." method="_on_join_back"]

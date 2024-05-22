@@ -17,3 +17,10 @@ func _on_join_button_pressed(_button):
 
 func _on_host_button_pressed(_button):
 	pass # Replace with function body.
+
+
+func _on_join_back():
+	$Menu.show()
+	join_menu.hide()
+	
+	pass # Replace with function body.

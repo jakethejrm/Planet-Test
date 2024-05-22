@@ -1,30 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3lai7uycpsm1"]
+[gd_scene load_steps=13 format=3 uid="uid://c3lai7uycpsm1"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_3ogjx"]
+[ext_resource type="Texture2D" uid="uid://c3bsd78vufgsv" path="res://assets/ui/refresh_icon.png" id="2_pcj4p"]
+[ext_resource type="PackedScene" uid="uid://c7pp0koku1cr0" path="res://scenes/ui/server_listing.tscn" id="2_to42y"]
+[ext_resource type="Script" path="res://scenes/ui/Join.gd" id="2_ypwfa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jv5n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bbobe"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_jfj4w"]
 color = Color(0.717647, 0.717647, 0.717647, 1)
-thickness = 2
 vertical = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_p1wqf"]
-font_size = 32
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgxx"]
-bg_color = Color(0.239216, 0.239216, 0.239216, 1)
-border_color = Color(0.458824, 0.458824, 0.458824, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs0ih"]
+bg_color = Color(0.294118, 0.294118, 0.294118, 0.576471)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37507"]
-bg_color = Color(0.388235, 0.388235, 0.388235, 1)
-border_color = Color(0.231373, 0.231373, 0.231373, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e84y7"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 0.611765)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f56d"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.721569)
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpyyc"]
+bg_color = Color(0.25098, 0.00392157, 0, 1)
 
 [node name="Join" type="Control"]
 layout_mode = 3
@@ -34,11 +49,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3ogjx")
+script = ExtResource("2_ypwfa")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
+theme_override_constants/margin_bottom = 50
 
 [node name="Panel" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -65,40 +82,105 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Lobby Headers" type="PanelContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jv5n")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer"]
 layout_mode = 2
 
-[node name="LobbyName" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="LobbyName" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Lobby Name"
+label_settings = SubResource("LabelSettings_bbobe")
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
 
-[node name="PlayerCount" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="LobbyHost" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "20/20"
-label_settings = SubResource("LabelSettings_p1wqf")
+theme_override_font_sizes/font_size = 32
+text = "Lobby Host"
+label_settings = SubResource("LabelSettings_bbobe")
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 2.08165e-12)
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-theme_override_colors/font_hover_color = Color(0, 0.964706, 0.4, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_tbgxx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_37507")
-text = "Join"
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
+
+[node name="Map" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Map"
+label_settings = SubResource("LabelSettings_p1wqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
+
+[node name="PlayerCount" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Player Count"
+label_settings = SubResource("LabelSettings_p1wqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
+
+[node name="Refresh" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_xs0ih")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e84y7")
+text = "Refresh"
+icon = ExtResource("2_pcj4p")
+icon_alignment = 2
+
+[node name="ServerListing" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_to42y")]
+layout_mode = 2
+server_name = "Malona's Server"
+server_host = "Malona"
+server_map = "Earth 1"
+curr_player_count = 1
+max_player_count = 20
+joinable = true
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 588.0
+offset_top = 322.0
+offset_right = 620.0
+offset_bottom = 343.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_0f56d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jpyyc")
+text = "Back
+"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

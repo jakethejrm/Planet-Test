@@ -264,12 +264,12 @@ offset_bottom = 96.0
 texture = SubResource("GradientTexture2D_mb2os")
 
 [node name="Play" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 10
+z_index = -10
 layout_mode = 1
-offset_left = 170.485
-offset_top = 246.567
-offset_right = 170.485
-offset_bottom = 246.567
+offset_left = 239.697
+offset_top = 183.366
+offset_right = 239.697
+offset_bottom = 183.366
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
@@ -277,34 +277,34 @@ icon = ExtResource("9_42by5")
 [node name="Settings" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = -11
 layout_mode = 1
-offset_left = 147.463
-offset_top = 199.77
-offset_right = 147.463
-offset_bottom = 199.77
+offset_left = 469.391
+offset_top = 193.405
+offset_right = 469.391
+offset_bottom = 193.405
 text = "Settings"
 planet_color = Color(0.568627, 0.568627, 0.568627, 1)
 icon = ExtResource("10_am20o")
 pitch = 1.122
 
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -12
+z_index = 12
 layout_mode = 1
-offset_left = 362.881
-offset_top = 180.93
-offset_right = 362.881
-offset_bottom = 180.93
+offset_left = 492.631
+offset_top = 240.198
+offset_right = 492.631
+offset_bottom = 240.198
 text = "Quit"
 planet_color = Color(0.537255, 0.678431, 0.996078, 1)
 icon = ExtResource("11_7xwbh")
 pitch = 1.26
 
 [node name="Cosmetics" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -13
+z_index = 13
 layout_mode = 1
-offset_left = 519.039
-offset_top = 216.083
-offset_right = 519.039
-offset_bottom = 216.083
+offset_left = 277.301
+offset_top = 259.078
+offset_right = 277.301
+offset_bottom = 259.078
 text = "Cosmetics"
 planet_color = Color(0, 1, 0, 1)
 icon = ExtResource("12_hw2qr")
@@ -313,10 +313,10 @@ pitch = 1.335
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 14
 layout_mode = 1
-offset_left = 400.132
-offset_top = 256.649
-offset_right = 400.132
-offset_bottom = 256.649
+offset_left = 120.979
+offset_top = 223.954
+offset_right = 120.979
+offset_bottom = 223.954
 text = "My Stats"
 planet_color = Color(1, 0.568627, 1, 1)
 icon = ExtResource("13_i4i02")
