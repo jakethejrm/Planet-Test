@@ -21,3 +21,15 @@ height = 100.0
 [node name="Planet2" parent="." instance=ExtResource("1_q33yn")]
 position = Vector2(602, -1)
 planet_size = 150.0
+
+[node name="Planet3" parent="." instance=ExtResource("1_q33yn")]
+position = Vector2(86, -285)
+planet_size = 50.0
+
+[node name="Planet4" parent="." instance=ExtResource("1_q33yn")]
+position = Vector2(293, -412)
+planet_size = 50.0
+
+[node name="Planet5" parent="." instance=ExtResource("1_q33yn")]
+position = Vector2(519, -337)
+planet_size = 50.0

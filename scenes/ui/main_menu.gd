@@ -17,7 +17,7 @@ var menu_to_hide : Control
 
 var where_to_zoom : Control = null
 
-func _on_planet_button_button_pressed(button : Control):
+func _on_planet_button_pressed(button : Control):
 	where_to_zoom = button
 	match button.name:
 		"Play":
@@ -78,6 +78,5 @@ func _on_transition_handler_animation_finished(anim_name : String):
 		
 
 func _on_back(curr):
-	print("hi")
 	transition_scene($MenuOptions, curr)
 

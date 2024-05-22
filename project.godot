@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Planet Test"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/ui/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
@@ -22,7 +22,7 @@ PlanetTypes="*res://src/planet_types.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
+window/size/initial_position_type=2
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"

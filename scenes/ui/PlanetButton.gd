@@ -9,9 +9,8 @@ signal button_pressed(button : Control)
 @export var orbit_speed : float = 1
 @export var pitch : float = 1
 @export var sub_planets : Array[Control] = []
-var hovered = false;
 
-@export var active = false
+var hovered = false;
 
 var planet_scale : float = 1.0 : set = _set_planet_scale
 
@@ -24,9 +23,6 @@ var time_offset : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var num_subplanets = sub_planets.size()
-	for index in range(num_subplanets):
-		sub_planets[index].connect("button_pressed", _on_planet_pressed)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,9 +32,9 @@ func _process(delta):
 		var angle : float = float(index+1)/num_subplanets * (2.0 * PI) + time_offset + (delta * orbit_speed)
 		sub_planets[index].global_position = global_position + ellipse_point(angle)
 		if sub_planets[index].global_position.y < global_position.y:
-			sub_planets[index].z_index = -(index + 1)
+			sub_planets[index].z_index = -(index + 10)
 		else:
-			sub_planets[index].z_index = index + 1
+			sub_planets[index].z_index = index + 10
 		var scale_factor = remap(sub_planets[index].global_position.y - global_position.y, -40.0, 40.0, .5, 1)
 		if sub_planets[index].hovered == true:
 			scale_factor = scale_factor + 0.25
@@ -84,9 +80,6 @@ func _on_planet_mouse_exited():
 	$Planet/Particles.emitting = false
 	pass # Replace with function body.
 
-func _on_planet_pressed(node : Control = null):
-	if node:
-		button_pressed.emit(node)
-	else:
-		button_pressed.emit(self)
+func _on_planet_pressed():
+	button_pressed.emit(self)
 	pass # Replace with function body.

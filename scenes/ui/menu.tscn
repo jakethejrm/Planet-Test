@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bmp8ae4vjvh70" path="res://assets/ui/customize_icon.png" id="12_hw2qr"]
 [ext_resource type="Texture2D" uid="uid://31yiqwjsa5r0" path="res://assets/ui/stats_icon.png" id="13_i4i02"]
 [ext_resource type="PackedScene" uid="uid://isyylugsv2hs" path="res://scenes/ui/settings.tscn" id="16_6r2b8"]
-[ext_resource type="PackedScene" uid="uid://b2e54c0k78tb2" path="res://host_or_play.tscn" id="17_8pbr0"]
+[ext_resource type="PackedScene" uid="uid://b2e54c0k78tb2" path="res://scenes/ui/host_or_play.tscn" id="17_8pbr0"]
 
 [sub_resource type="Gradient" id="Gradient_vshwu"]
 offsets = PackedFloat32Array(0, 0.201754, 0.662281)
@@ -173,6 +173,26 @@ script = ExtResource("2_c48me")
 play_menu = NodePath("ChildMenus/HostOrPlay")
 settings_menu = NodePath("ChildMenus/Settings")
 
+[node name="ChildMenus" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Settings" parent="ChildMenus" node_paths=PackedStringArray("parent") instance=ExtResource("16_6r2b8")]
+visible = false
+layout_mode = 2
+parent = NodePath("../..")
+
+[node name="HostOrPlay" parent="ChildMenus" instance=ExtResource("17_8pbr0")]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+
 [node name="MenuOptions" type="Control" parent="."]
 layout_mode = 2
 anchors_preset = 0
@@ -244,60 +264,59 @@ offset_bottom = 96.0
 texture = SubResource("GradientTexture2D_mb2os")
 
 [node name="Play" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 1
+z_index = 10
 layout_mode = 1
-offset_left = 333.194
-offset_top = 259.913
-offset_right = 333.194
-offset_bottom = 259.913
+offset_left = 170.485
+offset_top = 246.567
+offset_right = 170.485
+offset_bottom = 246.567
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
-pitch = 1.0
 
 [node name="Settings" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 2
+z_index = -11
 layout_mode = 1
-offset_left = 134.28
-offset_top = 234.843
-offset_right = 134.28
-offset_bottom = 234.843
+offset_left = 147.463
+offset_top = 199.77
+offset_right = 147.463
+offset_bottom = 199.77
 text = "Settings"
 planet_color = Color(0.568627, 0.568627, 0.568627, 1)
 icon = ExtResource("10_am20o")
 pitch = 1.122
 
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -3
+z_index = -12
 layout_mode = 1
-offset_left = 192.024
-offset_top = 189.261
-offset_right = 192.024
-offset_bottom = 189.261
+offset_left = 362.881
+offset_top = 180.93
+offset_right = 362.881
+offset_bottom = 180.93
 text = "Quit"
 planet_color = Color(0.537255, 0.678431, 0.996078, 1)
 icon = ExtResource("11_7xwbh")
 pitch = 1.26
 
 [node name="Cosmetics" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -4
+z_index = -13
 layout_mode = 1
-offset_left = 426.626
-offset_top = 186.159
-offset_right = 426.626
-offset_bottom = 186.159
+offset_left = 519.039
+offset_top = 216.083
+offset_right = 519.039
+offset_bottom = 216.083
 text = "Cosmetics"
 planet_color = Color(0, 1, 0, 1)
 icon = ExtResource("12_hw2qr")
 pitch = 1.335
 
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 5
+z_index = 14
 layout_mode = 1
-offset_left = 513.874
-offset_top = 229.824
-offset_right = 513.874
-offset_bottom = 229.824
+offset_left = 400.132
+offset_top = 256.649
+offset_right = 400.132
+offset_bottom = 256.649
 text = "My Stats"
 planet_color = Color(1, 0.568627, 1, 1)
 icon = ExtResource("13_i4i02")
@@ -332,25 +351,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("2_3d0gj")
-
-[node name="ChildMenus" type="Container" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_right = 640.0
-offset_bottom = 360.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Settings" parent="ChildMenus" node_paths=PackedStringArray("parent") instance=ExtResource("16_6r2b8")]
-visible = false
-layout_mode = 2
-parent = NodePath("../..")
-
-[node name="HostOrPlay" parent="ChildMenus" instance=ExtResource("17_8pbr0")]
-visible = false
-layout_mode = 2
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(320, 180)
@@ -390,7 +390,11 @@ libraries = {
 "": SubResource("AnimationLibrary_l5x6c")
 }
 
-[connection signal="button_pressed" from="MenuOptions/Margins/MarginContainer/SelectMenu/PlanetButton" to="." method="_on_planet_button_button_pressed"]
 [connection signal="back" from="ChildMenus/Settings" to="." method="_on_back"]
 [connection signal="back" from="ChildMenus/HostOrPlay" to="." method="_on_back"]
+[connection signal="button_pressed" from="MenuOptions/Play" to="." method="_on_planet_button_pressed"]
+[connection signal="button_pressed" from="MenuOptions/Settings" to="." method="_on_planet_button_pressed"]
+[connection signal="button_pressed" from="MenuOptions/Quit" to="." method="_on_planet_button_pressed"]
+[connection signal="button_pressed" from="MenuOptions/Cosmetics" to="." method="_on_planet_button_pressed"]
+[connection signal="button_pressed" from="MenuOptions/Stats" to="." method="_on_planet_button_pressed"]
 [connection signal="animation_finished" from="Camera/TransitionScreen/TransitionHandler" to="." method="_on_transition_handler_animation_finished"]
