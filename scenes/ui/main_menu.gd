@@ -48,7 +48,7 @@ func transition_scene(next_menu : Control = null, curr : Control = $MenuOptions)
 	tween1.tween_property(camera, "global_position", where_to_zoom.global_position, 0.5)
 	
 	var tween2 : Tween = get_tree().create_tween()
-	var new_zoom : Vector2 = Vector2(where_to_zoom.scale.x, where_to_zoom.scale.y)
+	var new_zoom : Vector2 = (1.0 * Vector2.ONE) + Vector2(1.0/where_to_zoom.scale.x, 1.0/where_to_zoom.scale.y)
 	tween2.tween_property(camera, "zoom", new_zoom, 0.5)
 	
 	transition_handler.play()
@@ -67,12 +67,12 @@ func _on_transition_handler_animation_finished(anim_name : String):
 			
 			camera.global_position = Vector2(320, 180)
 			#
-			#var tween2 : Tween = get_tree().create_tween()
-			#tween2.tween_property(camera, "zoom", Vector2.ONE, 0.5)
+			var tween2 : Tween = get_tree().create_tween()
+			tween2.tween_property(camera, "zoom", Vector2.ONE, 0.5)
 			transition_handler.play()
 	
 	else:
-		
+		where_to_zoom = root_planet_button
 		transition_screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
 		

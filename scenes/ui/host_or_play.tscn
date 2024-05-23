@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2e54c0k78tb2"]
+[gd_scene load_steps=9 format=3 uid="uid://b2e54c0k78tb2"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_jh48c"]
 [ext_resource type="PackedScene" uid="uid://r20l7yuf6lky" path="res://scenes/ui/PlanetButton.tscn" id="2_58c6y"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bgaswbi2a6k4x" path="res://assets/ui/back_icon.png" id="4_y7w3n"]
 [ext_resource type="Texture2D" uid="uid://vixlvdkfb2ap" path="res://assets/ui/join_icon.png" id="6_e5iys"]
 [ext_resource type="Texture2D" uid="uid://bfklaqu7dbu7x" path="res://assets/ui/host_icon.png" id="7_yqd73"]
+[ext_resource type="PackedScene" uid="uid://bded2rf7xlooi" path="res://scenes/ui/host.tscn" id="8_6qhos"]
 [ext_resource type="PackedScene" uid="uid://c3lai7uycpsm1" path="res://scenes/ui/Join.tscn" id="9_rgi3j"]
 
-[node name="HostOrPlay" type="Control" node_paths=PackedStringArray("join_menu")]
+[node name="HostOrPlay" type="Control" node_paths=PackedStringArray("join_menu", "host_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +20,7 @@ mouse_filter = 2
 theme = ExtResource("1_jh48c")
 script = ExtResource("2_cm5k0")
 join_menu = NodePath("ChildMenus/Join")
+host_menu = NodePath("ChildMenus/Host")
 
 [node name="Menu" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -38,10 +40,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 332.677
-offset_top = 120.537
-offset_right = 332.677
-offset_bottom = 120.537
+offset_left = 499.823
+offset_top = 158.316
+offset_right = 499.823
+offset_bottom = 158.316
 grow_horizontal = 1
 grow_vertical = 1
 text = "Join"
@@ -56,10 +58,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 267.323
-offset_top = 199.463
-offset_right = 267.323
-offset_bottom = 199.463
+offset_left = 100.177
+offset_top = 161.684
+offset_right = 100.177
+offset_bottom = 161.684
 text = "Host"
 planet_color = Color(0.894118, 0.533333, 0.776471, 1)
 icon = ExtResource("7_yqd73")
@@ -87,7 +89,12 @@ mouse_filter = 2
 visible = false
 layout_mode = 1
 
+[node name="Host" parent="ChildMenus" instance=ExtResource("8_6qhos")]
+visible = false
+layout_mode = 1
+
 [connection signal="button_pressed" from="Menu/MenuOptions/Join" to="." method="_on_join_button_pressed"]
 [connection signal="button_pressed" from="Menu/MenuOptions/Host" to="." method="_on_host_button_pressed"]
 [connection signal="button_pressed" from="Menu/CenterContainer/Back" to="." method="_on_back_button_pressed"]
 [connection signal="back" from="ChildMenus/Join" to="." method="_on_join_back"]
+[connection signal="back" from="ChildMenus/Host" to="." method="_on_host_back"]
