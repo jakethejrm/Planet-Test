@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwd8e5x1xj8pw"]
+[gd_scene load_steps=5 format=3 uid="uid://cwd8e5x1xj8pw"]
 
 [ext_resource type="PackedScene" uid="uid://cdarntr1b7obm" path="res://scenes/planet/planet.tscn" id="1_hilim"]
 [ext_resource type="PackedScene" uid="uid://rjjc6dnsu2j6" path="res://scenes/platform/platform.tscn" id="2_ky0ph"]
+[ext_resource type="Script" path="res://src/PlayerSpawner.gd" id="3_ofw35"]
+[ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="4_nww8h"]
 
 [node name="Earth1" type="Node2D"]
 
@@ -22,3 +24,8 @@ position = Vector2(-400, -682)
 
 [node name="Planet3" parent="." instance=ExtResource("1_hilim")]
 position = Vector2(388, -224)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+script = ExtResource("3_ofw35")
+player_scene = ExtResource("4_nww8h")

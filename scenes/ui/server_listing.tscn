@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7pp0koku1cr0"]
+[gd_scene load_steps=5 format=3 uid="uid://c7pp0koku1cr0"]
 
 [ext_resource type="Script" path="res://scenes/ui/server_listing.gd" id="1_kx8pv"]
 
@@ -10,28 +10,8 @@ vertical = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_p1wqf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amhsd"]
-bg_color = Color(0.278431, 0.278431, 0.278431, 0.513726)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvgyv"]
-bg_color = Color(0.356863, 0.356863, 0.356863, 0.592157)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqvx6"]
-bg_color = Color(0.278431, 0.278431, 0.278431, 0.513726)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [node name="ServerListing" type="PanelContainer" node_paths=PackedStringArray("name_label", "host_label", "map_label", "player_count_label", "join_button")]
+size_flags_horizontal = 3
 script = ExtResource("1_kx8pv")
 name_label = NodePath("Margins/Row/NameLabel")
 host_label = NodePath("Margins/Row/HostLabel")
@@ -57,6 +37,7 @@ theme_override_font_sizes/font_size = 32
 label_settings = SubResource("LabelSettings_bbobe")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Sep1" type="VSeparator" parent="Margins/Row"]
 modulate = Color(0.87451, 0.87451, 0.87451, 1)
@@ -72,6 +53,7 @@ theme_override_font_sizes/font_size = 32
 label_settings = SubResource("LabelSettings_bbobe")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Sep2" type="VSeparator" parent="Margins/Row"]
 modulate = Color(0.87451, 0.87451, 0.87451, 1)
@@ -112,10 +94,7 @@ modulate = Color(0.87451, 0.87451, 0.87451, 1)
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_amhsd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_nvgyv")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_eqvx6")
 text = "Join Game
 "
+
+[connection signal="pressed" from="Margins/Row/JoinButton" to="." method="_on_join_button_pressed"]

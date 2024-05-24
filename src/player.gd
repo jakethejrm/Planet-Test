@@ -55,6 +55,10 @@ func _ready():
 
 func _physics_process(delta):
 	
+	# return if not player character
+	if !is_multiplayer_authority():
+		return
+	
 	# Get the gravity from the grav_source
 	_gravity(delta)
 	_direction()

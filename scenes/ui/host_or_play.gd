@@ -1,5 +1,7 @@
 extends Control
 
+signal host
+signal join_lobby(lobby_id : int)
 signal back(curr : Control)
 
 @export var join_menu : Control
@@ -12,6 +14,7 @@ func _on_back_button_pressed(_button : Control):
 func _on_join_button_pressed(_button):
 	$Menu.hide()
 	join_menu.show()
+	join_menu.fetch_lobbies()
 	pass # Replace with function body.
 
 
@@ -31,4 +34,14 @@ func _on_join_back():
 func _on_host_back():
 	$Menu.show()
 	host_menu.hide()
+	pass # Replace with function body.
+
+func _on_join_lobby(lobby_id):
+	join_lobby.emit(lobby_id)
+	pass # Replace with function body.
+
+
+func _on_host_host():
+	print("hi2")
+	host.emit()
 	pass # Replace with function body.

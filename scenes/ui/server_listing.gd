@@ -1,4 +1,3 @@
-@tool
 extends PanelContainer
 
 @export var name_label : Label
@@ -7,6 +6,7 @@ extends PanelContainer
 @export var player_count_label : Label
 @export var join_button : Button
 
+@export var lobby_id : int : set = _set_lobby_id
 @export var server_name : String : set = _set_server_name
 @export var server_host : String : set = _set_server_host
 @export var server_map : String : set = _set_server_map
@@ -15,6 +15,8 @@ extends PanelContainer
 @export var joinable : bool : set = _set_joinable
 @export var disabled_text_color : Color = Color("787878")
 @export var enabled_text_color : Color = Color("dfdfdf")
+
+signal join_lobby(lobby_id : int)
 
 # setters
 func _set_server_name(new_name : String):
@@ -43,3 +45,18 @@ func _set_joinable(new_val : bool):
 	for child : Control in $Margins/Row.get_children():
 		child.modulate = enabled_text_color if joinable else disabled_text_color
 	pass
+
+func _set_lobby_id(new_id : int):
+	lobby_id = new_id
+	server_name = Steam.getLobbyData(lobby_id, "name")
+	curr_player_count = Steam.getNumLobbyMembers(lobby_id)
+	max_player_count = Steam.getLobbyMemberLimit(lobby_id)
+	server_host = Steam.getLobbyData(lobby_id, "username")
+	server_map = Steam.getLobbyData(lobby_id, "map")
+	joinable = curr_player_count < max_player_count
+	pass
+
+
+func _on_join_button_pressed():
+	join_lobby.emit(lobby_id)
+	pass # Replace with function body.

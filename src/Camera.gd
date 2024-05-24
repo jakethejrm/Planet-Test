@@ -28,6 +28,8 @@ func lerp_overshoot_v(from: Vector2, to: Vector2, weight: float) -> Vector2:
 	return Vector2(x,y);
 
 func _physics_process(_delta): 
+	if !is_multiplayer_authority():
+		return
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var viewport_dims : Vector2 = get_viewport().get_visible_rect().size
 	camera_x_offset = (mouse_pos.x - (viewport_dims.x / 2)) * mouse_adjust
@@ -36,3 +38,6 @@ func _physics_process(_delta):
 	var new_pos = self.lerp_overshoot_v(self.position, to, lerp_weight);
 	self.position = Vector2(new_pos.x, new_pos.y)
 	#self.rotation = player.rotation
+
+func _ready():
+	enabled = is_multiplayer_authority()

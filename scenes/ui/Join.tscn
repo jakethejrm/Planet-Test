@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3lai7uycpsm1"]
+[gd_scene load_steps=10 format=3 uid="uid://c3lai7uycpsm1"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_3ogjx"]
 [ext_resource type="Texture2D" uid="uid://c3bsd78vufgsv" path="res://assets/ui/refresh_icon.png" id="2_pcj4p"]
-[ext_resource type="PackedScene" uid="uid://c7pp0koku1cr0" path="res://scenes/ui/server_listing.tscn" id="2_to42y"]
 [ext_resource type="Script" path="res://scenes/ui/Join.gd" id="2_ypwfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jv5n"]
@@ -15,20 +14,6 @@ color = Color(0.717647, 0.717647, 0.717647, 1)
 vertical = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_p1wqf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs0ih"]
-bg_color = Color(0.294118, 0.294118, 0.294118, 0.576471)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e84y7"]
-bg_color = Color(0.443137, 0.443137, 0.443137, 0.611765)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f56d"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.721569)
@@ -67,36 +52,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Lobby Headers" type="PanelContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Lobby Headers" type="PanelContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2jv5n")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer"]
 layout_mode = 2
 
-[node name="LobbyName" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="LobbyName" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -105,12 +78,12 @@ label_settings = SubResource("LabelSettings_bbobe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
 
-[node name="LobbyHost" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="LobbyHost" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -119,12 +92,12 @@ label_settings = SubResource("LabelSettings_bbobe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator3" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
 
-[node name="Map" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="Map" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Map"
@@ -132,12 +105,12 @@ label_settings = SubResource("LabelSettings_p1wqf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
 
-[node name="PlayerCount" type="Label" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="PlayerCount" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Player Count"
@@ -145,30 +118,36 @@ label_settings = SubResource("LabelSettings_p1wqf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator4" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="VSeparator4" type="VSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 11
 theme_override_styles/separator = SubResource("StyleBoxLine_jfj4w")
 
-[node name="Refresh" type="Button" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
+[node name="Refresh Button" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_xs0ih")
-theme_override_styles/hover = SubResource("StyleBoxFlat_e84y7")
 text = "Refresh"
 icon = ExtResource("2_pcj4p")
 icon_alignment = 2
 
-[node name="ServerListing" parent="MarginContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_to42y")]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-server_name = "Malona's Server"
-server_host = "Malona"
-server_map = "Earth 1"
-curr_player_count = 1
-max_player_count = 20
-joinable = true
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
@@ -184,4 +163,5 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_jpyyc")
 text = "Back
 "
 
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Lobby Headers/MarginContainer/HBoxContainer/Refresh Button" to="." method="_on_refresh_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

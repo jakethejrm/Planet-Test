@@ -320,4 +320,6 @@ text = "Malona"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
 [connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]

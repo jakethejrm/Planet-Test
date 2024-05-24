@@ -5,6 +5,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vci7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0bde"]
+content_margin_left = 4.0
+content_margin_right = 4.0
 bg_color = Color(1, 1, 1, 0.0627451)
 corner_radius_top_left = 2
 corner_radius_top_right = 2

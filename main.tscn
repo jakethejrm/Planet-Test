@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b80pr8qtaebrm"]
+[gd_scene load_steps=9 format=3 uid="uid://b80pr8qtaebrm"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
 [ext_resource type="Script" path="res://src/Camera.gd" id="1_ptlin"]
 [ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="2_qcxs5"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
-[ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="5_iirmc"]
-[ext_resource type="PackedScene" uid="uid://bmkaugl30muq5" path="res://scenes/levels/Earth 2.tscn" id="6_mukuj"]
+[ext_resource type="Script" path="res://src/PlayerSpawner.gd" id="5_n6xjt"]
+[ext_resource type="PackedScene" uid="uid://c4wmhycbp5tfn" path="res://scenes/ui/menu.tscn" id="8_6njbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
 shader = ExtResource("3_e1sam")
@@ -17,23 +18,32 @@ shader_parameter/width = 0.5
 shader_parameter/fade = 0.7
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_6dmo7")
 
-[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../Level/Map")
+script = ExtResource("5_n6xjt")
+
+[node name="Level" type="Node2D" parent="."]
+visible = false
+
+[node name="Camera" type="Camera2D" parent="Level"]
+visible = false
 position = Vector2(2, -156)
 ignore_rotation = false
+enabled = false
 rotation_smoothing_enabled = true
 script = ExtResource("1_ptlin")
-player = NodePath("../Player")
 mouse_adjust = 0.8
 
-[node name="Hud" parent="Camera" instance=ExtResource("2_qcxs5")]
+[node name="Hud" parent="Level/Camera" instance=ExtResource("2_qcxs5")]
 offset_left = -320.0
 offset_top = -180.0
 offset_right = -320.0
 offset_bottom = -180.0
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="ColorRect" parent="Camera"]
+[node name="TextureRect" type="ColorRect" parent="Level/Camera"]
 material = SubResource("ShaderMaterial_3565t")
 offset_left = -320.0
 offset_top = -180.0
@@ -41,22 +51,23 @@ offset_right = 320.0
 offset_bottom = 180.0
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="Background" type="ParallaxBackground" parent="Level"]
+visible = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Level/Background"]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 426)
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/ParallaxLayer"]
 texture = ExtResource("4_w0ll2")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("5_iirmc")]
-position = Vector2(359, -785)
+[node name="Map" type="Node2D" parent="Level"]
+visible = false
 
-[node name="Earth2" parent="." instance=ExtResource("6_mukuj")]
+[node name="MainMenu" parent="." instance=ExtResource("8_6njbv")]
 
-[connection signal="update_fuel" from="Player" to="Camera/Hud" method="_on_player_update_fuel"]
-[connection signal="update_hp" from="Player" to="Camera/Hud" method="_on_player_update_hp"]
+[connection signal="host" from="MainMenu" to="." method="_on_main_menu_host"]
+[connection signal="join_lobby" from="MainMenu" to="." method="_on_main_menu_join_lobby"]

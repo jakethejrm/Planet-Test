@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c4wmhycbp5tfn"]
+[gd_scene load_steps=41 format=3 uid="uid://c4wmhycbp5tfn"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_q46lw"]
 [ext_resource type="Texture2D" uid="uid://u4y6fj8vqmjy" path="res://assets/ui/studio_logo_small.png" id="2_3d0gj"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://31yiqwjsa5r0" path="res://assets/ui/stats_icon.png" id="13_i4i02"]
 [ext_resource type="PackedScene" uid="uid://isyylugsv2hs" path="res://scenes/ui/settings.tscn" id="16_6r2b8"]
 [ext_resource type="PackedScene" uid="uid://b2e54c0k78tb2" path="res://scenes/ui/host_or_play.tscn" id="17_8pbr0"]
+[ext_resource type="Script" path="res://scenes/ui/MultiplayerSpawner.gd" id="17_atdxq"]
 
 [sub_resource type="Gradient" id="Gradient_vshwu"]
 offsets = PackedFloat32Array(0, 0.201754, 0.662281)
@@ -264,12 +265,12 @@ offset_bottom = 96.0
 texture = SubResource("GradientTexture2D_mb2os")
 
 [node name="Play" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 10
+z_index = -10
 layout_mode = 1
-offset_left = 135.787
-offset_top = 235.576
-offset_right = 135.787
-offset_bottom = 235.576
+offset_left = 291.493
+offset_top = 180.408
+offset_right = 291.493
+offset_bottom = 180.408
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
@@ -277,22 +278,22 @@ icon = ExtResource("9_42by5")
 [node name="Settings" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = -11
 layout_mode = 1
-offset_left = 189.005
-offset_top = 189.774
-offset_right = 189.005
-offset_bottom = 189.774
+offset_left = 499.46
+offset_top = 202.343
+offset_right = 499.46
+offset_bottom = 202.343
 text = "Settings"
 planet_color = Color(0.568627, 0.568627, 0.568627, 1)
 icon = ExtResource("10_am20o")
 pitch = 1.122
 
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -12
+z_index = 12
 layout_mode = 1
-offset_left = 423.254
-offset_top = 185.743
-offset_right = 423.254
-offset_bottom = 185.743
+offset_left = 459.419
+offset_top = 248.679
+offset_right = 459.419
+offset_bottom = 248.679
 text = "Quit"
 planet_color = Color(0.537255, 0.678431, 0.996078, 1)
 icon = ExtResource("11_7xwbh")
@@ -301,22 +302,22 @@ pitch = 1.26
 [node name="Cosmetics" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 13
 layout_mode = 1
-offset_left = 514.809
-offset_top = 229.054
-offset_right = 514.809
-offset_bottom = 229.054
+offset_left = 226.706
+offset_top = 255.381
+offset_right = 226.706
+offset_bottom = 255.381
 text = "Cosmetics"
 planet_color = Color(0, 1, 0, 1)
 icon = ExtResource("12_hw2qr")
 pitch = 1.335
 
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 14
+z_index = -14
 layout_mode = 1
-offset_left = 337.145
-offset_top = 259.853
-offset_right = 337.145
-offset_bottom = 259.853
+offset_left = 122.922
+offset_top = 213.188
+offset_right = 122.922
+offset_bottom = 213.188
 text = "My Stats"
 planet_color = Color(1, 0.568627, 1, 1)
 icon = ExtResource("13_i4i02")
@@ -390,8 +391,13 @@ libraries = {
 "": SubResource("AnimationLibrary_l5x6c")
 }
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+script = ExtResource("17_atdxq")
+
 [connection signal="back" from="ChildMenus/Settings" to="." method="_on_back"]
 [connection signal="back" from="ChildMenus/HostOrPlay" to="." method="_on_back"]
+[connection signal="host" from="ChildMenus/HostOrPlay" to="." method="_on_host_or_play_host"]
+[connection signal="join_lobby" from="ChildMenus/HostOrPlay" to="." method="_on_host_or_play_join_lobby"]
 [connection signal="button_pressed" from="MenuOptions/Play" to="." method="_on_planet_button_pressed"]
 [connection signal="button_pressed" from="MenuOptions/Settings" to="." method="_on_planet_button_pressed"]
 [connection signal="button_pressed" from="MenuOptions/Quit" to="." method="_on_planet_button_pressed"]

@@ -1,5 +1,6 @@
 extends Control
 
+signal host
 signal back
 
 # Called when the node enters the scene tree for the first time.
@@ -25,10 +26,6 @@ func _on_back_button_pressed():
 
 
 func _on_start_button_pressed():
-	
-	# we start the game here
-	
-	
-	
-	
+	print("hi")
+	host.emit()
 	pass # Replace with function body.

@@ -5,16 +5,23 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_mr8yf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vefv7"]
-bg_color = Color(0.176471, 0.176471, 0.176471, 0.721569)
-border_color = Color(0.176471, 0.176471, 0.176471, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkoa0"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.192157, 0.705882, 0.396078, 0.705882)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4w33"]
-bg_color = Color(0.25098, 0.00392157, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjiwv"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(1, 0.384314, 0.6, 0.792157)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="Host" type="Control"]
 layout_mode = 3
@@ -139,7 +146,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Map Selection:"
+text = "Maps in Rotation:"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2"]
 layout_mode = 2
@@ -161,9 +168,7 @@ offset_right = 620.0
 offset_bottom = 343.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_vefv7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p4w33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nkoa0")
 text = "Start Game
 "
 
@@ -175,9 +180,7 @@ offset_right = 545.0
 offset_bottom = 343.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_vefv7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p4w33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qjiwv")
 text = "Back
 "
 

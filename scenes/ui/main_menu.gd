@@ -1,6 +1,7 @@
 extends Control
 
-
+signal host
+signal join_lobby(lobby_id : int)
 
 @export var play_menu : Control
 @export var settings_menu : Control
@@ -80,3 +81,14 @@ func _on_transition_handler_animation_finished(anim_name : String):
 func _on_back(curr):
 	transition_scene($MenuOptions, curr)
 
+
+
+func _on_host_or_play_join_lobby(lobby_id):
+	join_lobby.emit(lobby_id)
+	pass # Replace with function body.
+
+
+func _on_host_or_play_host():
+	print("hi3")
+	host.emit()
+	pass # Replace with function body.
