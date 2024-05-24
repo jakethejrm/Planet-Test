@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bded2rf7xlooi"]
+[gd_scene load_steps=6 format=3 uid="uid://bded2rf7xlooi"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_8252n"]
 [ext_resource type="Script" path="res://scenes/ui/host.gd" id="2_gd6yq"]
-[ext_resource type="PackedScene" uid="uid://s6dl8i1ubnsa" path="res://scenes/ui/MapPanel.tscn" id="3_jtbt2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mr8yf"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fl5ur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vefv7"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.721569)
@@ -118,290 +115,17 @@ layout_mode = 2
 text = "Powerup Selection:"
 label_settings = SubResource("LabelSettings_mr8yf")
 
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="Powerups" type="GridContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
-
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel2" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel2"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel2"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel3" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel3"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel3"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel4" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel4"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel4"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel5" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel5"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel5"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel6" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel6"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel6"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel7" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel7"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel7"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel8" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel8"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel8"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel9" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel9"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel9"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel10" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel10"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel10"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel11" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel11"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel11"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
-
-[node name="Panel12" type="Panel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(40, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel12"]
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 16
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer/GridContainer/Panel12"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 57.0
-offset_bottom = 39.0
-texture = SubResource("PlaceholderTexture2D_fl5ur")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -428,36 +152,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
-
-[node name="MapPanel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel7" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel10" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel9" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel8" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel6" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel5" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel3" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel4" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
-
-[node name="MapPanel2" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer/Maps" instance=ExtResource("3_jtbt2")]
-layout_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
@@ -487,5 +181,5 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_p4w33")
 text = "Back
 "
 
-[connection signal="pressed" from="StartButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="BackButton2" to="." method="_on_back_button_pressed"]

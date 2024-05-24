@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmi12mt3vtkp8"]
+
+[ext_resource type="Script" path="res://scenes/ui/PowerUpPanel.gd" id="1_wfl2t"]
+[ext_resource type="Texture2D" uid="uid://dkxf3wxan3qlw" path="res://assets/ui/checkbox_empty.png" id="2_wgq2g"]
+[ext_resource type="Texture2D" uid="uid://te63pw8g204h" path="res://assets/ui/checkbox_filled.png" id="3_lb2yh"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rdqdf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipubd"]
+
+[node name="PanelContainer" type="PanelContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_wfl2t")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+vertical = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_rdqdf")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map Name"
+label_settings = SubResource("LabelSettings_ipubd")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+
+[node name="Checkbox" type="TextureRect" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("2_wgq2g")
+stretch_mode = 2
+
+[node name="Check" type="TextureRect" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("3_lb2yh")
+stretch_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.505882)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

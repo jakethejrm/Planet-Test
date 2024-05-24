@@ -17,8 +17,13 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 PlanetTypes="*res://src/planet_types.gd"
-PowerUpTypes="*res://src/power_up_types.gd"
 Maps="*res://src/maps.gd"
+Powerups="*res://src/powerups.gd"
+SteamInit="*res://steam_init.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 

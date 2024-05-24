@@ -16,16 +16,6 @@ extends PanelContainer
 @export var disabled_text_color : Color = Color("787878")
 @export var enabled_text_color : Color = Color("dfdfdf")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 # setters
 func _set_server_name(new_name : String):
 	server_name = new_name
