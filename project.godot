@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 PlanetTypes="*res://src/planet_types.gd"
+PowerUpTypes="*res://src/power_up_types.gd"
+Maps="*res://src/maps.gd"
 
 [display]
 
