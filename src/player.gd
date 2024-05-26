@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
+signal switch_camera(node : Node2D)
+
+signal update_hp(new_hp : float, max_hp : float)
+signal update_fuel(new_fuel : float, max_fuel : float)
+
 @export var grav_source : GravObject : set = _set_grav_source
 @export var weapon : Weapon
-
 @export var max_flight : float = 100
 @export var max_hp : float = 100
-
-signal switch_camera(node : Node2D)
 
 const SPEED = 200.0
 const JUMP_VELOCITY = 400
@@ -31,9 +33,10 @@ func _set_flight(new_flight : float):
 	curr_flight = new_flight
 	update_fuel.emit(curr_flight, max_flight)
 
+var walk_dir = 1
+var dir = 1
 
-signal update_hp(new_hp : float, max_hp : float)
-signal update_fuel(new_fuel : float, max_fuel : float)
+var can_switch_grav : bool = true
 
 @onready var ground_check : RayCast2D = $GroundChecker
 @onready var planet_check : RayCast2D = $PlanetChecker
@@ -45,17 +48,11 @@ signal update_fuel(new_fuel : float, max_fuel : float)
 @onready var arm_b : Sprite2D = $Body/Torso/Arm_B
 @onready var weapon_spot : Marker2D = $Body/Torso/Arm_F/WeaponHolder
 
-var walk_dir = 1
-var dir = 1
-
-var can_switch_grav : bool = true
-
 func _ready():
 	if is_multiplayer_authority():
 		$Stats/Name.text = SteamInit.steam_username
 		switch_camera.connect(CameraSettings._on_camera_change)
 		switch_camera.emit(self)
-	pass
 
 func _physics_process(delta):
 	
@@ -69,12 +66,12 @@ func _physics_process(delta):
 	_jump(delta)
 	_fly(delta)
 	
+	
 	if Input.is_action_pressed("shoot"):
-		weapon_spot.get_child(0).shoot(get_global_mouse_position())
+		weapon_spot.get_child(0).shoot()
 	
 	# set player velocity
 	velocity = gravity_velocity + direction_velocity
-	
 	on_ground = ground_check.is_colliding()
 	
 	# move player
@@ -83,7 +80,7 @@ func _physics_process(delta):
 	# handle animations
 	_anim_handler(delta)
 	
-	# set player location for grass shaders (and other shaders too)a
+	# set player location for grass shaders (and other shaders too)
 	RenderingServer.global_shader_parameter_set("player_location", position)
 
 func _gravity(delta : float):

@@ -20,7 +20,7 @@ shader_parameter/fade = 0.7
 script = ExtResource("1_6dmo7")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../Level/Map")
+spawn_path = NodePath("..")
 
 [node name="Level" type="Node2D" parent="."]
 visible = false

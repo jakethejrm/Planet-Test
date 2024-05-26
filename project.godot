@@ -20,8 +20,7 @@ PlanetTypes="*res://src/planet_types.gd"
 Maps="*res://src/maps.gd"
 Powerups="*res://src/powerups.gd"
 SteamInit="*res://src/steam_init.gd"
-CameraSettings="*res://camera_settings.gd"
-BulletManager="*res://bullet_manager.gd"
+CameraSettings="*res://src/camera_settings.gd"
 
 [debug]
 

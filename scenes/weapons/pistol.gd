@@ -8,16 +8,17 @@ extends Weapon
 
 var can_shoot : bool = true
 
-func shoot(mouse_pos : Vector2):
+func shoot():
 	if !can_shoot:
 		return
+	var mouse_pos : Vector2 = get_global_mouse_position()
 	var new_bullet : Bullet = bullet.instantiate()
 	new_bullet.direction = (mouse_pos - $BulletSpawn.global_position).normalized()
 	new_bullet.velocity = 600.0
 	new_bullet.global_position = $BulletSpawn.global_position
 	cooldown_timer.start(cooldown)
 	can_shoot = false
-	BulletManager.current_level.add_child(new_bullet)
+	get_tree().root.add_child(new_bullet)
 	var sound = AudioStreamPlayer2D.new()
 	muzzle_flash.emitting = true
 	lightning.show()
