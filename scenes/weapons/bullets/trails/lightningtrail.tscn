@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://crjl7011hqi1s"]
+
+[ext_resource type="Script" path="res://scenes/weapons/bullets/trails/smoketrail.gd" id="1_e1iki"]
+[ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="1_yqulu"]
+
+[sub_resource type="Curve" id="Curve_xwy7n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ep86x"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Smoketrail" type="Line2D"]
+width_curve = SubResource("Curve_xwy7n")
+gradient = SubResource("Gradient_ep86x")
+texture = ExtResource("1_yqulu")
+texture_mode = 2
+script = ExtResource("1_e1iki")

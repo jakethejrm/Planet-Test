@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2pdr66riix3h"]
+[gd_scene load_steps=17 format=3 uid="uid://b2pdr66riix3h"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bullets/Standard_Bullet.gd" id="1_1kw01"]
 [ext_resource type="AudioStream" uid="uid://bct4sn7lqvkbk" path="res://assets/audio/pistol_shoot.wav" id="2_qjne0"]
 [ext_resource type="PackedScene" uid="uid://cql7da7u83iwk" path="res://scenes/weapons/bullets/explosions/stars/stars_explosion.tscn" id="3_dx8pl"]
+[ext_resource type="PackedScene" uid="uid://crjl7011hqi1s" path="res://scenes/weapons/bullets/trails/lightningtrail.tscn" id="3_r3nqe"]
 [ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="3_ume2g"]
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="4_pb3d3"]
 
@@ -56,6 +57,7 @@ alpha_curve = SubResource("CurveTexture_f7ktx")
 script = ExtResource("1_1kw01")
 color = Color(0, 0.698039, 0.909804, 1)
 collision_sound = ExtResource("2_qjne0")
+trail = ExtResource("3_r3nqe")
 explosion = ExtResource("3_dx8pl")
 direction = Vector2(-0.1, 2.08165e-12)
 

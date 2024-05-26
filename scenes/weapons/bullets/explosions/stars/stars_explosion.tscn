@@ -34,21 +34,22 @@ script = ExtResource("1_55aop")
 lifetime = 0.2
 
 [node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_6b27c")
 texture = ExtResource("1_o1s5k")
 lifetime = 0.3
+one_shot = true
 local_coords = true
 
 [node name="Particles2" type="GPUParticles2D" parent="."]
 self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_6b27c")
 texture = ExtResource("2_nf7oj")
 lifetime = 0.3
+one_shot = true
 local_coords = true
-
-[node name="LifetimeTimer" type="Timer" parent="."]
 
 [connection signal="finished" from="Particles" to="." method="_on_particles_finished"]
 [connection signal="finished" from="Particles2" to="." method="_on_particles_finished"]
-[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
