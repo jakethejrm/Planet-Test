@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b80pr8qtaebrm"]
+[gd_scene load_steps=8 format=3 uid="uid://b80pr8qtaebrm"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
 [ext_resource type="Script" path="res://src/Camera.gd" id="1_ptlin"]
 [ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="2_qcxs5"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
-[ext_resource type="Script" path="res://src/PlayerSpawner.gd" id="5_n6xjt"]
 [ext_resource type="PackedScene" uid="uid://c4wmhycbp5tfn" path="res://scenes/ui/menu.tscn" id="8_6njbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
@@ -22,13 +21,11 @@ script = ExtResource("1_6dmo7")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../Level/Map")
-script = ExtResource("5_n6xjt")
 
 [node name="Level" type="Node2D" parent="."]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="Level"]
-visible = false
 position = Vector2(2, -156)
 ignore_rotation = false
 enabled = false
@@ -52,7 +49,6 @@ offset_bottom = 180.0
 metadata/_edit_lock_ = true
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
-visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Level/Background"]
 motion_scale = Vector2(0.1, 0.1)
@@ -65,9 +61,7 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="Map" type="Node2D" parent="Level"]
-visible = false
 
 [node name="MainMenu" parent="." instance=ExtResource("8_6njbv")]
 
-[connection signal="host" from="MainMenu" to="." method="_on_main_menu_host"]
 [connection signal="join_lobby" from="MainMenu" to="." method="_on_main_menu_join_lobby"]

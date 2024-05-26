@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Planet Test"
-run/main_scene="res://scenes/ui/menu.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
@@ -20,6 +20,8 @@ PlanetTypes="*res://src/planet_types.gd"
 Maps="*res://src/maps.gd"
 Powerups="*res://src/powerups.gd"
 SteamInit="*res://src/steam_init.gd"
+CameraSettings="*res://camera_settings.gd"
+BulletManager="*res://bullet_manager.gd"
 
 [debug]
 

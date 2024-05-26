@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=39 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -196,6 +196,38 @@ scale_curve = SubResource("CurveTexture_pu1it")
 color_ramp = SubResource("GradientTexture1D_eycgm")
 emission_curve = SubResource("CurveTexture_6jxx2")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5hjv"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Body/Legs:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Body/Torso/Arm_F:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Body/Torso/Arm_B:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Body/Legs/GPUParticles2D:emitting")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Body/Legs/GPUParticles2D3:emitting")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Body/Legs/GPUParticles2D4:emitting")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Body/Legs/GPUParticles2D2:emitting")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Stats/Name:text")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_qibaw")
@@ -321,5 +353,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_s5hjv")
 
 [connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]

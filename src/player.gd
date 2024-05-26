@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var max_flight : float = 100
 @export var max_hp : float = 100
 
+signal switch_camera(node : Node2D)
 
 const SPEED = 200.0
 const JUMP_VELOCITY = 400
@@ -50,7 +51,10 @@ var dir = 1
 var can_switch_grav : bool = true
 
 func _ready():
-	#RenderingServer.global_shader_parameter_set("player_location", position)
+	if is_multiplayer_authority():
+		$Stats/Name.text = SteamInit.steam_username
+		switch_camera.connect(CameraSettings._on_camera_change)
+		switch_camera.emit(self)
 	pass
 
 func _physics_process(delta):

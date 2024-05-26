@@ -28,7 +28,7 @@ func lerp_overshoot_v(from: Vector2, to: Vector2, weight: float) -> Vector2:
 	return Vector2(x,y);
 
 func _physics_process(_delta): 
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or !player:
 		return
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var viewport_dims : Vector2 = get_viewport().get_visible_rect().size

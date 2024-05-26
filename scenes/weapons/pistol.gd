@@ -17,7 +17,7 @@ func shoot(mouse_pos : Vector2):
 	new_bullet.global_position = $BulletSpawn.global_position
 	cooldown_timer.start(cooldown)
 	can_shoot = false
-	owner.owner.add_child(new_bullet)
+	BulletManager.current_level.add_child(new_bullet)
 	var sound = AudioStreamPlayer2D.new()
 	muzzle_flash.emitting = true
 	lightning.show()
