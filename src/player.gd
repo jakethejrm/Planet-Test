@@ -25,9 +25,14 @@ var can_fly : bool = false
 var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
 
+func _player_killed():
+	queue_free()
+
 func _set_hp(new_hp : float):
 	hp = new_hp
 	update_hp.emit(hp, max_hp)
+	if(new_hp <= 0):
+		_player_killed()
 	
 func _set_flight(new_flight : float):
 	curr_flight = new_flight
@@ -211,3 +216,8 @@ func _set_grav_source(new_grav : GravObject):
 func _on_grav_switch_timer_timeout():
 	can_switch_grav = true
 	pass # Replace with function body.
+
+
+func _on_hurtbox_area_entered(area):
+	if(area.has_method("_killbox")):
+		_set_hp(0)
