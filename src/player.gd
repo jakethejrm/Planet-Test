@@ -58,6 +58,10 @@ func _ready():
 		$Stats/Name.text = SteamInit.steam_username
 		switch_camera.connect(CameraSettings._on_camera_change)
 		switch_camera.emit(self)
+	update_hp.connect(CameraSettings._on_update_hp)
+	update_hp.emit(hp, max_hp)
+	update_fuel.connect(CameraSettings._on_update_fuel)
+	update_fuel.emit(curr_flight, max_flight)
 
 func _physics_process(delta):
 	
@@ -117,6 +121,7 @@ func _fly(delta):
 	if on_ground:
 		if curr_flight < max_flight:
 			curr_flight += delta * 200
+			_set_flight(curr_flight)
 		can_fly = false
 	elif Input.is_action_just_released("jump"):
 		can_fly = true
@@ -125,6 +130,7 @@ func _fly(delta):
 		for emitter : GPUParticles2D in $Body/Legs.get_children():
 			emitter.emitting = true
 		curr_flight -= delta * 200
+		_set_flight(curr_flight)
 		if not $Boots.playing:
 			$Boots.play()
 	else:
