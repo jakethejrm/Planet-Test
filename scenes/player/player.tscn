@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=40 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -234,6 +234,9 @@ properties/11/path = NodePath("Stats:rotation")
 properties/11/spawn = true
 properties/11/replication_mode = 1
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
+radius = 6.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_qibaw")
@@ -368,4 +371,11 @@ vertical_alignment = 1
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s5hjv")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_yri0v")
+
 [connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
