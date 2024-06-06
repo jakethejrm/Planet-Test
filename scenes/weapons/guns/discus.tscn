@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dacbhcpdkwyvf"]
+
+[ext_resource type="Texture2D" uid="uid://cxppeplsqf6ji" path="res://assets/sprites/Discus.png" id="1_1bqkn"]
+[ext_resource type="Script" path="res://scenes/weapons/discus.gd" id="1_f1jnh"]
+[ext_resource type="PackedScene" uid="uid://h1culkhhi32u" path="res://scenes/weapons/bullets/discusBullet.tscn" id="2_awc5b"]
+[ext_resource type="AudioStream" uid="uid://bct4sn7lqvkbk" path="res://assets/audio/pistol_shoot.wav" id="2_krlek"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_nadr5"]
+
+[sub_resource type="Gradient" id="Gradient_rth1k"]
+offsets = PackedFloat32Array(0, 0.525974, 0.844156)
+colors = PackedColorArray(1, 1, 1, 1, 0.120879, 0.120879, 0.120879, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_drv44"]
+gradient = SubResource("Gradient_rth1k")
+fill = 1
+fill_from = Vector2(0.83945, 0.527523)
+fill_to = Vector2(0, 0.775229)
+
+[node name="Discus" type="Node2D"]
+script = ExtResource("1_f1jnh")
+bullet_sound = ExtResource("2_krlek")
+weapon_name = "Discus"
+weapon_type = 1
+cooldown = 0.5
+bullet = ExtResource("2_awc5b")
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_1bqkn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.203922, 1, 1, 0.654902)
+texture = SubResource("GradientTexture2D_drv44")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nadr5")
+
+[node name="BulletSpawn" type="Marker2D" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

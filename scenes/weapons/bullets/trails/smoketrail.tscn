@@ -20,6 +20,7 @@ fill_to = Vector2(0, 0.5)
 repeat = 2
 
 [node name="Smoketrail" type="Line2D"]
+z_index = 5
 width_curve = SubResource("Curve_xwy7n")
 gradient = SubResource("Gradient_ep86x")
 texture = SubResource("GradientTexture2D_77eik")
