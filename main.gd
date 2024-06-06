@@ -9,6 +9,8 @@ func _ready():
 	peer.lobby_created.connect(_on_lobby_created)
 	$MainMenu.host.connect(_on_main_menu_host)
 	CameraSettings.change_camera.connect(on_switch_camera)
+	CameraSettings.update_hp.connect(on_update_hp)
+	CameraSettings.update_fuel.connect(on_update_fuel)
 	
 
 func spawn_level(data):
@@ -44,3 +46,9 @@ func _on_lobby_created(connect, id):
 func on_switch_camera(node :Node2D):
 	$Level/Camera.player = node
 	$Level/Camera.enabled = true
+	
+func on_update_hp(new_hp, max_hp):
+	$Level/Camera/Hud._on_player_update_hp(new_hp, max_hp)
+	
+func on_update_fuel(new_fuel, max_fuel):
+	$Level/Camera/Hud._on_player_update_fuel(new_fuel, max_fuel)

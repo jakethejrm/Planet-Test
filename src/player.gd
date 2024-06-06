@@ -31,9 +31,14 @@ var can_fly : bool = false
 var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
 
+func _player_killed():
+	queue_free()
+
 func _set_hp(new_hp : float):
 	hp = new_hp
 	update_hp.emit(hp, max_hp)
+	if(new_hp <= 0):
+		_player_killed()
 	
 func _set_flight(new_flight : float):
 	curr_flight = new_flight
@@ -65,7 +70,10 @@ func _ready():
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Pistol)
 	weapon = weapons[current_weapon_index]
 	weapon.visible = true
-	
+	update_hp.connect(CameraSettings._on_update_hp)
+	update_hp.emit(hp, max_hp)
+	update_fuel.connect(CameraSettings._on_update_fuel)
+	update_fuel.emit(curr_flight, max_flight)
 
 func _physics_process(delta):
 	
@@ -128,6 +136,7 @@ func _fly(delta):
 	if on_ground:
 		if curr_flight < max_flight:
 			curr_flight += delta * 200
+			_set_flight(curr_flight)
 		can_fly = false
 	elif Input.is_action_just_released("jump"):
 		can_fly = true
@@ -136,6 +145,7 @@ func _fly(delta):
 		for emitter : GPUParticles2D in $Body/Legs.get_children():
 			emitter.emitting = true
 		curr_flight -= delta * 200
+		_set_flight(curr_flight)
 		if not $Boots.playing:
 			$Boots.play()
 	else:
@@ -242,3 +252,8 @@ func _set_grav_source(new_grav : GravObject):
 func _on_grav_switch_timer_timeout():
 	can_switch_grav = true
 	pass # Replace with function body.
+
+
+func _on_hurtbox_area_entered(area):
+	if(area.has_method("_killbox")):
+		_set_hp(0)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwd8e5x1xj8pw"]
+[gd_scene load_steps=6 format=3 uid="uid://cwd8e5x1xj8pw"]
 
 [ext_resource type="PackedScene" uid="uid://cdarntr1b7obm" path="res://scenes/Level Elements/planet/planet.tscn" id="1_hilim"]
 [ext_resource type="PackedScene" uid="uid://rjjc6dnsu2j6" path="res://scenes/Level Elements/platform/platform.tscn" id="2_ky0ph"]
 [ext_resource type="Script" path="res://src/PlayerSpawner.gd" id="3_ofw35"]
 [ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="4_nww8h"]
+[ext_resource type="PackedScene" uid="uid://3dwekfb5j100" path="res://scenes/Level Elements/Killbox/Killbox.tscn" id="5_4oarq"]
 
 [node name="Earth1" type="Node2D"]
 
@@ -29,3 +30,21 @@ position = Vector2(388, -224)
 spawn_path = NodePath(".")
 script = ExtResource("3_ofw35")
 player_scene = ExtResource("4_nww8h")
+
+[node name="Killbox_Floor" parent="." instance=ExtResource("5_4oarq")]
+position = Vector2(0, 362)
+scale = Vector2(300, 5)
+
+[node name="Killbox_Ceiling" parent="." instance=ExtResource("5_4oarq")]
+position = Vector2(5, -1334)
+scale = Vector2(300, 5)
+
+[node name="Killbox_RightWall" parent="." instance=ExtResource("5_4oarq")]
+position = Vector2(1016, -429)
+rotation = 1.5708
+scale = Vector2(300, 5)
+
+[node name="Killbox_LeftWall" parent="." instance=ExtResource("5_4oarq")]
+position = Vector2(-1174, -497)
+rotation = 1.5708
+scale = Vector2(300, 5)
