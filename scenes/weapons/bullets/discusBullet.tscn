@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://h1culkhhi32u"]
+
+[ext_resource type="Texture2D" uid="uid://cxppeplsqf6ji" path="res://assets/sprites/Discus.png" id="1_qggkj"]
+[ext_resource type="Script" path="res://scenes/weapons/bullets/discusBullet.gd" id="1_uh4qs"]
+[ext_resource type="AudioStream" uid="uid://dr67i7tqt4uud" path="res://assets/audio/laser-gun-81720.wav" id="2_n65ct"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_xt3j4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_il5yb"]
+radius = 7.0
+
+[sub_resource type="Gradient" id="Gradient_mk431"]
+offsets = PackedFloat32Array(0.0336134, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_av8pn"]
+gradient = SubResource("Gradient_mk431")
+fill = 1
+fill_from = Vector2(0.530055, 0.497268)
+fill_to = Vector2(0.693989, 0.327869)
+
+[node name="DiscusBullet" type="Area2D"]
+z_index = 10
+script = ExtResource("1_uh4qs")
+phase_sound = ExtResource("2_n65ct")
+collision_sound = ExtResource("2_xt3j4")
+color = Color(0, 1, 1, 1)
+scale_growth_rate = 1.0
+damage = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qggkj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_il5yb")
+
+[node name="NormalGetter" type="RayCast2D" parent="."]
+position = Vector2(-12, 0)
+target_position = Vector2(19, 0)
+hit_from_inside = true
+
+[node name="Glow" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_av8pn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -293,7 +293,6 @@ position = Vector2(0.110936, 8.54328)
 rotation = 1.5708
 
 [node name="Discus" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_plspk")]
-visible = false
 
 [node name="Coilgun" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_thh7t")]
 visible = false

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2rlmolthj4b3"]
+
+[ext_resource type="Texture2D" uid="uid://1fx5q7bg258f" path="res://assets/sprites/hammer.png" id="1_5y7gt"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_5rb83"]
+
+[sub_resource type="Gradient" id="Gradient_kyqge"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jjy4j"]
+gradient = SubResource("Gradient_kyqge")
+fill_from = Vector2(0.527523, 0)
+
+[node name="Hammer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -9)
+texture = ExtResource("1_5y7gt")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5rb83")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.351563, 0.351563, 0.351563, 1)
+texture = SubResource("GradientTexture2D_jjy4j")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true

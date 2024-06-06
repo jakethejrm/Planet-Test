@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://w3wonsc2pt3i"]
+[gd_scene load_steps=16 format=3 uid="uid://cis716vkhlb1e"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_625ss"]
 [ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_hu1qp"]

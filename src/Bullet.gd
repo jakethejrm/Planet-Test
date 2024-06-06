@@ -8,4 +8,4 @@ extends Area2D
 @export var velocity : float = 1.0
 @export var direction : Vector2 = Vector2.ZERO
 
-@export var lifespan : float = 1.0
+@export var lifespan : float = 5.0

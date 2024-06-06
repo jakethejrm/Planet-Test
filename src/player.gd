@@ -10,6 +10,12 @@ signal update_fuel(new_fuel : float, max_fuel : float)
 @export var max_flight : float = 100
 @export var max_hp : float = 100
 
+# Array to store references to player's weapons
+var weapons: Array = []
+
+# Index of the current weapon
+var current_weapon_index: int = 0
+
 const SPEED = 200.0
 const JUMP_VELOCITY = 400
 const FLY_VELOCITY = 200
@@ -53,6 +59,13 @@ func _ready():
 		$Stats/Name.text = SteamInit.steam_username
 		switch_camera.connect(CameraSettings._on_camera_change)
 		switch_camera.emit(self)
+	weapons.append($Body/Torso/Arm_F/WeaponHolder/Discus)
+	weapons.append($Body/Torso/Arm_F/WeaponHolder/Coilgun)
+	weapons.append($Body/Torso/Arm_F/WeaponHolder/AcidGun)
+	weapons.append($Body/Torso/Arm_F/WeaponHolder/Pistol)
+	weapon = weapons[current_weapon_index]
+	weapon.visible = true
+	
 
 func _physics_process(delta):
 	
@@ -68,7 +81,10 @@ func _physics_process(delta):
 	
 	
 	if Input.is_action_pressed("shoot"):
-		weapon_spot.get_child(0).shoot()
+		weapon.shoot()
+		
+	if Input.is_action_just_pressed("cycle_weapon"):
+		cycle_weapon()
 	
 	# set player velocity
 	velocity = gravity_velocity + direction_velocity
@@ -201,6 +217,21 @@ func exit_grav_source(body : GravObject):
 	elif planet_check.is_colliding():
 		grav_source = planet_check.get_collider().get_parent()
 	pass
+	
+func cycle_weapon():
+	if weapon.weapon_name == "Discus":
+		if weapon.can_shoot == false:
+			return
+	# Get the index of the current weapon
+	var current_weapon_index = weapons.find(weapon)
+	weapon.visible = false
+	
+	# Increment the index to select the next weapon
+	current_weapon_index = (current_weapon_index + 1) % weapons.size()
+	
+	# Set the new weapon
+	weapon = weapons[current_weapon_index]
+	weapon.visible = true
 	
 func _set_grav_source(new_grav : GravObject):
 	grav_source = new_grav
