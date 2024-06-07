@@ -28,6 +28,7 @@ script = ExtResource("1_k1vdm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 2000
+speed_scale = 5.53
 spread = 3.0
 gravity = Vector2(-10, 0)
 initial_velocity_min = 90.0
