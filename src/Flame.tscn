@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://nqp6dcx6gxm0"]
+
+[sub_resource type="Curve" id="Curve_oy7xi"]
+min_value = -500.0
+max_value = 500.0
+_data = [Vector2(0, 1.23761), 0.0, 0.0, 0, 0, Vector2(0.844068, 1.23761), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ma8jf"]
+_data = [Vector2(0, 0.45297), 0.0, 0.0, 0, 0, Vector2(0.472881, 0.742574), 0.320695, 0.320695, 0, 0, Vector2(0.842373, 0.412748), -0.355972, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pyko3"]
+offsets = PackedFloat32Array(0, 0.131673, 0.939502, 1)
+colors = PackedColorArray(1, 1, 0.996078, 0, 1, 1, 0, 0.717647, 0.866667, 0, 0, 1, 0.27451, 0, 0, 0.427451)
+
+[sub_resource type="Environment" id="Environment_wl0r5"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.43
+glow_strength = 1.25
+glow_blend_mode = 0
+
+[node name="Flame" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 2000
+spread = 3.0
+gravity = Vector2(-10, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 110.0
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.02
+orbit_velocity_curve = SubResource("Curve_oy7xi")
+radial_accel_min = 7.87
+radial_accel_max = 7.87
+tangential_accel_min = -3.65
+damping_min = 0.98
+damping_max = 0.98
+angle_min = 59.5
+angle_max = 59.5
+scale_amount_min = 1.5
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_ma8jf")
+color_ramp = SubResource("Gradient_pyko3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CPUParticles2D"]
+environment = SubResource("Environment_wl0r5")
