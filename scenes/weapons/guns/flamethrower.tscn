@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi4aliws2845q"]
+[gd_scene load_steps=14 format=3 uid="uid://bi4aliws2845q"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_ku0u6"]
 [ext_resource type="Texture2D" uid="uid://xios8qya6kve" path="res://assets/sprites/flamethrower.png" id="1_kwncy"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="3_001dw"]
 [ext_resource type="PackedScene" uid="uid://hqmm3uvn2te7" path="res://scenes/weapons/bullets/Flame.tscn" id="3_baiyb"]
 [ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_ccykw"]
-
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_2mxls"]
 
 [sub_resource type="Gradient" id="Gradient_qq8yj"]
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
@@ -45,9 +43,6 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Flamethrower" type="Node2D"]
 script = ExtResource("1_ku0u6")
-bullet_sound = SubResource("AudioStreamWAV_2mxls")
-weapon_name = "Flamethrower"
-weapon_type = 1
 bullet = ExtResource("3_baiyb")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
