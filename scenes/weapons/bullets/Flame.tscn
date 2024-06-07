@@ -52,4 +52,4 @@ color_ramp = SubResource("Gradient_23up4")
 environment = SubResource("Environment_vcr12")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(6, -1, 71, -8, 99, -13, 99, -13, 102, -7, 101, -2, 99, 1, 67, 2, 20, 1, 0, 0)
+polygon = PackedVector2Array(25, -2, 71, -8, 99, -13, 99, -13, 102, -7, 101, -2, 99, 1, 67, 2, 18, 1, 0, 0)
