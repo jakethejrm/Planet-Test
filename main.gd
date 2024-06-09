@@ -5,6 +5,10 @@ var peer = SteamMultiplayerPeer.new()
 @onready var ms = $Level/MultiplayerSpawner
 
 func _ready():
+	
+	#Steam.lobby_joined.connect()
+	
+	
 	ms.spawn_function = spawn_level
 	peer.lobby_created.connect(_on_lobby_created)
 	$MainMenu.host.connect(_on_main_menu_host)
@@ -23,7 +27,8 @@ func _on_main_menu_join_lobby(lobby_id):
 	$MainMenu.hide()
 	$MainMenu/Camera.enabled = false
 	$LoadingScreen.show()
-	$LoadingScreen/Camera.enabled = true
+	$LoadingScreen/Camera.enabled = false
+	ms.spawn("res://scenes/levels/Earth 1.tscn")
 	
 	pass # Replace with function body.
 
