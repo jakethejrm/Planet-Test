@@ -1,5 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ckekd76gt61jg"]
-
+[gd_scene load_steps=43 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]

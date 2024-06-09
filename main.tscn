@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b80pr8qtaebrm"]
+[gd_scene load_steps=9 format=3 uid="uid://b80pr8qtaebrm"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
 [ext_resource type="Script" path="res://src/Camera.gd" id="1_ptlin"]
 [ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="2_qcxs5"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
+[ext_resource type="PackedScene" uid="uid://dhiqwhigaujae" path="res://loading_screen.tscn" id="7_n0pof"]
 [ext_resource type="PackedScene" uid="uid://c4wmhycbp5tfn" path="res://scenes/ui/menu.tscn" id="8_6njbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
@@ -18,9 +19,6 @@ shader_parameter/fade = 0.7
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6dmo7")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../Level/Map")
 
 [node name="Level" type="Node2D" parent="."]
 visible = false
@@ -62,6 +60,12 @@ metadata/_edit_lock_ = true
 
 [node name="Map" type="Node2D" parent="Level"]
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
+spawn_path = NodePath("../Map")
+
 [node name="MainMenu" parent="." instance=ExtResource("8_6njbv")]
+
+[node name="LoadingScreen" parent="." instance=ExtResource("7_n0pof")]
+visible = false
 
 [connection signal="join_lobby" from="MainMenu" to="." method="_on_main_menu_join_lobby"]
