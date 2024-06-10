@@ -58,10 +58,8 @@ texture = ExtResource("4_w0ll2")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Map" type="Node2D" parent="Level"]
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
-spawn_path = NodePath("../Map")
+spawn_path = NodePath(".")
 
 [node name="MainMenu" parent="." instance=ExtResource("8_6njbv")]
 
