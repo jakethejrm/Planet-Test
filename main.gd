@@ -26,10 +26,9 @@ func _on_main_menu_join_lobby(lobby_id):
 	multiplayer.multiplayer_peer = peer
 	$MainMenu.hide()
 	$MainMenu/Camera.enabled = false
-	$LoadingScreen.show()
+	$LoadingScreen.hide()
 	$LoadingScreen/Camera.enabled = false
-	ms.spawn("res://scenes/levels/Earth 1.tscn")
-	
+	$Level.show()
 	pass # Replace with function body.
 
 

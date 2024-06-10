@@ -5,7 +5,7 @@ extends MultiplayerSpawner
 func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
-		call_deferred("spawn", 1)
+		spawn(1)
 		multiplayer.peer_connected.connect(spawnPlayer)
 		multiplayer.peer_disconnected.connect(removePlayer)
 	
