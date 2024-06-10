@@ -5,7 +5,7 @@ extends MultiplayerSpawner
 func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
-		spawn(1)
+		spawn()
 		multiplayer.peer_connected.connect(spawnPlayer)
 		multiplayer.peer_disconnected.connect(removePlayer)
 	
@@ -18,6 +18,7 @@ func spawnPlayer(data):
 	var p : Node2D = player_scene.instantiate()
 	p.set_multiplayer_authority(data)
 	players[data] = p
+	print("spawning player")
 	return p
 
 func removePlayer(data):

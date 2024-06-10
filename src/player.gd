@@ -62,8 +62,7 @@ var can_switch_grav : bool = true
 func _ready():
 	if is_multiplayer_authority():
 		$Stats/Name.text = SteamInit.steam_username
-		switch_camera.connect(CameraSettings._on_camera_change)
-		switch_camera.emit(self)
+		CameraSettings.target = self
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Discus)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Coilgun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/AcidGun)

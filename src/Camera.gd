@@ -34,10 +34,9 @@ func _physics_process(_delta):
 	var viewport_dims : Vector2 = get_viewport().get_visible_rect().size
 	camera_x_offset = (mouse_pos.x - (viewport_dims.x / 2)) * mouse_adjust
 	camera_y_offset = (mouse_pos.y - (viewport_dims.y / 2)) * mouse_adjust
-	var to = player.position + Vector2(camera_x_offset, camera_y_offset)
+	var to = CameraSettings.target.position + Vector2(camera_x_offset, camera_y_offset)
 	var new_pos = self.lerp_overshoot_v(self.position, to, lerp_weight);
 	self.position = Vector2(new_pos.x, new_pos.y)
-	#self.rotation = player.rotation
 
 func _ready():
 	enabled = is_multiplayer_authority()
