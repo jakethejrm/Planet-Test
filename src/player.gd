@@ -73,6 +73,7 @@ func _ready():
 	update_hp.emit(hp, max_hp)
 	update_fuel.connect(CameraSettings._on_update_fuel)
 	update_fuel.emit(curr_flight, max_flight)
+	print_tree_pretty()
 
 func _physics_process(delta):
 	
