@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cng0oxvq4lgro"]
+[gd_scene load_steps=13 format=3 uid="uid://ptxfomnksr4d"]
 
-[ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_6qapt"]
-[ext_resource type="Texture2D" uid="uid://dfxh168dklqyi" path="res://assets/sprites/gun.png" id="2_rveyu"]
-[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="4_7y7cp"]
-[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_m4yy6"]
-[ext_resource type="Texture2D" uid="uid://d3cx71um84fbw" path="res://assets/sprites/gun_highlights.png" id="4_uapq4"]
+[ext_resource type="Script" path="res://scenes/weapons/melee/shotgun.gd" id="1_qprqe"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_c0nvk"]
+[ext_resource type="AudioStream" uid="uid://dchq3xa7ptj05" path="res://assets/audio/shotgun-firing-3-14483.wav" id="2_tce34"]
+[ext_resource type="Texture2D" uid="uid://bwai0xslpwi6b" path="res://assets/sprites/Shotgun.png" id="3_n67m4"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="5_dnu3g"]
 
 [sub_resource type="Gradient" id="Gradient_u28aq"]
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
@@ -40,21 +40,17 @@ gradient = SubResource("Gradient_03e14")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Pistol" type="Node2D"]
-script = ExtResource("1_6qapt")
-bullet_sound = ExtResource("4_m4yy6")
-weapon_name = "Pistol"
-weapon_type = 1
-cooldown = 0.25
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_qprqe")
+bullet_sound = ExtResource("2_tce34")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(7, -5)
-texture = ExtResource("2_rveyu")
+texture = ExtResource("3_n67m4")
 
 [node name="Highlights" type="Sprite2D" parent="GunSprite"]
 modulate = Color(0.333333, 0, 1, 1)
-texture = ExtResource("4_uapq4")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
 position = Vector2(16, -6)
@@ -63,7 +59,7 @@ position = Vector2(16, -6)
 rotation = 1.5708
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_m67tb")
-texture = ExtResource("4_7y7cp")
+texture = ExtResource("5_dnu3g")
 one_shot = true
 fixed_fps = 60
 local_coords = true
@@ -72,11 +68,11 @@ local_coords = true
 one_shot = true
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_m4yy6")
+stream = ExtResource("2_c0nvk")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(12, -6)
-color = Color(1, 0.172549, 1, 1)
+enabled = false
 energy = 1.45
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ygg12")

@@ -310,6 +310,13 @@ visible = false
 
 [node name="Shotgun" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("10_g63r7")]
 visible = false
+kickback_strength = null
+bullet_spread = null
+number_of_bullets = null
+weapon_name = null
+weapon_type = null
+cooldown = null
+bullet = null
 
 [node name="Legs" type="AnimatedSprite2D" parent="Body"]
 z_index = -1
