@@ -43,6 +43,8 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Shotgun" type="Node2D"]
 script = ExtResource("1_qprqe")
 bullet_sound = ExtResource("2_tce34")
+kickback_strength = 80.0
+cooldown = 0.2
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 z_index = -1

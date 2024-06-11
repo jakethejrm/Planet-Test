@@ -4,11 +4,11 @@ extends Weapon
 @onready var muzzle_flash : GPUParticles2D = $BulletSpawn/MuzzleFlash
 
 @export var bullet_sound : AudioStreamWAV
-@export var kickback_strength : float = 30.0  # Strength of the kickback force
+@export var kickback_strength : float = 30.0
 
 var can_shoot : bool = true
-@export var bullet_spread : float = 0.1  # Spread angle in radians
-@export var number_of_bullets : int = 3  # Number of bullets to shoot
+@export var bullet_spread : float = 0.1
+@export var number_of_bullets : int = 3 
 
 func shoot():
 	if !can_shoot:
@@ -43,15 +43,14 @@ func get_spread_directions(base_direction : Vector2, spread : float, count : int
 	return directions
 
 func apply_kickback(direction : Vector2):
-	var player = get_parent()  # Start from the weapon node's parent
+	var player = get_parent() 
 	while player and not (player is CharacterBody2D):
 		player = player.get_parent()
 
 	if player and player.has_node("Body"):
-		var player_body = player.get_node("Body")
-		if player_body and player_body is Node2D:
-			print("Applying force to player body")
-			player.global_position += -direction * kickback_strength
+		
+		print("Applying force to player body")
+		player.global_position += -direction * kickback_strength
 
 func play_shotgun_sound_and_effects():
 	var sound = AudioStreamPlayer2D.new()
