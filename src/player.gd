@@ -32,6 +32,7 @@ var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
 var dead = false
 var spawnPos = Vector2.ZERO
+var onFire = false
 
 
 func _player_killed():
@@ -285,7 +286,10 @@ func sb_damage(area):
 	_set_hp(hp - 5)
 	
 func acid_damage(area):
-	_set_hp(hp - 2)
+	_set_hp(hp - 1)
 	
 func lightning_damage(area):
 	_set_hp(hp - 30)
+	
+func flame_damage(on, area):
+	_set_hp(hp - 0.75)

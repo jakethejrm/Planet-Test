@@ -9,3 +9,9 @@ extends Area2D
 @export var direction : Vector2 = Vector2.ZERO
 
 @export var lifespan : float = 5.0
+
+
+func _process(delta):
+	for area in self.get_overlapping_areas():
+		if(area.name == "Hurtbox" && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+			area.get_parent().flame_damage()

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="9_dmgou"]
 [ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
-[ext_resource type="PackedScene" uid="uid://bthe2hv4w7mff" path="res://scenes/weapons/guns/flamethrower.tscn" id="10_elcjs"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/guns/flamethrower.tscn" id="10_elcjs"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="11_p4qrx"]
 [ext_resource type="Script" path="res://src/Camera.gd" id="15_tet0r"]
 [ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="16_d6u4t"]
@@ -297,15 +297,6 @@ properties/29/replication_mode = 1
 properties/30/path = NodePath("Hurtbox:rotation")
 properties/30/spawn = true
 properties/30/replication_mode = 1
-properties/31/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Flamethrower:position")
-properties/31/spawn = true
-properties/31/replication_mode = 1
-properties/32/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Flamethrower:rotation")
-properties/32/spawn = true
-properties/32/replication_mode = 1
-properties/33/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Flamethrower:visible")
-properties/33/spawn = true
-properties/33/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
 radius = 6.0

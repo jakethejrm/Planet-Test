@@ -26,7 +26,6 @@ func shoot():
 	
 	muzzle_flash.emitting = true
 	sound.stream = bullet_sound
-	sound.finished.connect(sound.queue_free)
 	add_child(sound)
 	sound.play()
 		

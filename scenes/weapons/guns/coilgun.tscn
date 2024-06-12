@@ -15,14 +15,14 @@ shader = ExtResource("5_jq6b4")
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
 colors = PackedColorArray(0, 0.423529, 1, 1, 0.717647, 0.470588, 0.247059, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_65ex4"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_osj1o"]
 gradient = SubResource("Gradient_u28aq")
 
 [sub_resource type="Curve" id="Curve_wxofk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ohfcj"]
+[sub_resource type="CurveTexture" id="CurveTexture_t8teq"]
 curve = SubResource("Curve_wxofk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m67tb"]
@@ -33,8 +33,8 @@ initial_velocity_max = 47.62
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_ohfcj")
-color_ramp = SubResource("GradientTexture1D_65ex4")
+scale_curve = SubResource("CurveTexture_t8teq")
+color_ramp = SubResource("GradientTexture1D_osj1o")
 
 [sub_resource type="Gradient" id="Gradient_03e14"]
 offsets = PackedFloat32Array(0, 0.51145)

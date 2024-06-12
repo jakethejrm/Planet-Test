@@ -34,6 +34,9 @@ func _process(delta):
 		global_position += Vector2(randf_range(-2, 2), randf_range(-1, 1))
 
 		new_trail.add_new_point(position)
+	for area in self.get_overlapping_areas():
+		if(area.name == "Hurtbox"):
+			area.get_parent().acid_damage(self)
 
 
 func _on_lifespan_timer_timeout():
@@ -56,9 +59,3 @@ func _on_body_entered(body):
 	new_trail.queue_free()
 	#queue_free()
 	pass # Replace with function body.
-
-
-func _on_area_entered(area):
-	if(area.name == "Hurtbox"):
-		area.get_parent().acid_damage(area)
-
