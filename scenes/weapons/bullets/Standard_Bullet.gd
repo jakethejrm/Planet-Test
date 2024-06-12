@@ -31,6 +31,8 @@ func _on_lifespan_timer_timeout():
 
 
 func _on_body_entered(body):
+	if(body.has_method("sb_damage")):
+		body.sb_damage()
 	var new_explosion : Node2D = explosion.instantiate()
 	new_explosion.position = position
 	normal_getter.force_raycast_update()
