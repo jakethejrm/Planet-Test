@@ -273,8 +273,7 @@ func _on_grav_switch_timer_timeout():
 	pass # Replace with function body.
 
 
-func _on_hurtbox_area_entered(area):
-	if (area.has_method("_killbox")):
+func killbox_damage(area):
 		_set_hp(0)
 		
 func discus_damage(area):
@@ -285,7 +284,7 @@ func sb_damage(area):
 	_set_hp(hp - 5)
 	
 func acid_damage(area):
-	_set_hp(hp - 20)
+	_set_hp(hp - 2)
 	
 func lightning_damage(area):
 	_set_hp(hp - 30)

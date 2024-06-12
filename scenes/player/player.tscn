@@ -1,6 +1,5 @@
 [gd_scene load_steps=47 format=3 uid="uid://ckekd76gt61jg"]
 
-
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
 [ext_resource type="Texture2D" uid="uid://co3gs7i3prm06" path="res://assets/sprites/spaceman_head.png" id="3_h01y5"]

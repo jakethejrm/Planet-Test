@@ -26,8 +26,8 @@ func shoot():
 	cooldown_timer.start(cooldown)
 	can_shoot = false
 	get_tree().current_scene.get_child(0).add_child(new_bullet1)
-  get_tree().current_scene.get_child(0).add_child(new_bullet2)
-  get_tree().current_scene.get_child(0).add_child(new_bullet3)
+	get_tree().current_scene.get_child(0).add_child(new_bullet2)
+	get_tree().current_scene.get_child(0).add_child(new_bullet3)
 	var sound = AudioStreamPlayer2D.new()
 	muzzle_flash.emitting = true
 	sound.stream = bullet_sound
