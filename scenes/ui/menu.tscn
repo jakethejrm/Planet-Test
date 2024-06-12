@@ -291,6 +291,7 @@ offset_top = 192.941
 offset_right = 172.705
 offset_bottom = 192.941
 disabled = false
+
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
@@ -311,6 +312,7 @@ pitch = 1.122
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 12
 layout_mode = 1
+
 offset_left = 518.687
 offset_top = 224.575
 offset_right = 518.687
@@ -337,6 +339,7 @@ pitch = 1.335
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 14
 layout_mode = 1
+
 offset_left = 145.812
 offset_top = 239.656
 offset_right = 145.812

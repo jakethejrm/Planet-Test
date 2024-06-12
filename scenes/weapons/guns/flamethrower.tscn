@@ -1,0 +1,85 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi4aliws2845q"]
+
+[ext_resource type="Texture2D" uid="uid://xios8qya6kve" path="res://assets/sprites/flamethrower.png" id="1_kwncy"]
+[ext_resource type="Script" path="res://scenes/weapons/guns/flamethrower.gd" id="1_shcpq"]
+[ext_resource type="Texture2D" uid="uid://bw27g4jdvoh4c" path="res://assets/sprites/coilgun_highlights.png" id="2_glhtx"]
+[ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="3_001dw"]
+[ext_resource type="PackedScene" uid="uid://hqmm3uvn2te7" path="res://scenes/weapons/bullets/Flame.tscn" id="3_baiyb"]
+[ext_resource type="AudioStream" uid="uid://c0q2nnj3vw3vm" path="res://assets/audio/flame.wav" id="6_u3qa2"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="7_781nl"]
+
+[sub_resource type="Gradient" id="Gradient_qq8yj"]
+offsets = PackedFloat32Array(0, 0.280612, 0.647959)
+colors = PackedColorArray(0, 0.423529, 1, 1, 0.717647, 0.470588, 0.247059, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_osj1o"]
+gradient = SubResource("Gradient_qq8yj")
+
+[sub_resource type="Curve" id="Curve_34ifg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8teq"]
+curve = SubResource("Curve_34ifg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h34i6"]
+particle_flag_disable_z = true
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 15.87
+initial_velocity_max = 47.62
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_t8teq")
+color_ramp = SubResource("GradientTexture1D_osj1o")
+
+[sub_resource type="Gradient" id="Gradient_03e14"]
+offsets = PackedFloat32Array(0, 0.51145)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uxv7w"]
+gradient = SubResource("Gradient_03e14")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Flamethrower" type="Node2D"]
+script = ExtResource("1_shcpq")
+bullet_sound = ExtResource("6_u3qa2")
+flame_scene = ExtResource("3_baiyb")
+weapon_type = 1
+bullet = ExtResource("3_baiyb")
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(10, -5)
+texture = ExtResource("1_kwncy")
+
+[node name="Highlights" type="Sprite2D" parent="GunSprite"]
+visible = false
+modulate = Color(0, 0.364706, 0.729412, 1)
+texture = ExtResource("2_glhtx")
+
+[node name="BulletSpawn" type="Marker2D" parent="."]
+position = Vector2(24, -5)
+
+[node name="MuzzleFlash" type="GPUParticles2D" parent="BulletSpawn"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_h34i6")
+texture = ExtResource("3_001dw")
+one_shot = true
+fixed_fps = 60
+local_coords = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(18, -6)
+color = Color(0.000693898, 0.000693898, 0.000693898, 1)
+energy = 1.45
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_uxv7w")
+metadata/_edit_lock_ = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_781nl")
+volume_db = 0.5

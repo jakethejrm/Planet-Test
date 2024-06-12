@@ -82,6 +82,7 @@ func _ready():
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Coilgun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/AcidGun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Pistol)
+	weapons.append($Body/Torso/Arm_F/WeaponHolder/Flamethrower)
 	weapon = weapons[current_weapon_index]
 	weapon.visible = true
 	#update_hp.connect(CameraSettings._on_update_hp)
