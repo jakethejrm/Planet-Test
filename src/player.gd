@@ -274,7 +274,7 @@ func _on_grav_switch_timer_timeout():
 
 
 func _on_hurtbox_area_entered(area):
-	if(area.has_method("_killbox")):
+	if (area.has_method("_killbox")):
 		_set_hp(0)
 	elif (area.has_method("discus_helper")):
 		if (!area.close_to_player):
