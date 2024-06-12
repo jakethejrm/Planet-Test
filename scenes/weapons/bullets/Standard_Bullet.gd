@@ -31,8 +31,6 @@ func _on_lifespan_timer_timeout():
 
 
 func _on_body_entered(body):
-	if(body.has_method("sb_damage")):
-		body.sb_damage()
 	var new_explosion : Node2D = explosion.instantiate()
 	new_explosion.position = position
 	normal_getter.force_raycast_update()
@@ -47,3 +45,9 @@ func _on_body_entered(body):
 	new_trail.queue_free()
 	queue_free()
 	pass # Replace with function body.
+
+
+func _on_area_entered(area):
+	if(area.name == "Hurtbox"):
+		area.get_parent().lightning_damage(area)
+		_on_body_entered(null)# Replace with function body.
