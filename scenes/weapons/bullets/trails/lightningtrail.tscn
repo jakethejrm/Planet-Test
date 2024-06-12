@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjl7011hqi1s"]
+[gd_scene load_steps=6 format=3 uid="uid://crjl7011hqi1s"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bullets/trails/smoketrail.gd" id="1_e1iki"]
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="1_yqulu"]
@@ -10,9 +10,20 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_ep86x"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_u2mas"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Smoketrail" type="Line2D"]
 width_curve = SubResource("Curve_xwy7n")
 gradient = SubResource("Gradient_ep86x")
 texture = ExtResource("1_yqulu")
 texture_mode = 2
 script = ExtResource("1_e1iki")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_u2mas")

@@ -11,7 +11,7 @@ func gravity_force(player : Node2D) -> Vector2:
 	return(position - player.position).normalized() * gravity_amount
 
 func _on_gravity_source_body_entered(body):
-	if body.name == "Player":
+	if body.has_method("enter_grav_source"):
 		body.enter_grav_source(self)
 
 func _set_planet_size(new_size : float):

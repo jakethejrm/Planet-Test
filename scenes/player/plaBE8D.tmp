@@ -1,0 +1,493 @@
+[gd_scene load_steps=48 format=3 uid="uid://ckekd76gt61jg"]
+
+[ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
+[ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
+[ext_resource type="Texture2D" uid="uid://co3gs7i3prm06" path="res://assets/sprites/spaceman_head.png" id="3_h01y5"]
+[ext_resource type="Texture2D" uid="uid://r276nctjhhqg" path="res://assets/sprites/back_arm.png" id="4_gdxe3"]
+[ext_resource type="Texture2D" uid="uid://bj03rtcnaylg8" path="res://assets/sprites/front_arm.png" id="5_1pwc8"]
+[ext_resource type="PackedScene" uid="uid://bbyd8guhjegen" path="res://scenes/weapons/guns/acid_gun.tscn" id="6_2f5u7"]
+[ext_resource type="PackedScene" uid="uid://cng0oxvq4lgro" path="res://scenes/weapons/guns/pistol.tscn" id="6_3pf8x"]
+[ext_resource type="PackedScene" uid="uid://dacbhcpdkwyvf" path="res://scenes/weapons/guns/discus.tscn" id="6_plspk"]
+[ext_resource type="PackedScene" uid="uid://cis716vkhlb1e" path="res://scenes/weapons/guns/coilgun.tscn" id="6_thh7t"]
+[ext_resource type="Texture2D" uid="uid://ckj23t8cxbi3n" path="res://assets/sprites/spaceman_legs_idle.png" id="7_nifhg"]
+[ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
+[ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="9_dmgou"]
+[ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/guns/flamethrower.tscn" id="10_elcjs"]
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="11_p4qrx"]
+[ext_resource type="Script" path="res://src/Camera.gd" id="15_tet0r"]
+[ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="16_d6u4t"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="17_jpspo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgnwk"]
+atlas = ExtResource("7_nifhg")
+region = Rect2(0, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuk55"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(64, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl6kx"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(0, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alkq0"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(32, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ome"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(64, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8yed"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(96, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mex7a"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(128, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kh60"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(160, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itjpr"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(192, 0, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frhlb"]
+atlas = ExtResource("7_yjm5e")
+region = Rect2(224, 0, 32, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rf0e2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgnwk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuk55")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl6kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alkq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ome")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8yed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mex7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kh60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frhlb")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frhlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kh60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mex7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8yed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ome")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alkq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl6kx")
+}],
+"loop": true,
+"name": &"running_backwards",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vm3nu"]
+offsets = PackedFloat32Array(0, 0.0867347, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.768627, 0.396078, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fvdda"]
+gradient = SubResource("Gradient_vm3nu")
+
+[sub_resource type="Curve" id="Curve_oh75r"]
+_data = [Vector2(0.625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sbt42"]
+curve = SubResource("Curve_oh75r")
+
+[sub_resource type="Curve" id="Curve_hxecn"]
+_data = [Vector2(0, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2p1c4"]
+curve = SubResource("Curve_hxecn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ue6gg"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 82.143
+initial_velocity_min = 15.87
+initial_velocity_max = 15.87
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2p1c4")
+color_ramp = SubResource("GradientTexture1D_fvdda")
+emission_curve = SubResource("CurveTexture_sbt42")
+
+[sub_resource type="Gradient" id="Gradient_7o3ar"]
+offsets = PackedFloat32Array(0, 0.27551, 1)
+colors = PackedColorArray(0.768627, 0.396078, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eycgm"]
+gradient = SubResource("Gradient_7o3ar")
+
+[sub_resource type="Curve" id="Curve_2118k"]
+_data = [Vector2(0.625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jxx2"]
+curve = SubResource("Curve_2118k")
+
+[sub_resource type="Curve" id="Curve_uld0r"]
+_data = [Vector2(0, 0.725275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pu1it"]
+curve = SubResource("Curve_uld0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_in6c3"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 82.143
+initial_velocity_min = 15.87
+initial_velocity_max = 15.87
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pu1it")
+color_ramp = SubResource("GradientTexture1D_eycgm")
+emission_curve = SubResource("CurveTexture_6jxx2")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s5hjv"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Body/Legs:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Body/Torso/Arm_F:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Body/Torso/Arm_B:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Body/Legs/GPUParticles2D:emitting")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Body/Legs/GPUParticles2D3:emitting")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Body/Legs/GPUParticles2D4:emitting")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Body/Legs/GPUParticles2D2:emitting")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Stats/Name:text")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Body:scale")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Stats:rotation")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Body/Torso/Arm_F/WeaponHolder:gizmo_extents")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Body/Torso/Head:rotation")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+properties/14/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Discus:rotation")
+properties/14/spawn = true
+properties/14/replication_mode = 1
+properties/15/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Coilgun:rotation")
+properties/15/spawn = true
+properties/15/replication_mode = 1
+properties/16/path = NodePath("Body/Torso/Arm_F/WeaponHolder/AcidGun:rotation")
+properties/16/spawn = true
+properties/16/replication_mode = 1
+properties/17/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Pistol:rotation")
+properties/17/spawn = true
+properties/17/replication_mode = 1
+properties/18/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Discus:position")
+properties/18/spawn = true
+properties/18/replication_mode = 1
+properties/19/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Coilgun:position")
+properties/19/spawn = true
+properties/19/replication_mode = 1
+properties/20/path = NodePath("Body/Torso/Arm_F/WeaponHolder/AcidGun:position")
+properties/20/spawn = true
+properties/20/replication_mode = 1
+properties/21/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Pistol:position")
+properties/21/spawn = true
+properties/21/replication_mode = 1
+properties/22/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Discus:visible")
+properties/22/spawn = true
+properties/22/replication_mode = 1
+properties/23/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Coilgun:visible")
+properties/23/spawn = true
+properties/23/replication_mode = 1
+properties/24/path = NodePath("Body/Torso/Arm_F/WeaponHolder/AcidGun:visible")
+properties/24/spawn = true
+properties/24/replication_mode = 1
+properties/25/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Pistol:visible")
+properties/25/spawn = true
+properties/25/replication_mode = 1
+properties/26/path = NodePath("CollisionShape2D:position")
+properties/26/spawn = true
+properties/26/replication_mode = 1
+properties/27/path = NodePath("CollisionShape2D:rotation")
+properties/27/spawn = true
+properties/27/replication_mode = 1
+properties/28/path = NodePath("Hurtbox:monitoring")
+properties/28/spawn = true
+properties/28/replication_mode = 1
+properties/29/path = NodePath("Hurtbox:position")
+properties/29/spawn = true
+properties/29/replication_mode = 1
+properties/30/path = NodePath("Hurtbox:rotation")
+properties/30/spawn = true
+properties/30/replication_mode = 1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
+radius = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qn3dp"]
+shader = ExtResource("17_jpspo")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+shader_parameter/height = 0.7
+shader_parameter/width = 0.5
+shader_parameter/fade = 0.7
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_qibaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_jlrk2")
+
+[node name="GroundChecker" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, 4)
+hit_from_inside = true
+
+[node name="PlanetChecker" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PlatformChecker" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+target_position = Vector2(2.08165e-12, 10)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Body" type="Node2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="Torso" type="Sprite2D" parent="Body"]
+position = Vector2(0, -11)
+texture = ExtResource("2_cyyxl")
+
+[node name="Head" type="Sprite2D" parent="Body/Torso"]
+position = Vector2(0, -7)
+texture = ExtResource("3_h01y5")
+
+[node name="Arm_B" type="Sprite2D" parent="Body/Torso"]
+z_index = -1
+position = Vector2(3, -3)
+texture = ExtResource("4_gdxe3")
+offset = Vector2(2.08165e-12, 2)
+
+[node name="Arm_F" type="Sprite2D" parent="Body/Torso"]
+z_index = 1
+position = Vector2(-3, -2)
+texture = ExtResource("5_1pwc8")
+offset = Vector2(-1, 3)
+
+[node name="WeaponHolder" type="Marker2D" parent="Body/Torso/Arm_F"]
+position = Vector2(0.110936, 8.54328)
+rotation = 1.5708
+
+[node name="Discus" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_plspk")]
+visible = false
+
+[node name="Coilgun" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_thh7t")]
+visible = false
+
+[node name="AcidGun" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_2f5u7")]
+visible = false
+
+[node name="Pistol" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("6_3pf8x")]
+visible = false
+
+[node name="Flamethrower" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("10_elcjs")]
+visible = false
+
+[node name="Legs" type="AnimatedSprite2D" parent="Body"]
+z_index = -1
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_rf0e2")
+animation = &"jump"
+autoplay = "running"
+speed_scale = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(-12, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ue6gg")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(-12, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_in6c3")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(3, 5)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_in6c3")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Body/Legs"]
+z_index = -1
+position = Vector2(3, 5)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_ue6gg")
+texture = ExtResource("9_dmgou")
+one_shot = true
+
+[node name="GravSwitchTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Boots" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ig4b")
+volume_db = -25.337
+
+[node name="Stats" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -50)
+
+[node name="Name" type="Label" parent="Stats"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -6.5
+offset_right = 29.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(17.5, 6.5)
+theme = ExtResource("11_p4qrx")
+theme_override_font_sizes/font_size = 16
+text = "Malona"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_s5hjv")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_yri0v")
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+top_level = true
+position = Vector2(2, -156)
+enabled = false
+rotation_smoothing_enabled = true
+script = ExtResource("15_tet0r")
+player = NodePath("..")
+mouse_adjust = 0.8
+
+[node name="Hud" parent="Camera" instance=ExtResource("16_d6u4t")]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="ColorRect" parent="Camera"]
+material = SubResource("ShaderMaterial_qn3dp")
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+metadata/_edit_lock_ = true
+
+[connection signal="update_fuel" from="." to="Camera/Hud" method="_on_player_update_fuel"]
+[connection signal="update_hp" from="." to="Camera/Hud" method="_on_player_update_hp"]
+[connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

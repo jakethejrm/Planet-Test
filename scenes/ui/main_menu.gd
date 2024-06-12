@@ -1,6 +1,6 @@
 extends Control
 
-signal host
+signal host(lobby_name : String, player_count : int)
 signal join_lobby(lobby_id : int)
 
 @export var play_menu : Control
@@ -88,7 +88,13 @@ func _on_host_or_play_join_lobby(lobby_id):
 	pass # Replace with function body.
 
 
-func _on_host_or_play_host():
+func _on_host_or_play_host(lobby_name, player_count):
 	print("hi3")
-	host.emit()
+	host.emit(lobby_name, player_count)
 	pass # Replace with function body.
+
+func activate_camera():
+	$Camera.enabled = true
+
+func deactivate_camera():
+	$Camera.enabled = false
