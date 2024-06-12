@@ -8,7 +8,7 @@ func gravity_force(_player : Node2D) -> Vector2:
 	return gravity_amount * Vector2.DOWN.rotated(rotation)
 	
 func _on_gravity_body_entered(body):
-	if body.name == "Player":
+	if body.has_method == "enter_grav_source":
 		body.enter_grav_source(self)
 
 func _set_width(new_width : float):
