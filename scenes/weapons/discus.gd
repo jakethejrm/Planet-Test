@@ -30,7 +30,7 @@ func shoot():
 	new_bullet.velocity = 600.0
 	new_bullet.global_position = $BulletSpawn.global_position
 	can_shoot = false
-	get_tree().root.add_child(new_bullet)
+	get_tree().current_scene.get_child(0).add_child(new_bullet)
 	var sound = AudioStreamPlayer2D.new()
 	sound.stream = bullet_sound
 	sound.finished.connect(sound.queue_free)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://crk4e5jvhad26"]
+[gd_scene load_steps=11 format=3 uid="uid://crk4e5jvhad26"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_a4sqn"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_sw5hs"]
@@ -25,6 +25,13 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t8err"]
 gradient = SubResource("Gradient_yl7ek")
 fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqjlp"]
+font_size = 48
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t11mu"]
+font_color = Color(1, 1, 1, 0)
 
 [node name="Hud" type="Control"]
 z_index = 20
@@ -86,3 +93,21 @@ offset_right = 101.0
 offset_bottom = 11.0
 texture = SubResource("GradientTexture2D_t8err")
 expand_mode = 1
+
+[node name="deathText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 71.0
+offset_right = 388.0
+offset_bottom = 122.0
+text = "You Died!"
+label_settings = SubResource("LabelSettings_sqjlp")
+
+[node name="respawnPrompt" type="Label" parent="deathText"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 45.0
+offset_right = 133.0
+offset_bottom = 66.0
+text = "Press Space to Respawn"
+label_settings = SubResource("LabelSettings_t11mu")
