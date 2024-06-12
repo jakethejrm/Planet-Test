@@ -1,5 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ckekd76gt61jg"]
-
+[gd_scene load_steps=49 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -14,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b1i3pv3nxvo76" path="res://assets/sprites/spaceman_legs.png" id="7_yjm5e"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="9_dmgou"]
 [ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
-[ext_resource type="PackedScene" uid="uid://ptxfomnksr4d" path="res://scenes/weapons/guns/shotgun.tscn" id="10_g63r7"]
 [ext_resource type="PackedScene" uid="uid://bthe2hv4w7mff" path="res://scenes/weapons/guns/flamethrower.tscn" id="10_elcjs"]
+[ext_resource type="PackedScene" uid="uid://ptxfomnksr4d" path="res://scenes/weapons/guns/shotgun.tscn" id="10_g63r7"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="11_p4qrx"]
 [ext_resource type="Script" path="res://src/Camera.gd" id="15_tet0r"]
 [ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="16_d6u4t"]
@@ -392,7 +391,6 @@ visible = false
 visible = false
 
 [node name="Flamethrower" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("10_elcjs")]
-
 visible = false
 
 [node name="Legs" type="AnimatedSprite2D" parent="Body"]

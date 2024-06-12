@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bthe2hv4w7mff"]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/flamethrower.png" id="1_kwncy"]
+[ext_resource type="Texture2D" uid="uid://xios8qya6kve" path="res://assets/sprites/flamethrower.png" id="1_kwncy"]
 [ext_resource type="Script" path="res://scenes/weapons/guns/flamethrower.gd" id="1_shcpq"]
 [ext_resource type="Texture2D" uid="uid://bw27g4jdvoh4c" path="res://assets/sprites/coilgun_highlights.png" id="2_glhtx"]
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="3_001dw"]

@@ -23,7 +23,7 @@ func shoot():
 		new_bullet.direction = direction
 		new_bullet.velocity = 600.0
 		new_bullet.global_position = $BulletSpawn.global_position
-		get_tree().root.add_child(new_bullet)
+		get_tree().current_scene.get_child(0).add_child(new_bullet)
 
 	print("Applying kickback")
 	apply_kickback(base_direction)
