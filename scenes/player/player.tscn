@@ -269,6 +269,18 @@ properties/20/replication_mode = 1
 properties/21/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Pistol:position")
 properties/21/spawn = true
 properties/21/replication_mode = 1
+properties/22/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Discus:visible")
+properties/22/spawn = true
+properties/22/replication_mode = 1
+properties/23/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Coilgun:visible")
+properties/23/spawn = true
+properties/23/replication_mode = 1
+properties/24/path = NodePath("Body/Torso/Arm_F/WeaponHolder/AcidGun:visible")
+properties/24/spawn = true
+properties/24/replication_mode = 1
+properties/25/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Pistol:visible")
+properties/25/spawn = true
+properties/25/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
 radius = 6.0
