@@ -22,7 +22,6 @@ func shoot():
 	if flame_instance:
 		flame_instance.queue_free()
 	
-	# Create and play the sound, and enable the muzzle flash
 	
 	muzzle_flash.emitting = true
 	sound.stream = bullet_sound
