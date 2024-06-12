@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bded2rf7xlooi"]
+[gd_scene load_steps=8 format=3 uid="uid://bded2rf7xlooi"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_8252n"]
 [ext_resource type="Script" path="res://scenes/ui/host.gd" id="2_gd6yq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mr8yf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vasg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5dp4x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkoa0"]
 content_margin_left = 4.0
@@ -77,7 +81,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Lobby Name: "
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer"]
+[node name="LobbyName" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jacob's Lobby"
@@ -91,7 +95,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Player Count: "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+[node name="NumPlayers" type="OptionButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 item_count = 5
@@ -134,6 +138,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
 
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Coming Soon"
+label_settings = SubResource("LabelSettings_5vasg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -159,6 +172,15 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/GridContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Coming Soon"
+label_settings = SubResource("LabelSettings_5dp4x")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0

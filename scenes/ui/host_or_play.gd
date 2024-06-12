@@ -1,6 +1,6 @@
 extends Control
 
-signal host
+signal host(lobby_name : String, player_count : int)
 signal join_lobby(lobby_id : int)
 signal back(curr : Control)
 
@@ -41,7 +41,7 @@ func _on_join_lobby(lobby_id):
 	pass # Replace with function body.
 
 
-func _on_host_host():
+func _on_host_host(lobby_name, player_count):
 	print("hi2")
-	host.emit()
+	host.emit(lobby_name, player_count)
 	pass # Replace with function body.

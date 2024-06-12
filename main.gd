@@ -4,6 +4,7 @@ var lobby_id = 0
 var peer = SteamMultiplayerPeer.new()
 @onready var ms = $Level/MultiplayerSpawner
 
+var lobby_name_global = ""
 func _ready():
 	
 	#Steam.lobby_joined.connect()
@@ -33,9 +34,10 @@ func _on_main_menu_join_lobby(id):
 	pass # Replace with function body.
 
 
-func _on_main_menu_host():
+func _on_main_menu_host(lobby_name, player_count):
+	lobby_name_global = lobby_name
 	print("hi4")
-	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, player_count)
 	multiplayer.multiplayer_peer = peer
 	ms.spawn("res://scenes/levels/Earth 1.tscn")
 	$MainMenu.hide()
@@ -45,7 +47,7 @@ func _on_main_menu_host():
 func _on_lobby_created(connect, id):
 	if connect:
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", str("hi"))
+		Steam.setLobbyData(lobby_id, "name", lobby_name_global)
 		Steam.setLobbyData(lobby_id, "gravity_gunners", "true")
 		Steam.setLobbyJoinable(lobby_id, true)
 
