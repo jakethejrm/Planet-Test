@@ -21,8 +21,9 @@ func spawn_level(data):
 	var a = (load(data) as PackedScene).instantiate()
 	return a
 
-func _on_main_menu_join_lobby(lobby_id):
-	peer.connect_lobby(lobby_id)
+func _on_main_menu_join_lobby(id):
+	peer.connect_lobby(id)
+	lobby_id = id
 	multiplayer.multiplayer_peer = peer
 	$MainMenu.hide()
 	$MainMenu/Camera.enabled = false

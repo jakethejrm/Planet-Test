@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b80pr8qtaebrm"]
+[gd_scene load_steps=6 format=3 uid="uid://b80pr8qtaebrm"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
+[ext_resource type="Script" path="res://Steam.gd" id="5_jwh80"]
 [ext_resource type="PackedScene" uid="uid://dhiqwhigaujae" path="res://loading_screen.tscn" id="7_n0pof"]
 [ext_resource type="PackedScene" uid="uid://c4wmhycbp5tfn" path="res://scenes/ui/menu.tscn" id="8_6njbv"]
 
@@ -30,5 +31,8 @@ spawn_path = NodePath(".")
 
 [node name="LoadingScreen" parent="." instance=ExtResource("7_n0pof")]
 visible = false
+
+[node name="Steam" type="Node" parent="."]
+script = ExtResource("5_jwh80")
 
 [connection signal="join_lobby" from="MainMenu" to="." method="_on_main_menu_join_lobby"]
