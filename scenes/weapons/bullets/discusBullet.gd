@@ -14,7 +14,7 @@ var all_trails : Array = []
 var target_position : Vector2
 var return_position : Vector2
 var player : Node2D
-var close_to_player : bool = false
+var close_to_player : bool = true
 
 @export var initial_scale : float = 1.0
 @export var max_scale : float = 2.0
@@ -106,5 +106,5 @@ func create_new_trail_segment(trail_color: Color):
 func _on_area_entered(area):
 	if(area.name == "Hurtbox"):
 		if(!close_to_player):
-			area.get_parent().discus_damage(area)
+			area.get_parent().discus_damage(self)
 			_on_body_entered(null)

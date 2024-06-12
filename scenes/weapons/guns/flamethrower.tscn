@@ -60,10 +60,9 @@ modulate = Color(0, 0.364706, 0.729412, 1)
 texture = ExtResource("2_glhtx")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
-position = Vector2(15, -5)
+position = Vector2(24, -5)
 
 [node name="MuzzleFlash" type="GPUParticles2D" parent="BulletSpawn"]
-position = Vector2(13, 0)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_h34i6")
 texture = ExtResource("3_001dw")
