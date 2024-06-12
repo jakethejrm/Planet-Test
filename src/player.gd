@@ -292,5 +292,5 @@ func acid_damage(area):
 func lightning_damage(area):
 	_set_hp(hp - 30)
 	
-func flame_damage(on, area):
+func flame_damage(area):
 	_set_hp(hp - 0.75)

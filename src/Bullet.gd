@@ -14,4 +14,4 @@ extends Area2D
 func _process(delta):
 	for area in self.get_overlapping_areas():
 		if(area.name == "Hurtbox" && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
-			area.get_parent().flame_damage()
+			area.get_parent().flame_damage(self)
