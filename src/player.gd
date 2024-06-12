@@ -30,9 +30,23 @@ var jumping : bool = false
 var can_fly : bool = false
 var hp : float = 100 : set = _set_hp
 var curr_flight : float = 100 : set = _set_flight
+var dead = false
+var spawnPos = Vector2.ZERO
+
 
 func _player_killed():
-	queue_free()
+	dead = true
+	#switch_camera.disconnect(CameraSettings._on_camera_change)
+	
+func _respawn():
+	#Move Player back to start, reset animations
+	#switch_camera.connect(CameraSettings._on_camera_change)
+	#switch_camera.emit(self)
+	_set_hp(100)
+	position = spawnPos
+	velocity = Vector2.ZERO
+	dead = false
+	
 
 func _set_hp(new_hp : float):
 	hp = new_hp
@@ -62,49 +76,54 @@ var can_switch_grav : bool = true
 func _ready():
 	if is_multiplayer_authority():
 		$Stats/Name.text = SteamInit.steam_username
-		switch_camera.connect(CameraSettings._on_camera_change)
-		switch_camera.emit(self)
+		#switch_camera.connect(CameraSettings._on_camera_change)
+		#switch_camera.emit(self)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Discus)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Coilgun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/AcidGun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Pistol)
 	weapon = weapons[current_weapon_index]
 	weapon.visible = true
-	update_hp.connect(CameraSettings._on_update_hp)
+	#update_hp.connect(CameraSettings._on_update_hp)
 	update_hp.emit(hp, max_hp)
-	update_fuel.connect(CameraSettings._on_update_fuel)
+	#update_fuel.connect(CameraSettings._on_update_fuel)
 	update_fuel.emit(curr_flight, max_flight)
+	spawnPos = position
 
 func _physics_process(delta):
-	
+	if(dead):
+		velocity = Vector2.ZERO
+		if(Input.is_key_pressed(KEY_SPACE)):
+			_respawn()
+	else:
 	# return if not player character
-	if !is_multiplayer_authority():
-		return
+		if !is_multiplayer_authority():
+			return
 	
 	# Get the gravity from the grav_source
-	_gravity(delta)
-	_direction()
-	_jump(delta)
-	_fly(delta)
+		_gravity(delta)
+		_direction()
+		_jump(delta)
+		_fly(delta)
 	
 	
-	if Input.is_action_pressed("shoot"):
-		weapon.shoot()
+		if Input.is_action_pressed("shoot"):
+			weapon.shoot()
 		
-	if Input.is_action_just_pressed("cycle_weapon"):
-		cycle_weapon()
+		if Input.is_action_just_pressed("cycle_weapon"):
+			cycle_weapon()
 	
-	# set player velocity
-	velocity = gravity_velocity + direction_velocity
-	on_ground = ground_check.is_colliding()
+		# set player velocity
+		velocity = gravity_velocity + direction_velocity
+		on_ground = ground_check.is_colliding()
 	
-	# move player
-	move_and_slide()
+		# move player
+		move_and_slide()
 	
-	# handle animations
+		# handle animations
 	_anim_handler(delta)
 	
-	# set player location for grass shaders (and other shaders too)
+		# set player location for grass shaders (and other shaders too)
 	RenderingServer.global_shader_parameter_set("player_location", position)
 
 func _gravity(delta : float):
@@ -255,5 +274,18 @@ func _on_grav_switch_timer_timeout():
 
 
 func _on_hurtbox_area_entered(area):
-	if(area.has_method("_killbox")):
+	if (area.has_method("_killbox")):
 		_set_hp(0)
+		
+func discus_damage(area):
+	if (!area.close_to_player):
+		_set_hp(hp - 10)
+		
+func sb_damage(area):
+	_set_hp(hp - 5)
+	
+func acid_damage(area):
+	_set_hp(hp - 20)
+	
+func lightning_damage(area):
+	_set_hp(hp - 30)

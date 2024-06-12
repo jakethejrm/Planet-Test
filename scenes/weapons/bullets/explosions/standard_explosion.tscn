@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3rvqpuyxny15"]
+[gd_scene load_steps=18 format=3 uid="uid://b3rvqpuyxny15"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bullets/explosions/standard_explosion.gd" id="1_kg041"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="2_ju4y7"]
@@ -72,6 +72,26 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_l127j")
 alpha_curve = SubResource("CurveTexture_qhfjr")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ynmb7"]
+properties/0/path = NodePath("Particles:emitting")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Particles2:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Particles:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Particles2:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Particles2:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Particles:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
 [node name="StandardExplosion" type="Node2D"]
 script = ExtResource("1_kg041")
 lifetime = 0.2
@@ -92,6 +112,9 @@ lifetime = 17.95
 local_coords = true
 
 [node name="LifetimeTimer" type="Timer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ynmb7")
 
 [connection signal="finished" from="Particles" to="." method="_on_particles_finished"]
 [connection signal="finished" from="Particles2" to="." method="_on_particles_finished"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b6mk6imx4ujeo" path="res://assets/sprites/acid_gun.png" id="1_xd28r"]
 [ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_csbqq"]
 [ext_resource type="AudioStream" uid="uid://bct4sn7lqvkbk" path="res://assets/audio/pistol_shoot.wav" id="2_lpq6f"]
-[ext_resource type="PackedScene" uid="uid://surtbeaaoa2l" path="res://scenes/weapons/bullets/acid.tscn" id="3_ixmd3"]
+[ext_resource type="PackedScene" uid="uid://cyavrf6wcikju" path="res://scenes/weapons/bullets/acid.tscn" id="3_ixmd3"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="3_t03j6"]
 
 [sub_resource type="Gradient" id="Gradient_kmlpe"]

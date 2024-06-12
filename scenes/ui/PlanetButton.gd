@@ -3,9 +3,10 @@ extends Control
 
 signal button_pressed(button : Control)
 
+@export var disabled : bool = false
 @export var text : String = "" : set = _set_button_text
 @export var planet_color : Color = Color.WHITE : set = _set_planet_color
-@export var icon: Texture2D = PlaceholderTexture2D.new() : set = _set_icon
+@export var icon: Texture2D = PlaceholderTexture2D.new() as Texture2D : set = _set_icon
 @export var orbit_speed : float = 1
 @export var pitch : float = 1
 @export var sub_planets : Array[Control] = []
@@ -23,6 +24,11 @@ var time_offset : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if disabled:
+		$ButtonName.self_modulate = Color.from_string("343434", Color.BLACK)
+		$Planet.modulate = Color.from_string("343434", Color.BLACK)
+		$Icon.modulate = Color.from_string("343434", Color.BLACK)
+		$ComingSoon.show()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,20 +72,23 @@ func _set_planet_scale(new_scale : float):
 
 
 func _on_planet_mouse_entered():
-	hovered = true
-	$Planet/HoverGradient.show()
-	$Planet/Particles.emitting = true
-	$Planet/HoverSound.pitch_scale = pitch * randf_range(.99, 1.01)
-	$Planet/HoverSound.play()
+	if not disabled:
+		hovered = true
+		$Planet/HoverGradient.show()
+		$Planet/Particles.emitting = true
+		$Planet/HoverSound.pitch_scale = pitch * randf_range(.99, 1.01)
+		$Planet/HoverSound.play()
 	pass # Replace with function body.
 
 
 func _on_planet_mouse_exited():
-	hovered = false
-	$Planet/HoverGradient.hide()
-	$Planet/Particles.emitting = false
+	if not disabled:
+		hovered = false
+		$Planet/HoverGradient.hide()
+		$Planet/Particles.emitting = false
 	pass # Replace with function body.
 
 func _on_planet_pressed():
-	button_pressed.emit(self)
+	if not disabled:
+		button_pressed.emit(self)
 	pass # Replace with function body.

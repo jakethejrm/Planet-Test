@@ -45,8 +45,15 @@ func _process(delta):
 		if $CollisionShape2D:
 			$CollisionShape2D.shape.set_radius($CollisionShape2D.shape.radius * (1 + scale_growth_rate * delta))
 	
+	var to_target = target_position - global_position
+	var to_return = return_position - global_position
+	
+	if to_return.length() <= ((velocity * delta) + 50):
+		close_to_player = true
+	else:
+		close_to_player = false
+	
 	if not returning:
-		var to_target = target_position - global_position
 		if to_target.length() <= velocity * delta:
 			global_position = target_position
 			returning = true
@@ -57,7 +64,6 @@ func _process(delta):
 		if player:
 			return_position = player.global_position
 
-		var to_return = return_position - global_position
 		if to_return.length() <= ((velocity * delta) + 50):
 			close_to_player = true
 		if to_return.length() <= velocity * delta:
@@ -95,3 +101,10 @@ func create_new_trail_segment(trail_color: Color):
 	add_sibling.call_deferred(new_segment)
 	all_trails.append(new_segment)
 	current_trail = new_segment
+
+
+func _on_area_entered(area):
+	if(area.name == "Hurtbox"):
+		if(!close_to_player):
+			area.get_parent().discus_damage(area)
+			_on_body_entered(null)
