@@ -33,28 +33,26 @@ script/source = "extends Weapon
 
 var can_shoot : bool = true
 var flame_instance : Node2D = null
+var audio_player : AudioStreamPlayer2D = null
 
 func _ready():
 	set_process(true)
+	# Initialize the audio player once and keep it as a member variable.
+	audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = bullet_sound
 
 func shoot():
 	if !can_shoot:
 		return
 	
-	# Shooting logic
 	var mouse_pos : Vector2 = get_global_mouse_position()
 	cooldown_timer.start(cooldown)
 	can_shoot = false
 	
-	# Play sound
-	var sound = AudioStreamPlayer2D.new()
-	muzzle_flash.emitting = true
-	sound.stream = bullet_sound
-	sound.finished.connect(sound.queue_free)
-	add_child(sound)
-	sound.play()
+	print(\"Playing sound\")  # Debugging print
+	audio_player.play()
 	
-	# Spawn flame scene at bullet spawn position
 	if flame_instance:
 		flame_instance.queue_free()
 	flame_instance = flame_scene.instantiate()

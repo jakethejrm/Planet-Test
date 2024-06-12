@@ -4,7 +4,6 @@ extends Weapon
 @onready var muzzle_flash : GPUParticles2D = $BulletSpawn/MuzzleFlash
 
 @export var bullet_sound : AudioStreamWAV
-
 var can_shoot : bool = true
 
 func shoot():

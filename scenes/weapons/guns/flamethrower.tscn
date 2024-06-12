@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bw27g4jdvoh4c" path="res://assets/sprites/coilgun_highlights.png" id="2_glhtx"]
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="3_001dw"]
 [ext_resource type="PackedScene" uid="uid://hqmm3uvn2te7" path="res://scenes/weapons/bullets/Flame.tscn" id="3_baiyb"]
-[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_ccykw"]
+[ext_resource type="AudioStream" uid="uid://i6nfhdukumb5" path="res://assets/audio/flame.wav" id="6_u3qa2"]
 
 [sub_resource type="Gradient" id="Gradient_qq8yj"]
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
@@ -70,7 +70,7 @@ local_coords = true
 [node name="CooldownTimer" type="Timer" parent="."]
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_ccykw")
+stream = ExtResource("6_u3qa2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(18, -6)

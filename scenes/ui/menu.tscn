@@ -266,57 +266,57 @@ texture = SubResource("GradientTexture2D_mb2os")
 [node name="Play" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 10
 layout_mode = 1
-offset_left = 124.983
-offset_top = 228.873
-offset_right = 124.983
-offset_bottom = 228.873
+offset_left = 516.819
+offset_top = 227.106
+offset_right = 516.819
+offset_bottom = 227.106
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
 
 [node name="Settings" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -11
+z_index = 11
 layout_mode = 1
-offset_left = 217.541
-offset_top = 185.648
-offset_right = 217.541
-offset_bottom = 185.648
+offset_left = 347.031
+offset_top = 259.633
+offset_right = 347.031
+offset_bottom = 259.633
 text = "Settings"
 planet_color = Color(0.568627, 0.568627, 0.568627, 1)
 icon = ExtResource("10_am20o")
 pitch = 1.122
 
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -12
+z_index = 12
 layout_mode = 1
-offset_left = 451.694
-offset_top = 189.896
-offset_right = 451.694
-offset_bottom = 189.896
+offset_left = 139.887
+offset_top = 237.389
+offset_right = 139.887
+offset_bottom = 237.389
 text = "Quit"
 planet_color = Color(0.537255, 0.678431, 0.996078, 1)
 icon = ExtResource("11_7xwbh")
 pitch = 1.26
 
 [node name="Cosmetics" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 13
+z_index = -13
 layout_mode = 1
-offset_left = 503.85
-offset_top = 235.747
-offset_right = 503.85
-offset_bottom = 235.747
+offset_left = 181.653
+offset_top = 191.114
+offset_right = 181.653
+offset_bottom = 191.114
 text = "Cosmetics"
 planet_color = Color(0, 1, 0, 1)
 icon = ExtResource("12_hw2qr")
 pitch = 1.335
 
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 14
+z_index = -14
 layout_mode = 1
-offset_left = 301.932
-offset_top = 259.836
-offset_right = 301.932
-offset_bottom = 259.836
+offset_left = 414.61
+offset_top = 184.759
+offset_right = 414.61
+offset_bottom = 184.759
 text = "My Stats"
 planet_color = Color(1, 0.568627, 1, 1)
 icon = ExtResource("13_i4i02")
