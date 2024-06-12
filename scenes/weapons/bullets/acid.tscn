@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://surtbeaaoa2l"]
+[gd_scene load_steps=11 format=3 uid="uid://cyavrf6wcikju"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bullets/acid.gd" id="1_lej78"]
 [ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="2_bmxbs"]
