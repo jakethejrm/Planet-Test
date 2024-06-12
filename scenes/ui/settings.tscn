@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://isyylugsv2hs"]
+[gd_scene load_steps=7 format=3 uid="uid://isyylugsv2hs"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_c4jhu"]
 [ext_resource type="Script" path="res://scenes/ui/settings.gd" id="2_uflio"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xk6o7"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_xlosp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2cbt"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.721569)
@@ -31,6 +36,7 @@ offset_bottom = 360.0
 theme_override_constants/margin_bottom = 50
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_c4jhu")
@@ -54,6 +60,46 @@ layout_mode = 2
 [node name="Social" type="MarginContainer" parent="MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_xk6o7")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "dalee roland
+new weapons and bullet system, multiplayer
+eric meseck
+death/damage system, multiplayer, polish, UI
+jacob malone
+main menu, gravity system and shaders, main menu, multiplayer
+muhammad qureshi
+shotgun: sound effects, sprite, and bullet spread, multiplayer
+murat oney
+flamethrower: sprite, flame effects, sound effects, multiplayer
+"
+label_settings = SubResource("LabelSettings_xlosp")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "And you! The player! Thank you for playing our game!"
+label_settings = SubResource("LabelSettings_xlosp")
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 2
