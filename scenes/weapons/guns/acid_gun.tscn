@@ -45,6 +45,7 @@ color_ramp = SubResource("GradientTexture1D_osj1o")
 [node name="AcidGun" type="Node2D"]
 script = ExtResource("1_7ufmu")
 bullet_sound = ExtResource("2_lpq6f")
+type = 2
 weapon_name = "Acid Gun"
 weapon_type = 1
 cooldown = 0.25

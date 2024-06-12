@@ -1,12 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwd8e5x1xj8pw"]
+[gd_scene load_steps=12 format=3 uid="uid://cwd8e5x1xj8pw"]
 
 [ext_resource type="PackedScene" uid="uid://cdarntr1b7obm" path="res://scenes/Level Elements/planet/planet.tscn" id="1_hilim"]
+[ext_resource type="PackedScene" uid="uid://dfhdd588sko2w" path="res://scenes/weapons/bullets/Standard_Bullet.tscn" id="2_6hmi2"]
 [ext_resource type="PackedScene" uid="uid://rjjc6dnsu2j6" path="res://scenes/Level Elements/platform/platform.tscn" id="2_ky0ph"]
+[ext_resource type="PackedScene" uid="uid://cyavrf6wcikju" path="res://scenes/weapons/bullets/acid.tscn" id="3_0hpuo"]
 [ext_resource type="Script" path="res://src/PlayerSpawner.gd" id="3_ofw35"]
 [ext_resource type="PackedScene" uid="uid://ckekd76gt61jg" path="res://scenes/player/player.tscn" id="4_nww8h"]
+[ext_resource type="PackedScene" uid="uid://b2pdr66riix3h" path="res://scenes/weapons/bullets/Lightning.tscn" id="4_vlppw"]
 [ext_resource type="PackedScene" uid="uid://3dwekfb5j100" path="res://scenes/Level Elements/Killbox/Killbox.tscn" id="5_4oarq"]
+[ext_resource type="PackedScene" uid="uid://bntqki5x0nh1f" path="res://scenes/weapons/bullets/Flame.tscn" id="5_cjlb1"]
+[ext_resource type="PackedScene" uid="uid://h1culkhhi32u" path="res://scenes/weapons/bullets/discusBullet.tscn" id="6_2toqs"]
+[ext_resource type="Script" path="res://scenes/levels/SBSpawner.gd" id="6_80pr1"]
 
 [node name="Earth1" type="Node2D"]
+
+[node name="bullet_spawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath(".")
+spawn_limit = 100
+script = ExtResource("6_80pr1")
+SB = ExtResource("2_6hmi2")
+acid = ExtResource("3_0hpuo")
+coil = ExtResource("4_vlppw")
+flame = ExtResource("5_cjlb1")
+disc = ExtResource("6_2toqs")
 
 [node name="Platform" parent="." instance=ExtResource("2_ky0ph")]
 width = 1000.0

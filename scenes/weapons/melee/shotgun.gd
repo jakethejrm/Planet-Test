@@ -8,7 +8,7 @@ extends Weapon
 
 var can_shoot : bool = true
 @export var bullet_spread : float = 0.1
-@export var number_of_bullets : int = 3 
+@export var number_of_bullets : int = 3
 
 func shoot():
 	if !can_shoot:
@@ -23,7 +23,8 @@ func shoot():
 		new_bullet.direction = direction
 		new_bullet.velocity = 600.0
 		new_bullet.global_position = $BulletSpawn.global_position
-		get_tree().current_scene.get_child(0).add_child(new_bullet)
+		new_bullet.type = Bullet.SB
+		get_tree().current_scene.get_child(0).get_child(1).get_child(0).get_child(0).spawn(new_bullet)
 
 	print("Applying kickback")
 	apply_kickback(base_direction)
