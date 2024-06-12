@@ -6,7 +6,9 @@ extends Bullet
 
 @export var color : Color
 @export var collision_sound : AudioStreamWAV
-@export var grav : float = 500.0  # Gravity force applied to the bullet
+var grav : float = randf_range(1000, 1400)
+
+var landed : bool = false
 
 var y_velocity : Vector2 = Vector2()  # Bullet's initial velocity
 
@@ -24,20 +26,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Apply gravity to the velocity (only in the y-direction)
-	y_velocity.y += grav * delta
-	global_position += y_velocity * delta
-	global_position += direction * (delta * velocity)
+	if landed == false:
+		# Apply gravity to the velocity (only in the y-direction)
+		y_velocity.y += grav * delta
+		global_position += y_velocity * delta
+		global_position += direction * (delta * velocity)
+		global_position += Vector2(randf_range(-2, 2), randf_range(-1, 1))
 
-	new_trail.add_new_point(position)
+		new_trail.add_new_point(position)
 
 
 func _on_lifespan_timer_timeout():
-	new_trail.queue_free()
 	queue_free()
 
 
 func _on_body_entered(body):
+	landed = true
 	var new_explosion : Node2D = explosion.instantiate()
 	new_explosion.position = position
 	normal_getter.force_raycast_update()
@@ -50,5 +54,5 @@ func _on_body_entered(body):
 	add_sibling(sound)
 	sound.play()
 	new_trail.queue_free()
-	queue_free()
+	#queue_free()
 	pass # Replace with function body.
