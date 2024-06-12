@@ -17,7 +17,7 @@ func shoot():
 	new_bullet.global_position = $BulletSpawn.global_position
 	cooldown_timer.start(cooldown)
 	can_shoot = false
-	get_tree().root.add_child(new_bullet)
+	get_tree().current_scene.add_child(new_bullet)
 	var sound = AudioStreamPlayer2D.new()
 	muzzle_flash.emitting = true
 	sound.stream = bullet_sound
