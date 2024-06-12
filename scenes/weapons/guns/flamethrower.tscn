@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bi4aliws2845q"]
+[gd_scene load_steps=15 format=3 uid="uid://bi4aliws2845q"]
 
-[ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_ku0u6"]
 [ext_resource type="Texture2D" uid="uid://xios8qya6kve" path="res://assets/sprites/flamethrower.png" id="1_kwncy"]
+[ext_resource type="Script" path="res://scenes/weapons/guns/flamethrower.gd" id="1_shcpq"]
 [ext_resource type="Texture2D" uid="uid://bw27g4jdvoh4c" path="res://assets/sprites/coilgun_highlights.png" id="2_glhtx"]
 [ext_resource type="Texture2D" uid="uid://bd5p0xks3hlac" path="res://materials/Lightning.png" id="3_001dw"]
 [ext_resource type="PackedScene" uid="uid://hqmm3uvn2te7" path="res://scenes/weapons/bullets/Flame.tscn" id="3_baiyb"]
-[ext_resource type="AudioStream" uid="uid://i6nfhdukumb5" path="res://assets/audio/flame.wav" id="6_u3qa2"]
+[ext_resource type="AudioStream" uid="uid://c0q2nnj3vw3vm" path="res://assets/audio/flame.wav" id="6_u3qa2"]
+[ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="7_781nl"]
 
 [sub_resource type="Gradient" id="Gradient_qq8yj"]
 offsets = PackedFloat32Array(0, 0.280612, 0.647959)
@@ -42,7 +43,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Flamethrower" type="Node2D"]
-script = ExtResource("1_ku0u6")
+script = ExtResource("1_shcpq")
+bullet_sound = ExtResource("6_u3qa2")
+flame_scene = ExtResource("3_baiyb")
 weapon_type = 1
 bullet = ExtResource("3_baiyb")
 
@@ -69,9 +72,6 @@ local_coords = true
 
 [node name="CooldownTimer" type="Timer" parent="."]
 
-[node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_u3qa2")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(18, -6)
 color = Color(0.000693898, 0.000693898, 0.000693898, 1)
@@ -79,3 +79,7 @@ energy = 1.45
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_uxv7w")
 metadata/_edit_lock_ = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_781nl")
+volume_db = 0.5

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cng0oxvq4lgro"]
+[gd_scene load_steps=13 format=3 uid="uid://cng0oxvq4lgro"]
 
 [ext_resource type="Script" path="res://scenes/weapons/pistol.gd" id="1_6qapt"]
 [ext_resource type="Texture2D" uid="uid://dfxh168dklqyi" path="res://assets/sprites/gun.png" id="2_rveyu"]
-[ext_resource type="PackedScene" uid="uid://dfhdd588sko2w" path="res://scenes/weapons/bullets/Standard_Bullet.tscn" id="3_o54sb"]
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="4_7y7cp"]
 [ext_resource type="AudioStream" uid="uid://eodk6ar8ku7o" path="res://assets/audio/bullet_collide.wav" id="4_m4yy6"]
 [ext_resource type="Texture2D" uid="uid://d3cx71um84fbw" path="res://assets/sprites/gun_highlights.png" id="4_uapq4"]
@@ -47,7 +46,6 @@ bullet_sound = ExtResource("4_m4yy6")
 weapon_name = "Pistol"
 weapon_type = 1
 cooldown = 0.25
-bullet = ExtResource("3_o54sb")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 z_index = -1

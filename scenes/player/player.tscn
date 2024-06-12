@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=46 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -15,64 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
 [ext_resource type="PackedScene" uid="uid://bi4aliws2845q" path="res://scenes/weapons/guns/flamethrower.tscn" id="10_c75tm"]
 [ext_resource type="PackedScene" uid="uid://hqmm3uvn2te7" path="res://scenes/weapons/bullets/Flame.tscn" id="11_2iwga"]
-[ext_resource type="PackedScene" uid="uid://dfhdd588sko2w" path="res://scenes/weapons/bullets/Standard_Bullet.tscn" id="11_07psj"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="11_p4qrx"]
+[ext_resource type="Script" path="res://scenes/weapons/guns/flamethrower.gd" id="11_poaga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
 radius = 6.0
-
-[sub_resource type="GDScript" id="GDScript_vubb0"]
-script/source = "extends Weapon
-
-@onready var cooldown_timer : Timer = $CooldownTimer
-@onready var muzzle_flash : GPUParticles2D = $BulletSpawn/MuzzleFlash
-@onready var bullet_spawn : Node2D = $BulletSpawn
-
-@export var bullet_sound : AudioStreamWAV
-@export var flame_scene : PackedScene
-
-var can_shoot : bool = true
-var flame_instance : Node2D = null
-var audio_player : AudioStreamPlayer2D = null
-
-func _ready():
-	set_process(true)
-	# Initialize the audio player once and keep it as a member variable.
-	audio_player = AudioStreamPlayer2D.new()
-	add_child(audio_player)
-	audio_player.stream = bullet_sound
-
-func shoot():
-	if !can_shoot:
-		return
-	
-	var mouse_pos : Vector2 = get_global_mouse_position()
-	cooldown_timer.start(cooldown)
-	can_shoot = false
-	
-	print(\"Playing sound\")  # Debugging print
-	audio_player.play()
-	
-	if flame_instance:
-		flame_instance.queue_free()
-	flame_instance = flame_scene.instantiate()
-	add_child(flame_instance)
-	flame_instance.global_position = bullet_spawn.global_position
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				shoot()
-			else:
-				if flame_instance:
-					flame_instance.queue_free()
-					flame_instance = null
-					can_shoot = true
-
-func _on_cooldown_timer_timeout():
-	can_shoot = true
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgnwk"]
 atlas = ExtResource("7_nifhg")
@@ -365,10 +312,9 @@ visible = false
 
 [node name="Flamethrower" parent="Body/Torso/Arm_F/WeaponHolder" instance=ExtResource("10_c75tm")]
 visible = false
-script = SubResource("GDScript_vubb0")
+script = ExtResource("11_poaga")
 flame_scene = ExtResource("11_2iwga")
-weapon_type = 0
-bullet = ExtResource("11_07psj")
+weapon_name = "flamethrower"
 
 [node name="Legs" type="AnimatedSprite2D" parent="Body"]
 z_index = -1

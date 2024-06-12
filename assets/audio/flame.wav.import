@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://i6nfhdukumb5"
+uid="uid://c0q2nnj3vw3vm"
 path="res://.godot/imported/flame.wav-b716a1e6d1b3fb45fdbf5f0b58acd848.sample"
 
 [deps]
@@ -16,9 +16,9 @@ force/8_bit=false
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=false
-edit/normalize=false
+edit/trim=true
+edit/normalize=true
 edit/loop_mode=2
-edit/loop_begin=0
-edit/loop_end=-1
+edit/loop_begin=30000
+edit/loop_end=100000
 compress/mode=0
