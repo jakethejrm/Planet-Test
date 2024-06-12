@@ -1,20 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b80pr8qtaebrm"]
+[gd_scene load_steps=4 format=3 uid="uid://b80pr8qtaebrm"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
-[ext_resource type="Script" path="res://src/Camera.gd" id="1_ptlin"]
-[ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="2_qcxs5"]
-[ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="3_e1sam"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
 [ext_resource type="PackedScene" uid="uid://c4wmhycbp5tfn" path="res://scenes/ui/menu.tscn" id="8_6njbv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3565t"]
-shader = ExtResource("3_e1sam")
-shader_parameter/r_displacement = Vector2(3, 0)
-shader_parameter/g_displacement = Vector2(0, 0)
-shader_parameter/b_displacement = Vector2(-3, 0)
-shader_parameter/height = 0.7
-shader_parameter/width = 0.5
-shader_parameter/fade = 0.7
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6dmo7")
@@ -24,29 +12,6 @@ spawn_path = NodePath("../Level/Map")
 
 [node name="Level" type="Node2D" parent="."]
 visible = false
-
-[node name="Camera" type="Camera2D" parent="Level"]
-position = Vector2(2, -156)
-ignore_rotation = false
-enabled = false
-rotation_smoothing_enabled = true
-script = ExtResource("1_ptlin")
-mouse_adjust = 0.8
-
-[node name="Hud" parent="Level/Camera" instance=ExtResource("2_qcxs5")]
-offset_left = -320.0
-offset_top = -180.0
-offset_right = -320.0
-offset_bottom = -180.0
-metadata/_edit_lock_ = true
-
-[node name="TextureRect" type="ColorRect" parent="Level/Camera"]
-material = SubResource("ShaderMaterial_3565t")
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-metadata/_edit_lock_ = true
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
 

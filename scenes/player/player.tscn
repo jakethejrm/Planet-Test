@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ckekd76gt61jg"]
+[gd_scene load_steps=47 format=3 uid="uid://ckekd76gt61jg"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_qibaw"]
 [ext_resource type="Texture2D" uid="uid://cqll3b462gr3y" path="res://assets/sprites/torso.png" id="2_cyyxl"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://rxrgbsr1cqik" path="res://assets/sprites/particle.png" id="9_dmgou"]
 [ext_resource type="AudioStream" uid="uid://scklfwxej6mi" path="res://assets/audio/rocket_boots.wav" id="10_8ig4b"]
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="11_p4qrx"]
+[ext_resource type="Script" path="res://src/Camera.gd" id="15_tet0r"]
+[ext_resource type="PackedScene" uid="uid://crk4e5jvhad26" path="res://scenes/ui/hud.tscn" id="16_d6u4t"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberation.gdshader" id="17_jpspo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlrk2"]
 radius = 6.0
@@ -240,6 +243,15 @@ properties/11/replication_mode = 1
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
 radius = 6.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qn3dp"]
+shader = ExtResource("17_jpspo")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+shader_parameter/height = 0.7
+shader_parameter/width = 0.5
+shader_parameter/fade = 0.7
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_qibaw")
@@ -390,5 +402,31 @@ replication_config = SubResource("SceneReplicationConfig_s5hjv")
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_yri0v")
 
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+top_level = true
+position = Vector2(2, -156)
+enabled = false
+rotation_smoothing_enabled = true
+script = ExtResource("15_tet0r")
+player = NodePath("..")
+mouse_adjust = 0.8
+
+[node name="Hud" parent="Camera" instance=ExtResource("16_d6u4t")]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="ColorRect" parent="Camera"]
+material = SubResource("ShaderMaterial_qn3dp")
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+metadata/_edit_lock_ = true
+
+[connection signal="update_fuel" from="." to="Camera/Hud" method="_on_player_update_fuel"]
+[connection signal="update_hp" from="." to="Camera/Hud" method="_on_player_update_hp"]
 [connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

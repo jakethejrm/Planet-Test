@@ -35,14 +35,15 @@ var spawnPos = Vector2.ZERO
 
 func _player_killed():
 	dead = true
-	switch_camera.disconnect(CameraSettings._on_camera_change)
+	#switch_camera.disconnect(CameraSettings._on_camera_change)
 	
 func _respawn():
 	#Move Player back to start, reset animations
-	switch_camera.connect(CameraSettings._on_camera_change)
-	switch_camera.emit(self)
+	#switch_camera.connect(CameraSettings._on_camera_change)
+	#switch_camera.emit(self)
 	_set_hp(100)
 	position = spawnPos
+	velocity = Vector2.ZERO
 	dead = false
 	
 
@@ -74,17 +75,17 @@ var can_switch_grav : bool = true
 func _ready():
 	if is_multiplayer_authority():
 		$Stats/Name.text = SteamInit.steam_username
-		switch_camera.connect(CameraSettings._on_camera_change)
-		switch_camera.emit(self)
+		#switch_camera.connect(CameraSettings._on_camera_change)
+		#switch_camera.emit(self)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Discus)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Coilgun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/AcidGun)
 	weapons.append($Body/Torso/Arm_F/WeaponHolder/Pistol)
 	weapon = weapons[current_weapon_index]
 	weapon.visible = true
-	update_hp.connect(CameraSettings._on_update_hp)
+	#update_hp.connect(CameraSettings._on_update_hp)
 	update_hp.emit(hp, max_hp)
-	update_fuel.connect(CameraSettings._on_update_fuel)
+	#update_fuel.connect(CameraSettings._on_update_fuel)
 	update_fuel.emit(curr_flight, max_flight)
 	spawnPos = position
 
