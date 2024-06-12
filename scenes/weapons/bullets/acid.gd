@@ -53,5 +53,8 @@ func _on_body_entered(body):
 	queue_free()
 	pass # Replace with function body.
 
-func acid_helper(body):
-	_on_body_entered(body)
+
+func _on_area_entered(area):
+	if(area.name == "Hurtbox"):
+		area.get_parent().acid_damage(area)
+		_on_body_entered(null)

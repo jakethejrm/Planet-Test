@@ -82,8 +82,6 @@ func _process(delta):
 func _on_body_entered(body):
 	# Create a new trail segment with a different color when the discus passes through an object
 	if close_to_player == false:
-		if(body).has_method("discus_damage"):
-			body.discus_damage(self);
 		var sound = AudioStreamPlayer2D.new()
 		sound.position = position
 		sound.stream = phase_sound
@@ -103,3 +101,10 @@ func create_new_trail_segment(trail_color: Color):
 	add_sibling.call_deferred(new_segment)
 	all_trails.append(new_segment)
 	current_trail = new_segment
+
+
+func _on_area_entered(area):
+	if(area.name == "Hurtbox"):
+		if(!close_to_player):
+			area.get_parent().discus_damage(area)
+			_on_body_entered(null)
