@@ -2,9 +2,13 @@ extends Node2D
 
 var lobby_id = 0
 var peer = SteamMultiplayerPeer.new()
-@onready var ms = $MultiplayerSpawner
+@onready var ms = $Level/MultiplayerSpawner
 
 func _ready():
+	
+	#Steam.lobby_joined.connect()
+	
+	
 	ms.spawn_function = spawn_level
 	peer.lobby_created.connect(_on_lobby_created)
 	$MainMenu.host.connect(_on_main_menu_host)
@@ -22,6 +26,9 @@ func _on_main_menu_join_lobby(lobby_id):
 	multiplayer.multiplayer_peer = peer
 	$MainMenu.hide()
 	$MainMenu/Camera.enabled = false
+	$LoadingScreen.hide()
+	$LoadingScreen/Camera.enabled = false
+	$Level.show()
 	pass # Replace with function body.
 
 

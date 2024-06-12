@@ -92,3 +92,9 @@ func _on_host_or_play_host():
 	print("hi3")
 	host.emit()
 	pass # Replace with function body.
+
+func activate_camera():
+	$Camera.enabled = true
+
+func deactivate_camera():
+	$Camera.enabled = false
