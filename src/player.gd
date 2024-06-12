@@ -33,6 +33,7 @@ var curr_flight : float = 100 : set = _set_flight
 var dead = false
 var spawnPos = Vector2.ZERO
 
+
 func _player_killed():
 	dead = true
 	#switch_camera.disconnect(CameraSettings._on_camera_change)
@@ -275,3 +276,14 @@ func _on_grav_switch_timer_timeout():
 func _on_hurtbox_area_entered(area):
 	if(area.has_method("_killbox")):
 		_set_hp(0)
+	elif (area.has_method("discus_helper")):
+		if (!area.close_to_player):
+			_set_hp(hp - 10)
+			area.discus_helper(self)
+	elif (area.has_method("acid_helper")):
+		_set_hp(hp - 20)
+		area.acid_helper(self)
+	elif (area.has_method("sb_helper")):
+		_set_hp(hp - 5)
+	elif (area.has_method("lightning_helper")):
+		_set_hp(hp - 30)

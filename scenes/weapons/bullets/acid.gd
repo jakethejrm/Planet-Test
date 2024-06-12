@@ -52,3 +52,6 @@ func _on_body_entered(body):
 	new_trail.queue_free()
 	queue_free()
 	pass # Replace with function body.
+
+func acid_helper(body):
+	_on_body_entered(body)

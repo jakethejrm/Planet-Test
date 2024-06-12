@@ -239,6 +239,12 @@ properties/10/replication_mode = 1
 properties/11/path = NodePath("Stats:rotation")
 properties/11/spawn = true
 properties/11/replication_mode = 1
+properties/12/path = NodePath("Body/Torso/Arm_F/WeaponHolder:gizmo_extents")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Body/Torso/Arm_F/WeaponHolder/Discus:visible")
+properties/13/spawn = true
+properties/13/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yri0v"]
 radius = 6.0
