@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbqge7vjq2j3y"]
+[gd_scene load_steps=7 format=3 uid="uid://bbqge7vjq2j3y"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bullets/trails/smoketrail.gd" id="1_n742c"]
 
@@ -19,6 +19,14 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.5)
 repeat = 2
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m3bnv"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Smoketrail" type="Line2D"]
 z_index = 5
 width_curve = SubResource("Curve_xwy7n")
@@ -26,3 +34,6 @@ gradient = SubResource("Gradient_ep86x")
 texture = SubResource("GradientTexture2D_77eik")
 texture_mode = 2
 script = ExtResource("1_n742c")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m3bnv")

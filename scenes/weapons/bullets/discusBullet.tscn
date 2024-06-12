@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://h1culkhhi32u"]
+[gd_scene load_steps=9 format=3 uid="uid://h1culkhhi32u"]
 
 [ext_resource type="Texture2D" uid="uid://cxppeplsqf6ji" path="res://assets/sprites/Discus.png" id="1_qggkj"]
 [ext_resource type="Script" path="res://scenes/weapons/bullets/discusBullet.gd" id="1_uh4qs"]
@@ -17,6 +17,38 @@ gradient = SubResource("Gradient_mk431")
 fill = 1
 fill_from = Vector2(0.530055, 0.497268)
 fill_to = Vector2(0.693989, 0.327869)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aco7k"]
+properties/0/path = NodePath(".:monitorable")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:monitoring")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("CollisionShape2D:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("CollisionShape2D:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Sprite2D:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Sprite2D:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:initial_scale")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:max_scale")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath(".:color")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath(".:scale_growth_rate")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [node name="DiscusBullet" type="Area2D"]
 z_index = 10
@@ -41,5 +73,9 @@ hit_from_inside = true
 [node name="Glow" type="PointLight2D" parent="."]
 texture = SubResource("GradientTexture2D_av8pn")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_aco7k")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

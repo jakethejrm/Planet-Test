@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhiqwhigaujae"]
+
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_gtocy"]
+[ext_resource type="Script" path="res://Control.gd" id="2_kk5sp"]
+[ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="3_k38x2"]
+[ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_5j87q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7iqar"]
+shader = ExtResource("3_k38x2")
+shader_parameter/speed = 0.01
+
+[sub_resource type="LabelSettings" id="LabelSettings_xv4iy"]
+font_size = 32
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gtocy")
+script = ExtResource("2_kk5sp")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+
+[node name="Background" type="TextureRect" parent="Camera"]
+z_index = -30
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7iqar")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -213.0
+offset_right = 320.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_5j87q")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera"]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = ExtResource("1_gtocy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Camera/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Loading"
+label_settings = SubResource("LabelSettings_xv4iy")
+
+[node name="LoadingDots" type="Label" parent="Camera/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_xv4iy")
+
+[node name="Timer" type="Timer" parent="Camera/MarginContainer/HBoxContainer"]
+autostart = true
+
+[connection signal="timeout" from="Camera/MarginContainer/HBoxContainer/Timer" to="." method="_on_timer_timeout"]
