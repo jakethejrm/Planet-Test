@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwj6hlwbvpbd7"]
+
+[ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_m7okk"]
+[ext_resource type="Script" path="res://scenes/ui/credits.gd" id="2_8fts2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c3eb4"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqff4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afii2"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(1, 0.384314, 0.6, 0.792157)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Credits" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m7okk")
+script = ExtResource("2_8fts2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_c3eb4")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "dalee roland - new weapons and bullet system, multiplayer"
+label_settings = SubResource("LabelSettings_oqff4")
+
+[node name="Label3" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "eric meseck - death/damage system, multiplayer, polish, UI"
+label_settings = SubResource("LabelSettings_oqff4")
+
+[node name="Label4" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "jacob malone - main menu, planet/platform gravity system and shaders, main menu, multiplayer"
+label_settings = SubResource("LabelSettings_oqff4")
+
+[node name="Label5" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "muhammad qureshi - shotgun, adding sound effects, sprite, bullet spread, multiplayer"
+label_settings = SubResource("LabelSettings_oqff4")
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "murat oney - flamethrower: sprite, flame effects, sound effects, multiplayer"
+label_settings = SubResource("LabelSettings_oqff4")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/hover = SubResource("StyleBoxFlat_afii2")
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

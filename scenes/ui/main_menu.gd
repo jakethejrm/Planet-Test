@@ -4,7 +4,7 @@ signal host(lobby_name : String, player_count : int)
 signal join_lobby(lobby_id : int)
 
 @export var play_menu : Control
-@export var settings_menu : Control
+@export var credits_menu : Control
 @export var cosmetics_menu : Control
 @export var stats_menu : Control
 
@@ -24,8 +24,8 @@ func _on_planet_button_pressed(button : Control):
 		"Play":
 			transition_scene(play_menu)
 			pass
-		"Settings":
-			transition_scene(settings_menu)
+		"Credits":
+			transition_scene(credits_menu)
 			pass
 		"Quit":
 			transition_scene()
@@ -98,3 +98,8 @@ func activate_camera():
 
 func deactivate_camera():
 	$Camera.enabled = false
+
+
+func _on_credits_back(curr):
+	transition_scene($MenuOptions, curr)
+	pass # Replace with function body.

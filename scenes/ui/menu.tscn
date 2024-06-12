@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c4wmhycbp5tfn"]
+[gd_scene load_steps=41 format=3 uid="uid://c4wmhycbp5tfn"]
 
 [ext_resource type="Theme" uid="uid://jg0ki33q0a7v" path="res://assets/ui/theme.tres" id="1_q46lw"]
 [ext_resource type="Texture2D" uid="uid://u4y6fj8vqmjy" path="res://assets/ui/studio_logo_small.png" id="2_3d0gj"]
@@ -6,12 +6,13 @@
 [ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="2_c48me"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_sbxiu"]
 [ext_resource type="Shader" path="res://shaders/lightning.gdshader" id="4_t7ge2"]
+[ext_resource type="PackedScene" uid="uid://bwj6hlwbvpbd7" path="res://scenes/ui/credits.tscn" id="5_rckep"]
 [ext_resource type="PackedScene" uid="uid://r20l7yuf6lky" path="res://scenes/ui/PlanetButton.tscn" id="6_w500x"]
 [ext_resource type="Shader" path="res://scenes/ui/sun.gdshader" id="7_de5oi"]
 [ext_resource type="Texture2D" uid="uid://cari8rte4nqp0" path="res://assets/ui/sun.png" id="8_v75mb"]
 [ext_resource type="Texture2D" uid="uid://2agikaijirlj" path="res://assets/ui/play_icon.png" id="9_42by5"]
-[ext_resource type="Texture2D" uid="uid://byy3xl65axxep" path="res://assets/ui/settings_icon.png" id="10_am20o"]
 [ext_resource type="Texture2D" uid="uid://ctvtu65ce4o1o" path="res://assets/ui/quit_icon.png" id="11_7xwbh"]
+[ext_resource type="Texture2D" uid="uid://cnghu6wcmnhqb" path="res://assets/ui/Credits_icon.png" id="12_an1r2"]
 [ext_resource type="Texture2D" uid="uid://bmp8ae4vjvh70" path="res://assets/ui/customize_icon.png" id="12_hw2qr"]
 [ext_resource type="Texture2D" uid="uid://31yiqwjsa5r0" path="res://assets/ui/stats_icon.png" id="13_i4i02"]
 [ext_resource type="PackedScene" uid="uid://isyylugsv2hs" path="res://scenes/ui/settings.tscn" id="16_6r2b8"]
@@ -161,7 +162,7 @@ _data = {
 "fade_out": SubResource("Animation_cnilf")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_menu", "settings_menu")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_menu", "credits_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,7 +172,7 @@ grow_vertical = 2
 theme = ExtResource("1_q46lw")
 script = ExtResource("2_c48me")
 play_menu = NodePath("ChildMenus/HostOrPlay")
-settings_menu = NodePath("ChildMenus/Settings")
+credits_menu = NodePath("ChildMenus/Credits")
 
 [node name="ChildMenus" type="Container" parent="."]
 layout_mode = 1
@@ -192,6 +193,11 @@ parent = NodePath("../..")
 visible = false
 layout_mode = 2
 mouse_filter = 0
+
+[node name="Credits" parent="ChildMenus" node_paths=PackedStringArray("parent") instance=ExtResource("5_rckep")]
+visible = false
+layout_mode = 2
+parent = NodePath("../..")
 
 [node name="MenuOptions" type="Control" parent="."]
 layout_mode = 2
@@ -247,7 +253,7 @@ disabled = false
 icon = SubResource("PlaceholderTexture2D_ue77r")
 orbit_speed = 0.1
 pitch = 0.0
-sub_planets = [NodePath("../../../../Play"), NodePath("../../../../Settings"), NodePath("../../../../Quit"), NodePath("../../../../Cosmetics"), NodePath("../../../../Stats")]
+sub_planets = [NodePath("../../../../Play"), NodePath("../../../../Credits"), NodePath("../../../../Quit"), NodePath("../../../../Cosmetics"), NodePath("../../../../Stats")]
 
 [node name="Sun" type="TextureRect" parent="MenuOptions/Margins/MarginContainer/SelectMenu"]
 material = SubResource("ShaderMaterial_4dh8i")
@@ -284,37 +290,37 @@ size_flags_vertical = 4
 texture = ExtResource("2_3d0gj")
 
 [node name="Play" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = -10
+z_index = 10
 layout_mode = 1
-offset_left = 172.705
-offset_top = 192.941
-offset_right = 172.705
-offset_bottom = 192.941
+offset_left = 145.051
+offset_top = 239.383
+offset_right = 145.051
+offset_bottom = 239.383
 disabled = false
 text = "Play"
 planet_color = Color(1, 0.239216, 0.415686, 1)
 icon = ExtResource("9_42by5")
 
-[node name="Settings" parent="MenuOptions" instance=ExtResource("6_w500x")]
+[node name="Credits" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = -11
 layout_mode = 1
-offset_left = 403.154
-offset_top = 183.621
-offset_right = 403.154
-offset_bottom = 183.621
+offset_left = 173.765
+offset_top = 192.712
+offset_right = 173.765
+offset_bottom = 192.712
 disabled = false
-text = "Settings"
+text = "Credits"
 planet_color = Color(0.568627, 0.568627, 0.568627, 1)
-icon = ExtResource("10_am20o")
+icon = ExtResource("12_an1r2")
 pitch = 1.122
 
 [node name="Quit" parent="MenuOptions" instance=ExtResource("6_w500x")]
-z_index = 12
+z_index = -12
 layout_mode = 1
-offset_left = 518.687
-offset_top = 224.575
-offset_right = 518.687
-offset_bottom = 224.575
+offset_left = 404.571
+offset_top = 183.752
+offset_right = 404.571
+offset_bottom = 183.752
 disabled = false
 text = "Quit"
 planet_color = Color(0.537255, 0.678431, 0.996078, 1)
@@ -324,10 +330,10 @@ pitch = 1.26
 [node name="Cosmetics" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 13
 layout_mode = 1
-offset_left = 359.641
-offset_top = 259.206
-offset_right = 359.641
-offset_bottom = 259.206
+offset_left = 518.503
+offset_top = 224.885
+offset_right = 518.503
+offset_bottom = 224.885
 disabled = true
 text = "Cosmetics"
 planet_color = Color(0, 1, 0, 1)
@@ -337,10 +343,10 @@ pitch = 1.335
 [node name="Stats" parent="MenuOptions" instance=ExtResource("6_w500x")]
 z_index = 14
 layout_mode = 1
-offset_left = 145.812
-offset_top = 239.656
-offset_right = 145.812
-offset_bottom = 239.656
+offset_left = 358.111
+offset_top = 259.267
+offset_right = 358.111
+offset_bottom = 259.267
 disabled = true
 text = "My Stats"
 planet_color = Color(1, 0.568627, 1, 1)
@@ -397,8 +403,9 @@ libraries = {
 [connection signal="back" from="ChildMenus/HostOrPlay" to="." method="_on_back"]
 [connection signal="host" from="ChildMenus/HostOrPlay" to="." method="_on_host_or_play_host"]
 [connection signal="join_lobby" from="ChildMenus/HostOrPlay" to="." method="_on_host_or_play_join_lobby"]
+[connection signal="back" from="ChildMenus/Credits" to="." method="_on_credits_back"]
 [connection signal="button_pressed" from="MenuOptions/Play" to="." method="_on_planet_button_pressed"]
-[connection signal="button_pressed" from="MenuOptions/Settings" to="." method="_on_planet_button_pressed"]
+[connection signal="button_pressed" from="MenuOptions/Credits" to="." method="_on_planet_button_pressed"]
 [connection signal="button_pressed" from="MenuOptions/Quit" to="." method="_on_planet_button_pressed"]
 [connection signal="button_pressed" from="MenuOptions/Cosmetics" to="." method="_on_planet_button_pressed"]
 [connection signal="button_pressed" from="MenuOptions/Stats" to="." method="_on_planet_button_pressed"]
