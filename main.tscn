@@ -1,5 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b80pr8qtaebrm"]
-
+[gd_scene load_steps=5 format=3 uid="uid://b80pr8qtaebrm"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6dmo7"]
 [ext_resource type="Texture2D" uid="uid://pd3sioxvo5n" path="res://assets/sprites/space.png" id="4_w0ll2"]
