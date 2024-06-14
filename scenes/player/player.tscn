@@ -500,7 +500,5 @@ offset_right = 320.0
 offset_bottom = 180.0
 metadata/_edit_lock_ = true
 
-[connection signal="update_fuel" from="." to="Camera/Hud" method="_on_player_update_fuel"]
-[connection signal="update_hp" from="." to="Camera/Hud" method="_on_player_update_hp"]
 [connection signal="timeout" from="GravSwitchTimer" to="." method="_on_grav_switch_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -17,12 +17,12 @@ func _process(delta):
 	pass
 
 
-func _on_player_update_fuel(new_fuel, max_fuel):
+func update_fuel(new_fuel, max_fuel):
 	$Margins/VBoxContainer/Fuel/fuel.size.x = new_fuel/max_fuel * max_fuel_width
 	pass # Replace with function body.
 
 
-func _on_player_update_hp(new_hp, max_hp):
+func update_hp(new_hp, max_hp):
 	$Margins/VBoxContainer/BG/health.size.x = new_hp/max_hp * max_hp_width
 	if (new_hp <= 0):
 		$deathText.label_settings.font_color = Color(1, 1, 1, 1)

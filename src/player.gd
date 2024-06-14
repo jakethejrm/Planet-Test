@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 signal switch_camera(node : Node2D)
 
-signal update_hp(new_hp : float, max_hp : float)
-signal update_fuel(new_fuel : float, max_fuel : float)
-
 @export var grav_source : GravObject : set = _set_grav_source
 @export var weapon : Weapon
 @export var max_flight : float = 100
@@ -51,13 +48,13 @@ func _respawn():
 
 func _set_hp(new_hp : float):
 	hp = new_hp
-	update_hp.emit(hp, max_hp)
+	$Camera/Hud.update_hp(hp, max_hp)
 	if(new_hp <= 0):
 		_player_killed()
 	
 func _set_flight(new_flight : float):
 	curr_flight = new_flight
-	update_fuel.emit(curr_flight, max_flight)
+	$Camera/Hud.update_fuel(curr_flight, max_flight)
 
 var walk_dir = 1
 var dir = 1
@@ -88,9 +85,9 @@ func _ready():
 	weapon = weapons[current_weapon_index]
 	weapon.visible = true
 	#update_hp.connect(CameraSettings._on_update_hp)
-	update_hp.emit(hp, max_hp)
+	$Camera/Hud.update_hp(hp, max_hp)
 	#update_fuel.connect(CameraSettings._on_update_fuel)
-	update_fuel.emit(curr_flight, max_flight)
+	$Camera/Hud.update_fuel(curr_flight, max_flight)
 	spawnPos = position
 
 func _physics_process(delta):
